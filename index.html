@@ -3508,6 +3508,7 @@
 
     .hero-title-line {
       display: block;
+      white-space: nowrap;
     }
 
     .hero-title-line + .hero-title-line::before {
@@ -3592,7 +3593,7 @@
       .hero {
         min-height: calc(100vh - 68px);
         padding: 0;
-        background: #050505 url("hero-mobile-pizze-hd.jpg") center 43% / cover no-repeat;
+        background: #120c08;
       }
 
       .hero-media::before {
@@ -3608,17 +3609,17 @@
         width: 100%;
         height: 100%;
         padding: 0;
-        transform: scale(1.035);
+        transform: none;
         object-fit: cover;
-        object-position: center 43%;
+        object-position: center center;
         image-rendering: auto;
-        filter: contrast(1.03) saturate(1.04);
+        filter: contrast(1.03) saturate(1.05) brightness(0.99);
       }
 
       .hero-media::after {
         background:
-          linear-gradient(90deg, rgba(4, 4, 4, 0.46) 0%, rgba(4, 4, 4, 0.14) 42%, rgba(4, 4, 4, 0.36) 100%),
-          linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.22) 100%);
+          linear-gradient(90deg, rgba(4, 4, 4, 0.26) 0%, rgba(4, 4, 4, 0.06) 42%, rgba(4, 4, 4, 0.16) 100%),
+          linear-gradient(180deg, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0.12) 100%);
       }
 
       .hero-grid {
@@ -3648,7 +3649,7 @@
       .hero-copy h1 {
         max-width: 100%;
         margin: 0 auto 18px;
-        font-size: clamp(2.7rem, 4.8vw, 4.4rem);
+        font-size: clamp(2.28rem, 4vw, 3.7rem);
         line-height: 0.97;
       }
 
@@ -3681,7 +3682,7 @@
       .hero {
         min-height: calc(100svh - 60px) !important;
         padding: 0 !important;
-        background: #050505 !important;
+        background: #120c08 !important;
       }
 
       .hero-media {
@@ -3690,7 +3691,7 @@
       }
 
       .hero-media::before {
-        display: none;
+        display: none !important;
       }
 
       .hero-image {
@@ -3700,16 +3701,17 @@
         height: 100% !important;
         max-width: none !important;
         max-height: none !important;
+        padding: 0 !important;
         transform: none !important;
         object-fit: cover !important;
-        object-position: center 43% !important;
+        object-position: center center !important;
         image-rendering: auto !important;
-        filter: contrast(1.02) saturate(1.03) !important;
+        filter: contrast(1.025) saturate(1.045) brightness(0.99) !important;
       }
 
       .hero-media::after {
         background:
-          linear-gradient(180deg, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0.34) 56%, rgba(0, 0, 0, 0.7) 100%) !important;
+          linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.05) 18%, rgba(0, 0, 0, 0.2) 56%, rgba(0, 0, 0, 0.44) 100%) !important;
       }
 
       .hero-grid {
@@ -3743,7 +3745,7 @@
       .hero-copy h1 {
         max-width: 100% !important;
         margin: 0 auto 14px !important;
-        font-size: clamp(1.98rem, 8vw, 2.72rem) !important;
+        font-size: clamp(1.72rem, 6.7vw, 2.26rem) !important;
         line-height: 0.96 !important;
       }
 
@@ -3825,7 +3827,7 @@
       }
 
       .hero-copy h1 {
-        font-size: clamp(1.84rem, 8vw, 2.28rem) !important;
+        font-size: clamp(1.54rem, 6.4vw, 1.94rem) !important;
       }
 
       .hero-copy p {
@@ -3837,7 +3839,7 @@
     @media (max-width: 430px) {
       .hero-copy h1 {
         max-width: 100% !important;
-        font-size: clamp(1.62rem, 8vw, 1.94rem) !important;
+        font-size: clamp(1.34rem, 6.2vw, 1.68rem) !important;
       }
 
       .hero-copy p {
@@ -3890,7 +3892,8 @@
       <section class="hero" id="top">
         <div class="hero-media" aria-hidden="true">
           <picture class="hero-picture">
-            <img class="hero-image" src="hero-mobile-pizze-hd.jpg" alt="" width="1444" height="1800" loading="eager" fetchpriority="high" decoding="async" />
+            <source media="(min-width: 881px)" srcset="hero-desktop-pizze-cover.jpg" />
+            <img class="hero-image" src="hero-mobile-pizze-cover.jpg" alt="" width="1444" height="3200" loading="eager" fetchpriority="high" decoding="async" />
           </picture>
         </div>
       <div class="container hero-grid">
@@ -3961,8 +3964,8 @@
             </div>
 
             <div class="field">
-              <label for="booking-notes" data-i18n="form_notes">Preferenze o esigenze</label>
-              <textarea id="booking-notes" name="notes" data-ph="ph_notes" placeholder="Allergie, intolleranze, tavolo interno o esterno, esigenze particolari."></textarea>
+              <label for="booking-notes" data-i18n="form_notes">Preferenze tavolo</label>
+              <textarea id="booking-notes" name="notes" data-ph="ph_notes" placeholder="Tavolo interno o esterno, seggiolone, arrivo con passeggino."></textarea>
             </div>
 
             <div class="booking-actions">
@@ -4749,8 +4752,8 @@
         </div>
 
         <div class="field">
-          <label for="booking-mobile-notes" data-i18n="form_notes">Preferenze o esigenze</label>
-          <textarea id="booking-mobile-notes" name="notes" data-ph="ph_notes" placeholder="Allergie, intolleranze, tavolo interno o esterno, esigenze particolari."></textarea>
+          <label for="booking-mobile-notes" data-i18n="form_notes">Preferenze tavolo</label>
+          <textarea id="booking-mobile-notes" name="notes" data-ph="ph_notes" placeholder="Tavolo interno o esterno, seggiolone, arrivo con passeggino."></textarea>
         </div>
 
         <div class="booking-actions">
@@ -4838,11 +4841,11 @@
         form_guests: "Persone",
         form_date: "Data",
         form_time: "Orario",
-        form_notes: "Preferenze o esigenze",
+        form_notes: "Preferenze tavolo",
         ph_name: "Nome e cognome",
         ph_phone: "Telefono",
         ph_guests: "Persone",
-        ph_notes: "Allergie, intolleranze, tavolo interno o esterno, esigenze particolari.",
+        ph_notes: "Tavolo interno o esterno, seggiolone, arrivo con passeggino.",
         booking_submit: "Prenota ora",
         call_now: "Chiama ora"
       },
@@ -4886,11 +4889,11 @@
         form_guests: "Guests",
         form_date: "Date",
         form_time: "Time",
-        form_notes: "Preferences or needs",
+        form_notes: "Table preferences",
         ph_name: "Full name",
         ph_phone: "Phone",
         ph_guests: "Guests",
-        ph_notes: "Allergies, intolerances, indoor or outdoor table, special needs.",
+        ph_notes: "Indoor or outdoor table, high chair, arriving with a stroller.",
         booking_submit: "Book now",
         call_now: "Call now"
       }
@@ -4944,7 +4947,7 @@
           guests: "Persone",
           date: "Data",
           time: "Orario",
-          notes: "Preferenze / esigenze"
+          notes: "Preferenze tavolo"
         },
         en: {
           intro: "Hello M'aMa, I would like to reserve a table.",
@@ -4953,7 +4956,7 @@
           guests: "Guests",
           date: "Date",
           time: "Time",
-          notes: "Preferences / needs"
+          notes: "Table preferences"
         }
       }[lang];
 
