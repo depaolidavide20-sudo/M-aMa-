@@ -3299,7 +3299,9 @@
       .hero {
         min-height: calc(100svh - 60px) !important;
         padding: 0 !important;
-        background: #050505 !important;
+        background:
+          linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.24)),
+          url("hero-mobile-pizze-hd.jpg") center 42% / cover no-repeat !important;
         overflow: hidden !important;
       }
 
@@ -3309,29 +3311,6 @@
       }
 
       .hero-media {
-        position: absolute !important;
-        inset: 0 !important;
-        display: block !important;
-        z-index: 0 !important;
-        background:
-          linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.24)),
-          url("hero-mobile-pizze-hd.jpg") center 42% / cover no-repeat !important;
-      }
-
-      .hero-media::before {
-        display: none !important;
-      }
-
-      .hero-media::after {
-        content: "" !important;
-        position: absolute !important;
-        inset: 0 !important;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.1) 24%, rgba(0, 0, 0, 0.26) 58%, rgba(0, 0, 0, 0.58) 100%) !important;
-        z-index: 1 !important;
-      }
-
-      .hero-picture,
-      .hero-image {
         display: none !important;
       }
 
