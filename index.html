@@ -2028,6 +2028,18 @@
         min-height: auto;
       }
 
+      .hero-grid {
+        min-height: auto;
+        gap: 18px;
+      }
+
+      .hero-copy,
+      .booking-card {
+        width: 100%;
+        max-width: 760px;
+        margin-inline: auto;
+      }
+
       .story-copy {
         min-height: auto;
       }
@@ -2087,8 +2099,8 @@
 
     @media (max-width: 880px) {
       .nav {
-        min-height: 64px;
-        gap: 14px;
+        min-height: 60px;
+        gap: 10px;
       }
 
       .nav-links,
@@ -2101,7 +2113,7 @@
       }
 
       .hero {
-        padding-top: 22px;
+        padding: 16px 0 30px;
       }
 
       .hero-copy,
@@ -2123,8 +2135,43 @@
         gap: 18px;
       }
 
+      .hero-grid {
+        gap: 14px;
+      }
+
+      .hero-copy {
+        min-height: 0;
+        padding: 24px 22px;
+      }
+
       .hero-copy h1 {
-        font-size: clamp(2.8rem, 12vw, 4.4rem);
+        font-size: clamp(2.35rem, 11.2vw, 3.65rem);
+        margin-bottom: 12px;
+      }
+
+      .hero-copy p {
+        max-width: 38ch;
+        font-size: 0.96rem;
+        line-height: 1.66;
+      }
+
+      .hero-call-cta,
+      .hero-call-cta .btn {
+        width: 100%;
+      }
+
+      .booking-card {
+        padding: 22px;
+        gap: 14px;
+      }
+
+      .booking-card h2 {
+        font-size: clamp(1.7rem, 7vw, 2.15rem);
+      }
+
+      .booking-text {
+        font-size: 0.92rem;
+        line-height: 1.58;
       }
 
       .brand-logo-wrap {
@@ -2149,8 +2196,17 @@
         padding: 70px 0;
       }
 
+      .story-grid,
+      .contact-grid {
+        gap: 16px;
+      }
+
+      .story-copy .section-title {
+        margin-bottom: 18px;
+      }
+
       .map-card iframe {
-        min-height: 248px;
+        min-height: 220px;
       }
 
       .map-card-badge {
@@ -2159,12 +2215,180 @@
         bottom: 14px;
       }
 
+      .menu-section {
+        padding: 52px 0;
+      }
+
+      .menu-showcase {
+        gap: 18px;
+      }
+
+      .menu-header .section-title h2 {
+        font-size: clamp(2.35rem, 9.8vw, 4rem);
+        margin-bottom: 12px;
+      }
+
+      .menu-header .section-title p {
+        max-width: 34ch;
+        font-size: 0.98rem;
+        line-height: 1.62;
+      }
+
+      .menu-visual-grid {
+        gap: 12px;
+      }
+
+      .menu-modal-head {
+        margin-bottom: 18px;
+      }
+
+      .menu-modal-head h3 {
+        font-size: clamp(2.1rem, 8vw, 3rem);
+      }
+
+      .menu-detail-card {
+        border-radius: 24px;
+      }
+
+      .review-grid {
+        width: 100%;
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(280px, 80%);
+        gap: 14px;
+        justify-content: start;
+        overflow-x: auto;
+        padding: 2px 2px 6px;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: 2px;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+      }
+
+      .review-grid::-webkit-scrollbar {
+        display: none;
+      }
+
+      .review {
+        min-height: 214px;
+        padding: 20px 20px 18px;
+        gap: 12px;
+        scroll-snap-align: start;
+      }
+
+      .review p {
+        max-width: none;
+      }
+
+      .reviews-intro {
+        margin-bottom: 18px;
+      }
+
+      .reviews-intro h2 {
+        max-width: 11ch;
+        font-size: clamp(2.45rem, 9.8vw, 3.3rem);
+      }
+
+      .reviews-cta-wrap {
+        margin-top: 18px;
+        gap: 8px;
+      }
+
+      .reviews-google-button {
+        min-height: 46px;
+        padding: 0 18px;
+        font-size: 0.9rem;
+      }
+
+      #contatti {
+        padding-top: 18px;
+        padding-bottom: 18px;
+      }
+
+      .contact-card,
+      .map-card {
+        border-radius: 26px;
+      }
+
+      .contact-section-intro {
+        padding-bottom: 6px;
+      }
+
+      .contact-section-intro h2 {
+        font-size: clamp(2rem, 8vw, 2.6rem);
+      }
+
+      .contact-list {
+        gap: 8px;
+      }
+
+      .contact-list li {
+        padding: 12px 14px;
+      }
+
+      .contact-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-actions .btn,
+      .contact-actions .btn-ghost {
+        min-height: 48px;
+        padding-inline: 16px;
+        font-size: 0.94rem;
+      }
+
+      .map-card-badge {
+        padding: 12px 14px;
+        border-radius: 18px;
+      }
+
+      .footer {
+        padding: 12px 0 18px;
+      }
+
+      .footer-shell {
+        gap: 14px 18px;
+        padding: 18px;
+      }
+
+      .footer-brand-block,
+      .footer-block {
+        gap: 8px;
+      }
+
+      .footer-brand-block p,
+      .footer-block p,
+      .footer-block a {
+        font-size: 0.92rem;
+      }
+
+      .footer-legal-space {
+        min-height: 42px;
+      }
+
+      .social-link {
+        width: 46px;
+        height: 46px;
+        border-radius: 16px;
+      }
+
       .mobile-cta {
         display: flex;
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        padding: 8px;
+        border-radius: 18px;
+      }
+
+      .mobile-cta .btn,
+      .mobile-cta .btn-ghost {
+        min-height: 50px;
+        padding: 12px 14px;
       }
 
       body {
-        padding-bottom: 92px;
+        padding-bottom: 82px;
       }
     }
 
@@ -2178,43 +2402,45 @@
       }
 
       .reviews-intro h2 {
-        font-size: clamp(2.9rem, 12vw, 4.5rem);
+        max-width: 12ch;
+        font-size: clamp(2.05rem, 10.4vw, 2.75rem);
       }
 
       .reviews-google-button {
         width: auto;
         max-width: 100%;
         min-width: 0;
-        min-height: 54px;
-        padding: 0 20px;
-        font-size: 0.96rem;
-      }
-
-      .contact-actions {
-        display: grid;
-        grid-template-columns: 1fr;
+        min-height: 44px;
+        padding: 0 18px;
+        font-size: 0.88rem;
       }
 
       .contact-list li {
         grid-template-columns: 42px minmax(0, 1fr);
         gap: 12px;
+        padding: 11px 12px;
+        border-radius: 20px;
       }
 
       .contact-item-icon {
-        width: 42px;
-        height: 42px;
+        width: 40px;
+        height: 40px;
         border-radius: 14px;
       }
 
       .footer-shell {
         grid-template-columns: 1fr;
-        padding: 20px 18px;
-        border-radius: 24px;
+        padding: 16px;
+        border-radius: 20px;
+        gap: 14px;
       }
 
       .footer-meta {
         text-align: center;
         align-items: center;
+        margin-top: 10px;
+        gap: 8px;
+        font-size: 0.76rem;
       }
 
       .brand-mark {
@@ -2229,22 +2455,45 @@
       }
 
       .brand-logo-wrap {
-        min-width: 124px;
-        min-height: 50px;
-        padding: 4px 8px;
+        min-width: 114px;
+        min-height: 46px;
+        padding: 4px 7px;
       }
 
       .brand-logo {
-        width: 56px;
+        width: 52px;
       }
 
       .hero-copy,
       .booking-card {
-        padding: 20px;
+        padding: 18px;
+        border-radius: 22px;
       }
 
       .hero-copy {
-        padding-top: 20px;
+        padding-top: 18px;
+      }
+
+      .hero {
+        padding: 12px 0 24px;
+        background-position: center 30%;
+      }
+
+      .hero-image {
+        object-position: center 30%;
+      }
+
+      .hero-grid {
+        gap: 12px;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.05rem, 10vw, 2.9rem);
+        line-height: 0.96;
+      }
+
+      .booking-card h2 {
+        font-size: 1.7rem;
       }
 
       .hero-copy p,
@@ -2261,8 +2510,14 @@
         line-height: 1.7;
       }
 
+      .hero-copy p,
+      .booking-text {
+        font-size: 0.92rem;
+        line-height: 1.62;
+      }
+
       .section-title h2 {
-        font-size: clamp(2.2rem, 11vw, 3rem);
+        font-size: clamp(2rem, 10vw, 2.6rem);
       }
 
       .aside-copy h2 {
@@ -2277,6 +2532,14 @@
         width: 32px;
         height: 32px;
         font-size: 0.75rem;
+      }
+
+      .mobile-menu {
+        top: 68px;
+        left: 8px;
+        right: 8px;
+        padding: 14px;
+        border-radius: 20px;
       }
 
       .aside-stats {
@@ -2307,7 +2570,7 @@
       }
 
       .story-photo-card {
-        min-height: 380px;
+        min-height: 320px;
       }
 
       .story-photo-note {
@@ -2315,19 +2578,22 @@
         right: 18px;
         bottom: 18px;
         max-width: none;
-        padding: 16px 18px;
+        padding: 14px 15px;
       }
 
       .story-photo-note strong {
-        font-size: 1.35rem;
+        font-size: 1.2rem;
       }
 
       .menu-visual-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
       }
 
       .menu-visual-card {
-        min-height: 210px;
+        min-height: 0;
+        aspect-ratio: 0.95;
+        border-radius: 22px;
       }
 
       .menu-kicker {
@@ -2336,36 +2602,72 @@
       }
 
       .menu-cta-row {
-        padding: 18px;
+        padding: 10px 0 0;
       }
 
       .menu-cta-button {
         width: auto;
+        min-height: 40px;
+        padding: 0 18px;
+        font-size: 0.84rem;
       }
 
       .menu-modal {
-        padding: 14px;
+        padding: 8px;
       }
 
       .menu-modal-dialog {
-        padding: 22px 18px 18px;
-        border-radius: 28px;
+        max-height: calc(100svh - 16px);
+        padding: 18px 14px 16px;
+        border-radius: 22px;
+      }
+
+      .menu-modal-close {
+        top: 14px;
+        right: 14px;
+        width: 40px;
+        height: 40px;
       }
 
       .menu-modal-head {
-        padding-right: 48px;
+        padding-right: 42px;
+        margin-bottom: 16px;
+      }
+
+      .menu-modal-head h3 {
+        font-size: clamp(1.9rem, 9vw, 2.4rem);
+      }
+
+      .menu-modal-head p {
+        font-size: 0.92rem;
+        line-height: 1.55;
       }
 
       .menu-modal-tabs {
         justify-content: flex-start;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      .menu-tab {
+        min-height: 40px;
+        padding: 0 16px;
+        font-size: 0.92rem;
       }
 
       .menu-detail-card {
-        padding: 22px 18px 18px;
+        padding: 18px 14px 14px;
+        border-radius: 20px;
       }
 
       .menu-detail-header {
         flex-direction: column;
+        padding-bottom: 14px;
+        margin-bottom: 14px;
+      }
+
+      .menu-detail-header h4 {
+        font-size: 1.75rem;
       }
 
       .menu-special-head {
@@ -2373,8 +2675,161 @@
         align-items: flex-start;
       }
 
+      .menu-special-item {
+        padding: 12px 0;
+      }
+
+      .menu-special-head strong {
+        font-size: 1.18rem;
+      }
+
+      .menu-special-head span {
+        font-size: 0.95rem;
+      }
+
+      .menu-special-item p {
+        font-size: 0.92rem;
+        line-height: 1.55;
+      }
+
       .menu-varie-grid {
         grid-template-columns: 1fr;
+      }
+
+      .review-grid {
+        grid-auto-columns: calc(100% - 22px);
+        gap: 12px;
+        padding-bottom: 4px;
+      }
+
+      .review {
+        min-height: 196px;
+        padding: 18px 18px 16px;
+        border-radius: 24px;
+        gap: 12px;
+      }
+
+      .review-source-pill {
+        min-height: 34px;
+        padding: 0 10px;
+        font-size: 0.82rem;
+      }
+
+      .stars {
+        font-size: 1.02rem;
+        letter-spacing: 0.05em;
+      }
+
+      .review p {
+        font-size: 0.9rem;
+        line-height: 1.58;
+      }
+
+      .review footer strong {
+        font-size: 0.82rem;
+      }
+
+      .review footer span {
+        font-size: 0.74rem;
+      }
+
+      .reviews-note {
+        font-size: 0.8rem;
+      }
+
+      .contact-grid {
+        gap: 12px;
+      }
+
+      .contact-card {
+        padding: 18px;
+        border-radius: 22px;
+      }
+
+      .map-card {
+        padding: 0;
+        border-radius: 22px;
+      }
+
+      .contact-section-intro h2 {
+        font-size: clamp(1.85rem, 9vw, 2.35rem);
+      }
+
+      .contact-list small {
+        font-size: 0.68rem;
+      }
+
+      .contact-list strong,
+      .contact-list a {
+        font-size: 0.94rem;
+        line-height: 1.42;
+      }
+
+      .contact-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .contact-actions .btn,
+      .contact-actions .btn-ghost {
+        min-height: 46px;
+        padding-inline: 14px;
+        font-size: 0.9rem;
+      }
+
+      .map-card {
+        min-height: 214px;
+      }
+
+      .map-card iframe {
+        min-height: 214px;
+      }
+
+      .map-card-badge {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        padding: 10px 12px;
+      }
+
+      .map-card-badge strong {
+        font-size: 1rem;
+      }
+
+      .map-card-badge span {
+        font-size: 0.8rem;
+      }
+
+      .footer-kicker,
+      .footer-block small {
+        padding: 7px 12px;
+        font-size: 0.66rem;
+        letter-spacing: 0.16em;
+      }
+
+      .footer-legal-space {
+        min-height: 38px;
+        border-radius: 16px;
+      }
+
+      .footer-socials {
+        gap: 8px;
+      }
+
+      .social-link {
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .contact-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .mobile-cta .btn {
+        min-height: 48px;
       }
     }
   </style>
