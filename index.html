@@ -2442,17 +2442,16 @@
       .hero {
         min-height: clamp(620px, calc(100svh - 60px), 820px);
         padding: 0;
-        background: #050505 url("hero-pizze-premium-hd.png") center 34% / cover no-repeat;
+        background: #050505;
         overflow: hidden;
       }
 
       .hero-media {
         inset: 0;
-        width: auto;
-        height: auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-items: center;
         isolation: isolate;
       }
 
@@ -2469,17 +2468,17 @@
       }
 
       .hero-image {
-        position: relative;
+        position: absolute;
         z-index: 1;
-        top: clamp(30px, 6vw, 54px);
+        top: 50%;
         left: 50%;
-        width: min(112vw, 780px);
+        width: min(122vw, 860px);
         max-width: none;
         height: auto;
-        max-height: min(46svh, 390px);
-        transform: translateX(-50%);
+        max-height: min(56svh, 460px);
+        transform: translate(-50%, -50%);
         object-fit: contain;
-        object-position: center top;
+        object-position: center center;
         image-rendering: -webkit-optimize-contrast;
       }
 
@@ -2492,15 +2491,19 @@
       .hero-grid {
         min-height: clamp(620px, calc(100svh - 60px), 820px);
         padding-top: 0;
-        align-items: center;
+        display: block;
       }
 
       .hero-copy {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
         width: 100%;
         max-width: 100%;
         min-height: clamp(620px, calc(100svh - 60px), 820px);
-        padding: 0 18px 112px;
+        padding: 58px 18px 118px;
         justify-content: center;
+        align-items: center;
         text-align: center;
         background: transparent;
         border: 0;
@@ -2530,7 +2533,7 @@
       }
 
       .hero-copy p {
-        max-width: min(34ch, calc(100% - 10px));
+        max-width: min(33ch, calc(100% - 10px));
         margin-inline: auto;
         font-size: 0.95rem;
         line-height: 1.56;
@@ -2693,11 +2696,10 @@
       }
 
       .hero-image {
-        top: 28px;
-        width: min(118vw, 680px);
-        max-height: min(40svh, 310px);
+        width: min(132vw, 720px);
+        max-height: min(52svh, 360px);
         object-fit: contain;
-        object-position: center top;
+        object-position: center center;
       }
 
       .hero-grid {
@@ -2708,7 +2710,7 @@
 
       .hero-copy {
         min-height: clamp(600px, calc(100svh - 60px), 760px);
-        padding: 0 16px 104px;
+        padding: 52px 16px 108px;
       }
 
       .hero-copy h1 {
@@ -2717,7 +2719,7 @@
       }
 
       .hero-copy p {
-        max-width: min(31ch, calc(100% - 12px));
+        max-width: min(30ch, calc(100% - 12px));
         font-size: 0.9rem;
         line-height: 1.52;
       }
@@ -3080,15 +3082,14 @@
       }
 
       .hero-image {
-        top: 24px;
-        width: min(124vw, 620px);
-        max-height: min(38svh, 270px);
-        object-position: center top;
+        width: min(138vw, 620px);
+        max-height: min(50svh, 318px);
+        object-position: center center;
       }
 
       .hero-copy {
         min-height: clamp(560px, calc(100svh - 60px), 700px);
-        padding: 0 14px 100px;
+        padding: 48px 14px 102px;
       }
 
       .hero-copy h1 {
@@ -3164,7 +3165,7 @@
           </p>
 
           <div class="hero-call-cta">
-            <button class="btn hero-mobile-booking" type="button" data-open-booking-panel aria-controls="prenota">
+            <button class="btn hero-mobile-booking" type="button" data-open-booking-panel onclick="openBookingPanel(event)" aria-controls="prenota">
               <span data-i18n="booking_submit">Prenota ora</span>
             </button>
             <a class="btn" href="tel:01851772110">
@@ -3173,8 +3174,8 @@
           </div>
         </div>
 
-        <aside class="booking-card" id="prenota" data-animate>
-          <button class="booking-mobile-close" type="button" data-close-booking-panel aria-label="Chiudi prenotazione">
+        <aside class="booking-card" id="prenota">
+          <button class="booking-mobile-close" type="button" data-close-booking-panel onclick="closeBookingPanel()" aria-label="Chiudi prenotazione">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path>
             </svg>
@@ -3230,7 +3231,7 @@
         </aside>
       </div>
     </section>
-    <button class="booking-mobile-backdrop" type="button" data-close-booking-panel aria-label="Chiudi prenotazione"></button>
+    <button class="booking-mobile-backdrop" type="button" data-close-booking-panel onclick="closeBookingPanel()" aria-label="Chiudi prenotazione"></button>
 
     <section class="section" id="storia">
       <div class="container story-grid">
@@ -3885,7 +3886,7 @@
           </ul>
 
           <div class="contact-actions">
-            <a class="btn" href="#prenota" data-open-booking-panel>
+            <a class="btn" href="#prenota" data-open-booking-panel onclick="openBookingPanel(event)">
               <svg class="btn-wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M20.52 3.48A11.8 11.8 0 0012.01 0C5.38 0 .01 5.37 0 12c0 2.11.55 4.17 1.6 6L0 24l6.18-1.6A11.94 11.94 0 0012.01 24C18.64 24 24 18.63 24 12c0-3.2-1.25-6.2-3.48-8.52zM12.01 21.8c-1.8 0-3.57-.48-5.12-1.39l-.37-.22-3.67.95.98-3.58-.24-.37A9.77 9.77 0 012.2 12c0-5.4 4.4-9.8 9.8-9.8 2.62 0 5.08 1.02 6.93 2.87A9.72 9.72 0 0121.8 12c0 5.4-4.4 9.8-9.79 9.8zm5.39-7.34c-.29-.15-1.72-.85-1.99-.94-.27-.1-.47-.15-.67.15-.2.29-.77.94-.95 1.14-.17.2-.35.22-.64.07-.29-.15-1.24-.46-2.36-1.46-.87-.77-1.46-1.72-1.63-2.01-.17-.29-.02-.44.13-.59.13-.13.29-.35.44-.52.15-.17.2-.29.3-.49.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.29-1.04 1.02-1.04 2.49 0 1.47 1.07 2.9 1.22 3.1.15.2 2.11 3.22 5.11 4.52.71.31 1.27.5 1.7.64.71.22 1.35.19 1.86.12.57-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.2-.55-.35z"/>
               </svg>
@@ -3960,7 +3961,7 @@
   </footer>
 
   <div class="mobile-cta">
-    <button class="btn mobile-cta-book" type="button" data-open-booking-panel>
+    <button class="btn mobile-cta-book" type="button" data-open-booking-panel onclick="openBookingPanel(event)">
       <svg class="btn-wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M20.52 3.48A11.8 11.8 0 0012.01 0C5.38 0 .01 5.37 0 12c0 2.11.55 4.17 1.6 6L0 24l6.18-1.6A11.94 11.94 0 0012.01 24C18.64 24 24 18.63 24 12c0-3.2-1.25-6.2-3.48-8.52zM12.01 21.8c-1.8 0-3.57-.48-5.12-1.39l-.37-.22-3.67.95.98-3.58-.24-.37A9.77 9.77 0 012.2 12c0-5.4 4.4-9.8 9.8-9.8 2.62 0 5.08 1.02 6.93 2.87A9.72 9.72 0 0121.8 12c0 5.4-4.4 9.8-9.79 9.8zm5.39-7.34c-.29-.15-1.72-.85-1.99-.94-.27-.1-.47-.15-.67.15-.2.29-.77.94-.95 1.14-.17.2-.35.22-.64.07-.29-.15-1.24-.46-2.36-1.46-.87-.77-1.46-1.72-1.63-2.01-.17-.29-.02-.44.13-.59.13-.13.29-.35.44-.52.15-.17.2-.29.3-.49.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.29-1.04 1.02-1.04 2.49 0 1.47 1.07 2.9 1.22 3.1.15.2 2.11 3.22 5.11 4.52.71.31 1.27.5 1.7.64.71.22 1.35.19 1.86.12.57-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.2-.55-.35z"/>
       </svg>
@@ -4240,6 +4241,10 @@
       bookingCard.classList.add("is-visible");
       bookingCard.setAttribute("aria-hidden", "false");
       document.body.classList.add("booking-panel-open");
+      bookingCard.style.transform = "translateY(0)";
+      bookingCard.style.opacity = "1";
+      bookingCard.style.visibility = "visible";
+      bookingCard.style.pointerEvents = "auto";
 
       requestAnimationFrame(() => {
         bookingCard.querySelector("input, textarea")?.focus({ preventScroll: true });
@@ -4255,6 +4260,10 @@
 
       if (bookingPanelMedia.matches) {
         bookingCard.setAttribute("aria-hidden", "true");
+        bookingCard.style.removeProperty("transform");
+        bookingCard.style.removeProperty("opacity");
+        bookingCard.style.removeProperty("visibility");
+        bookingCard.style.removeProperty("pointer-events");
       }
     }
 
