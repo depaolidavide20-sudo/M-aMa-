@@ -2443,7 +2443,7 @@
         min-height: clamp(620px, calc(100svh - 60px), 820px);
         padding: 0;
         background: #050505 url("hero-pizze-premium-hd.png") center 34% / cover no-repeat;
-        overflow: visible;
+        overflow: hidden;
       }
 
       .hero-media {
@@ -2471,8 +2471,15 @@
       .hero-image {
         position: relative;
         z-index: 1;
+        top: clamp(30px, 6vw, 54px);
+        left: 50%;
+        width: min(112vw, 780px);
+        max-width: none;
+        height: auto;
+        max-height: min(46svh, 390px);
+        transform: translateX(-50%);
         object-fit: contain;
-        object-position: center 34%;
+        object-position: center top;
         image-rendering: -webkit-optimize-contrast;
       }
 
@@ -2492,7 +2499,7 @@
         width: 100%;
         max-width: 100%;
         min-height: clamp(620px, calc(100svh - 60px), 820px);
-        padding: 88px 18px 112px;
+        padding: 0 18px 112px;
         justify-content: center;
         text-align: center;
         background: transparent;
@@ -2686,8 +2693,11 @@
       }
 
       .hero-image {
+        top: 28px;
+        width: min(118vw, 680px);
+        max-height: min(40svh, 310px);
         object-fit: contain;
-        object-position: center 35%;
+        object-position: center top;
       }
 
       .hero-grid {
@@ -2698,7 +2708,7 @@
 
       .hero-copy {
         min-height: clamp(600px, calc(100svh - 60px), 760px);
-        padding: 84px 16px 104px;
+        padding: 0 16px 104px;
       }
 
       .hero-copy h1 {
@@ -3070,12 +3080,15 @@
       }
 
       .hero-image {
-        object-position: center 36%;
+        top: 24px;
+        width: min(124vw, 620px);
+        max-height: min(38svh, 270px);
+        object-position: center top;
       }
 
       .hero-copy {
         min-height: clamp(560px, calc(100svh - 60px), 700px);
-        padding: 78px 14px 100px;
+        padding: 0 14px 100px;
       }
 
       .hero-copy h1 {
@@ -4283,6 +4296,19 @@
       trigger.addEventListener("click", closeBookingPanel);
     });
 
+    document.addEventListener("click", (event) => {
+      const openTrigger = event.target.closest("[data-open-booking-panel]");
+      if (openTrigger) {
+        openBookingPanel(event);
+        return;
+      }
+
+      const closeTrigger = event.target.closest("[data-close-booking-panel]");
+      if (closeTrigger) {
+        closeBookingPanel();
+      }
+    });
+
     menuTabs.forEach((button) => {
       button.addEventListener("click", () => {
         setMenuTab(button.dataset.menuTab);
@@ -4336,6 +4362,8 @@
     setMenuTab("speciali");
     setLanguage(localStorage.getItem("mama-language") || "it");
     syncBookingPanelState();
+    window.openBookingPanel = openBookingPanel;
+    window.closeBookingPanel = closeBookingPanel;
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
