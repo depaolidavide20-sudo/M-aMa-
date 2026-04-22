@@ -3299,21 +3299,30 @@
       .hero {
         min-height: calc(100svh - 60px) !important;
         padding: 0 !important;
-        background:
-          linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.28)),
-          url("hero-mobile-pizze-hd.jpg") center center / cover no-repeat !important;
+        background: #050505 !important;
         overflow: hidden !important;
       }
 
-      .hero::before {
-        content: "" !important;
-        position: absolute !important;
-        inset: 0 !important;
-        background: url("hero-mobile-pizze-hd.jpg") center center / contain no-repeat !important;
-        z-index: 0 !important;
+      .hero::before,
+      .hero::after {
+        display: none !important;
       }
 
-      .hero::after {
+      .hero-media {
+        position: absolute !important;
+        inset: 0 !important;
+        display: block !important;
+        z-index: 0 !important;
+        background:
+          linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.24)),
+          url("hero-mobile-pizze-hd.jpg") center 42% / cover no-repeat !important;
+      }
+
+      .hero-media::before {
+        display: none !important;
+      }
+
+      .hero-media::after {
         content: "" !important;
         position: absolute !important;
         inset: 0 !important;
@@ -3321,7 +3330,6 @@
         z-index: 1 !important;
       }
 
-      .hero-media,
       .hero-picture,
       .hero-image {
         display: none !important;
@@ -3384,6 +3392,7 @@
         position: fixed;
         inset: 0;
         z-index: 260;
+        overflow: hidden;
       }
 
       body.booking-panel-open .booking-sheet {
@@ -3408,12 +3417,16 @@
         display: grid;
         align-content: start;
         gap: 16px;
-        overflow: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
         padding: 56px 18px 18px;
         border-radius: 26px;
         background: linear-gradient(180deg, rgba(18, 18, 18, 0.985), rgba(10, 10, 10, 0.995));
         border: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 24px 64px rgba(0, 0, 0, 0.42);
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
       }
 
       .booking-sheet-dialog h2 {
@@ -3443,6 +3456,16 @@
       .booking-sheet-close svg {
         width: 16px;
         height: 16px;
+      }
+
+      .booking-sheet .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-sheet input,
+      .booking-sheet textarea {
+        min-width: 0;
+        max-width: 100%;
       }
     }
 
