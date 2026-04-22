@@ -3108,6 +3108,182 @@
         min-height: 48px;
       }
     }
+
+    @media (max-width: 880px) {
+      .hero {
+        min-height: calc(100svh - 60px) !important;
+        background: #060606 !important;
+        overflow: hidden !important;
+      }
+
+      .hero-media {
+        position: absolute !important;
+        inset: 0 !important;
+        display: block !important;
+      }
+
+      .hero-media::before {
+        content: "" !important;
+        position: absolute !important;
+        inset: -6% !important;
+        background:
+          linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.34)),
+          url("hero-pizze-premium-hd.png") center 36% / cover no-repeat !important;
+        filter: blur(24px) brightness(0.64) saturate(0.92) !important;
+        transform: scale(1.08) !important;
+        z-index: 0 !important;
+      }
+
+      .hero-media::after {
+        content: "" !important;
+        position: absolute !important;
+        inset: 0 !important;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.12) 28%, rgba(0, 0, 0, 0.34) 62%, rgba(0, 0, 0, 0.74) 100%) !important;
+        z-index: 2 !important;
+      }
+
+      .hero-image {
+        position: absolute !important;
+        top: 48% !important;
+        left: 50% !important;
+        width: min(122vw, 860px) !important;
+        max-width: none !important;
+        height: auto !important;
+        max-height: min(48svh, 390px) !important;
+        transform: translate(-50%, -50%) !important;
+        object-fit: contain !important;
+        object-position: center center !important;
+        z-index: 1 !important;
+      }
+
+      .hero-grid {
+        min-height: calc(100svh - 60px) !important;
+        display: block !important;
+      }
+
+      .hero-copy {
+        position: absolute !important;
+        inset: 0 !important;
+        z-index: 3 !important;
+        min-height: calc(100svh - 60px) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 64px 18px 118px !important;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        text-align: center !important;
+      }
+
+      .hero-copy::before,
+      .hero-copy::after,
+      .hero-call-cta {
+        display: none !important;
+      }
+
+      .hero-copy h1 {
+        max-width: none !important;
+        margin: 0 auto 16px !important;
+        font-size: clamp(1.92rem, 7.2vw, 2.9rem) !important;
+        line-height: 0.96 !important;
+      }
+
+      .hero-title-line {
+        display: block !important;
+        white-space: nowrap !important;
+      }
+
+      .hero-title-line + .hero-title-line::before {
+        content: none !important;
+      }
+
+      .hero-copy p {
+        max-width: min(33ch, calc(100% - 12px)) !important;
+        margin: 0 auto !important;
+        font-size: 0.94rem !important;
+        line-height: 1.56 !important;
+        color: rgba(247, 239, 228, 0.9) !important;
+        text-wrap: balance !important;
+      }
+
+      .booking-card {
+        display: none !important;
+        position: fixed !important;
+        left: 8px !important;
+        right: 8px !important;
+        bottom: 8px !important;
+        z-index: 120 !important;
+        max-height: calc(100svh - 72px) !important;
+        overflow: auto !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: none !important;
+      }
+
+      body.booking-panel-open .booking-card {
+        display: grid !important;
+      }
+
+      .booking-mobile-close {
+        display: inline-flex !important;
+      }
+
+      .booking-mobile-backdrop {
+        display: none !important;
+        position: fixed !important;
+        inset: 0 !important;
+        z-index: 118 !important;
+        background: rgba(4, 4, 4, 0.56) !important;
+        backdrop-filter: blur(10px) !important;
+      }
+
+      body.booking-panel-open .booking-mobile-backdrop {
+        display: block !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-image {
+        width: min(132vw, 720px) !important;
+        max-height: min(46svh, 332px) !important;
+      }
+
+      .hero-copy {
+        padding: 56px 16px 108px !important;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(1.76rem, 8vw, 2.34rem) !important;
+      }
+
+      .hero-copy p {
+        max-width: min(30ch, calc(100% - 12px)) !important;
+        font-size: 0.9rem !important;
+        line-height: 1.52 !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .hero-image {
+        width: min(138vw, 620px) !important;
+        max-height: min(44svh, 286px) !important;
+      }
+
+      .hero-copy {
+        padding: 50px 14px 102px !important;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(1.64rem, 7.8vw, 2.08rem) !important;
+      }
+
+      .hero-copy p {
+        max-width: min(29ch, calc(100% - 10px)) !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -4241,7 +4417,8 @@
       bookingCard.classList.add("is-visible");
       bookingCard.setAttribute("aria-hidden", "false");
       document.body.classList.add("booking-panel-open");
-      bookingCard.style.transform = "translateY(0)";
+      bookingCard.style.display = "grid";
+      bookingCard.style.transform = "none";
       bookingCard.style.opacity = "1";
       bookingCard.style.visibility = "visible";
       bookingCard.style.pointerEvents = "auto";
@@ -4260,6 +4437,7 @@
 
       if (bookingPanelMedia.matches) {
         bookingCard.setAttribute("aria-hidden", "true");
+        bookingCard.style.display = "none";
         bookingCard.style.removeProperty("transform");
         bookingCard.style.removeProperty("opacity");
         bookingCard.style.removeProperty("visibility");
