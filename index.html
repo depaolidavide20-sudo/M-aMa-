@@ -3497,6 +3497,354 @@
         bottom: calc(74px + env(safe-area-inset-bottom));
       }
     }
+
+    .hero-eyebrow {
+      margin-bottom: 18px;
+      color: #fff0e1;
+      background: rgba(var(--accent-rgb), 0.06);
+      border: 1px solid rgba(var(--accent-rgb), 0.22);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .hero-title-line {
+      display: block;
+    }
+
+    .hero-title-line + .hero-title-line::before {
+      content: none;
+    }
+
+    .hero-facts {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .hero-fact {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(8, 8, 8, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(247, 239, 228, 0.92);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-menu-link {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .booking-card {
+      padding: 22px;
+      gap: 12px;
+    }
+
+    .booking-card .eyebrow,
+    .booking-card h2,
+    .booking-text {
+      text-align: center;
+    }
+
+    .booking-card .eyebrow,
+    .booking-sheet .eyebrow {
+      justify-self: center;
+    }
+
+    .booking-sheet h2 {
+      text-align: center;
+    }
+
+    .form {
+      gap: 10px;
+    }
+
+    .booking-card .field-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .booking-card .form,
+    .booking-sheet .form {
+      gap: 8px;
+    }
+
+    .booking-card input,
+    .booking-card textarea,
+    .booking-sheet input,
+    .booking-sheet textarea {
+      padding: 12px 14px;
+    }
+
+    .booking-card textarea,
+    .booking-sheet textarea {
+      min-height: 78px;
+    }
+
+    @media (min-width: 881px) {
+      .hero {
+        min-height: calc(100vh - 68px);
+        padding: 0;
+        background: #050505 url("hero-mobile-pizze-hd.jpg") center 43% / cover no-repeat;
+      }
+
+      .hero-media::before {
+        display: none;
+      }
+
+      .hero-picture {
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        transform: scale(1.035);
+        object-fit: cover;
+        object-position: center 43%;
+        image-rendering: auto;
+        filter: contrast(1.03) saturate(1.04);
+      }
+
+      .hero-media::after {
+        background:
+          linear-gradient(90deg, rgba(4, 4, 4, 0.46) 0%, rgba(4, 4, 4, 0.14) 42%, rgba(4, 4, 4, 0.36) 100%),
+          linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.22) 100%);
+      }
+
+      .hero-grid {
+        min-height: calc(100vh - 68px);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+        gap: clamp(20px, 2.3vw, 28px);
+        padding: clamp(40px, 6vw, 92px) 0 clamp(44px, 5vw, 68px);
+      }
+
+      .hero-copy,
+      .booking-card {
+        min-height: clamp(510px, 62vh, 580px);
+        height: 100%;
+      }
+
+      .hero-copy {
+        max-width: none;
+        padding: clamp(30px, 4vw, 46px);
+        background: rgba(8, 8, 8, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.2);
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-copy h1 {
+        max-width: 100%;
+        margin: 0 auto 18px;
+        font-size: clamp(2.7rem, 4.8vw, 4.4rem);
+        line-height: 0.97;
+      }
+
+      .hero-copy p {
+        max-width: 42ch;
+        margin: 0 auto;
+        font-size: clamp(1rem, 1.2vw, 1.06rem);
+        color: rgba(247, 239, 228, 0.88);
+      }
+
+      .hero-call-cta {
+        margin-top: 24px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .hero-mobile-booking {
+        display: none;
+      }
+
+      .booking-card {
+        background: rgba(8, 8, 8, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.18);
+        align-content: start;
+      }
+    }
+
+    @media (max-width: 880px) {
+      .hero {
+        min-height: calc(100svh - 60px) !important;
+        padding: 0 !important;
+        background: #050505 !important;
+      }
+
+      .hero-media {
+        display: block !important;
+        inset: 0;
+      }
+
+      .hero-media::before {
+        display: none;
+      }
+
+      .hero-image {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        max-height: none !important;
+        transform: none !important;
+        object-fit: cover !important;
+        object-position: center 43% !important;
+        image-rendering: auto !important;
+        filter: contrast(1.02) saturate(1.03) !important;
+      }
+
+      .hero-media::after {
+        background:
+          linear-gradient(180deg, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0.34) 56%, rgba(0, 0, 0, 0.7) 100%) !important;
+      }
+
+      .hero-grid {
+        min-height: calc(100svh - 60px) !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        align-items: end !important;
+        padding: 76px 0 18px !important;
+      }
+
+      .hero-copy {
+        position: relative !important;
+        inset: auto !important;
+        min-height: auto !important;
+        margin: 0 12px !important;
+        padding: 24px 20px 22px !important;
+        justify-content: flex-end !important;
+        align-items: center !important;
+        text-align: center !important;
+        background: rgba(9, 9, 9, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.16) !important;
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18) !important;
+        border-radius: 28px !important;
+      }
+
+      .hero-copy::before,
+      .hero-copy::after {
+        display: none !important;
+      }
+
+      .hero-copy h1 {
+        max-width: 100% !important;
+        margin: 0 auto 14px !important;
+        font-size: clamp(1.98rem, 8vw, 2.72rem) !important;
+        line-height: 0.96 !important;
+      }
+
+      .hero-title-line {
+        display: block !important;
+        white-space: nowrap !important;
+      }
+
+      .hero-copy p {
+        max-width: 30ch !important;
+        margin: 0 auto !important;
+        font-size: 0.95rem !important;
+        line-height: 1.58 !important;
+        color: rgba(247, 239, 228, 0.9) !important;
+      }
+
+      .hero-facts {
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .hero-fact {
+        padding: 8px 12px;
+        font-size: 0.7rem;
+        letter-spacing: 0.07em;
+      }
+
+      .hero-call-cta {
+        margin-top: 18px !important;
+        display: flex !important;
+        width: 100% !important;
+        flex-direction: column !important;
+        align-items: center !important;
+      }
+
+      .hero-mobile-booking {
+        display: none !important;
+      }
+
+      .hero-call-cta .btn,
+      .hero-call-cta .btn-ghost {
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .hero-call-cta .btn {
+        display: none !important;
+      }
+
+      .hero-call-cta .hero-menu-link {
+        display: inline-flex !important;
+      }
+
+      .hero .booking-card,
+      .booking-mobile-backdrop {
+        display: none !important;
+      }
+
+      .booking-sheet .field-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-grid {
+        padding: 72px 0 16px !important;
+      }
+
+      .hero-copy {
+        margin: 0 10px !important;
+        padding: 22px 18px 20px !important;
+        border-radius: 24px !important;
+      }
+
+      .hero-eyebrow {
+        margin-bottom: 16px;
+        padding: 8px 12px;
+        font-size: 0.7rem;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(1.84rem, 8vw, 2.28rem) !important;
+      }
+
+      .hero-copy p {
+        max-width: 26ch !important;
+        font-size: 0.92rem !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .hero-copy h1 {
+        max-width: 100% !important;
+        font-size: clamp(1.62rem, 8vw, 1.94rem) !important;
+      }
+
+      .hero-copy p {
+        max-width: 24ch !important;
+      }
+
+    }
   </style>
 </head>
 <body>
@@ -3542,11 +3890,12 @@
       <section class="hero" id="top">
         <div class="hero-media" aria-hidden="true">
           <picture class="hero-picture">
-            <img class="hero-image" src="hero-mobile-pizze-hd.jpg" alt="" loading="eager" fetchpriority="high" />
+            <img class="hero-image" src="hero-mobile-pizze-hd.jpg" alt="" width="1444" height="1800" loading="eager" fetchpriority="high" decoding="async" />
           </picture>
         </div>
       <div class="container hero-grid">
         <div class="hero-copy" data-animate>
+          <span class="eyebrow hero-eyebrow" data-i18n="hero_badge">Dal 2012 sul lungomare di Chiavari</span>
           <h1 data-i18n-html="hero_title">
             <span class="hero-title-line">Pizza superiore</span>
             <span class="hero-title-line">Atmosfera vista mare</span>
@@ -3554,6 +3903,11 @@
           <p data-i18n="hero_text">
             Da M'aMa ogni tavolo nasce per farti stare bene: impasti speciali, ingredienti selezionati e una veranda che fa venire voglia di fermarsi per tutta la sera.
           </p>
+          <div class="hero-facts">
+            <span class="hero-fact" data-i18n="hero_fact_1">Farine tipo 1 e 2</span>
+            <span class="hero-fact" data-i18n="hero_fact_2">Impasti speciali</span>
+            <span class="hero-fact" data-i18n="hero_fact_3">Vista Portofino</span>
+          </div>
 
           <div class="hero-call-cta">
             <button class="btn hero-mobile-booking" type="button" data-open-booking-panel onclick="openBookingPanel(event)" aria-controls="prenota">
@@ -3562,6 +3916,7 @@
             <a class="btn" href="tel:01851772110">
               <span data-i18n="call_now">Chiama ora</span>
             </a>
+            <a class="btn-ghost hero-menu-link" href="#menu" data-i18n="hero_menu_cta">Scopri il menu</a>
           </div>
         </div>
 
@@ -3606,8 +3961,8 @@
             </div>
 
             <div class="field">
-              <label for="booking-notes" data-i18n="form_notes">Note</label>
-              <textarea id="booking-notes" name="notes" data-ph="ph_notes" placeholder="Eventuali richieste speciali o preferenze tavolo."></textarea>
+              <label for="booking-notes" data-i18n="form_notes">Preferenze o esigenze</label>
+              <textarea id="booking-notes" name="notes" data-ph="ph_notes" placeholder="Allergie, intolleranze, tavolo interno o esterno, esigenze particolari."></textarea>
             </div>
 
             <div class="booking-actions">
@@ -4394,8 +4749,8 @@
         </div>
 
         <div class="field">
-          <label for="booking-mobile-notes" data-i18n="form_notes">Note</label>
-          <textarea id="booking-mobile-notes" name="notes" data-ph="ph_notes" placeholder="Eventuali richieste speciali o preferenze tavolo."></textarea>
+          <label for="booking-mobile-notes" data-i18n="form_notes">Preferenze o esigenze</label>
+          <textarea id="booking-mobile-notes" name="notes" data-ph="ph_notes" placeholder="Allergie, intolleranze, tavolo interno o esterno, esigenze particolari."></textarea>
         </div>
 
         <div class="booking-actions">
@@ -4470,6 +4825,11 @@
         menu_varie_heading: "Le varie di M'aMa",
         hero_title: "<span class=\"hero-title-line\">Pizza superiore</span><span class=\"hero-title-line\">Atmosfera vista mare</span>",
         hero_text: "Da M'aMa ogni tavolo nasce per farti stare bene: impasti speciali, ingredienti selezionati e una veranda che fa venire voglia di fermarsi per tutta la sera.",
+        hero_badge: "Dal 2012 sul lungomare di Chiavari",
+        hero_fact_1: "Farine tipo 1 e 2",
+        hero_fact_2: "Impasti speciali",
+        hero_fact_3: "Vista Portofino",
+        hero_menu_cta: "Scopri il menu",
         booking_eyebrow: "Prenotazioni",
         booking_title: "Prenota il tuo tavolo",
         booking_text: "Compila il form e invia la tua richiesta di prenotazione su WhatsApp in pochi secondi.",
@@ -4478,11 +4838,11 @@
         form_guests: "Persone",
         form_date: "Data",
         form_time: "Orario",
-        form_notes: "Note",
+        form_notes: "Preferenze o esigenze",
         ph_name: "Nome e cognome",
         ph_phone: "Telefono",
         ph_guests: "Persone",
-        ph_notes: "Eventuali richieste speciali o preferenze tavolo.",
+        ph_notes: "Allergie, intolleranze, tavolo interno o esterno, esigenze particolari.",
         booking_submit: "Prenota ora",
         call_now: "Chiama ora"
       },
@@ -4513,6 +4873,11 @@
         menu_varie_heading: "M'aMa classics",
         hero_title: "<span class=\"hero-title-line\">Elevated pizza</span><span class=\"hero-title-line\">Seaside atmosphere</span>",
         hero_text: "At M'aMa every table is designed to make you feel good: special doughs, selected ingredients and a seafront veranda made for lingering all evening.",
+        hero_badge: "Since 2012 on Chiavari seafront",
+        hero_fact_1: "Type 1 and 2 flours",
+        hero_fact_2: "Special doughs",
+        hero_fact_3: "Portofino view",
+        hero_menu_cta: "Discover the menu",
         booking_eyebrow: "Reservations",
         booking_title: "Book your table",
         booking_text: "Fill out the form and send your reservation request on WhatsApp in just a few seconds.",
@@ -4521,11 +4886,11 @@
         form_guests: "Guests",
         form_date: "Date",
         form_time: "Time",
-        form_notes: "Notes",
+        form_notes: "Preferences or needs",
         ph_name: "Full name",
         ph_phone: "Phone",
         ph_guests: "Guests",
-        ph_notes: "Any special requests or table preferences.",
+        ph_notes: "Allergies, intolerances, indoor or outdoor table, special needs.",
         booking_submit: "Book now",
         call_now: "Call now"
       }
@@ -4579,7 +4944,7 @@
           guests: "Persone",
           date: "Data",
           time: "Orario",
-          notes: "Note"
+          notes: "Preferenze / esigenze"
         },
         en: {
           intro: "Hello M'aMa, I would like to reserve a table.",
@@ -4588,7 +4953,7 @@
           guests: "Guests",
           date: "Date",
           time: "Time",
-          notes: "Notes"
+          notes: "Preferences / needs"
         }
       }[lang];
 
