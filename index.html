@@ -1,0 +1,3517 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pizzeria M'aMa | Pizza superiore dal 2012 a Chiavari</title>
+  <meta
+    name="description"
+    content="Nuovo concept web per Pizzeria M'aMa: pizza superiore dal 2012, farine piemontesi tipo 1 e 2, ingredienti ricercati e location vista Portofino sul lungomare di Chiavari."
+  />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+
+    :root {
+      --cream: #f7efe4;
+      --paper: rgba(18, 18, 18, 0.86);
+      --night: #f7efe4;
+      --ink: #e6d8c7;
+      --sea: #6eb7bc;
+      --foam: #192022;
+      --sand: #d78653;
+      --brick: #d56b35;
+      --brick-dark: #a9481f;
+      --gold: #f38a41;
+      --accent-rgb: 243, 138, 65;
+      --line: rgba(255, 255, 255, 0.09);
+      --line-strong: rgba(255, 255, 255, 0.18);
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.26);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at top left, rgba(var(--accent-rgb), 0.14), transparent 24%),
+        radial-gradient(circle at 100% 0%, rgba(110, 183, 188, 0.1), transparent 30%),
+        linear-gradient(180deg, #020202 0%, #070707 42%, #0d0d0d 100%);
+      overflow-x: hidden;
+    }
+
+    body.menu-modal-open {
+      overflow: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      z-index: -1;
+      border-radius: 999px;
+      filter: blur(20px);
+      opacity: 0.44;
+    }
+
+    body::before {
+      top: -120px;
+      right: -60px;
+      width: 300px;
+      height: 300px;
+      background: rgba(var(--accent-rgb), 0.08);
+    }
+
+    body::after {
+      bottom: 5%;
+      left: -80px;
+      width: 260px;
+      height: 260px;
+      background: rgba(110, 183, 188, 0.08);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(6, 6, 6, 0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+    }
+
+    .nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      min-width: 0;
+      flex: 0 0 auto;
+    }
+
+    .brand-logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 154px;
+      min-height: 58px;
+      padding: 4px 14px;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .brand-logo {
+      display: block;
+      width: 70px;
+      height: auto;
+    }
+
+    .brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-family: "Fraunces", serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(145deg, var(--brick), var(--gold));
+      box-shadow: 0 14px 26px rgba(181, 79, 59, 0.24);
+      flex: 0 0 auto;
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-family: "Fraunces", serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-tagline {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(247, 239, 228, 0.52);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex: 1 1 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      color: rgba(247, 239, 228, 0.88);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--brick);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0;
+      border-radius: 999px;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .lang-btn {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: transparent;
+      color: rgba(247, 239, 228, 0.86);
+      border-radius: 999px;
+      padding: 0;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .lang-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(145deg, #ff9b57, #e06d2c);
+      color: #15120b;
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    .btn,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover,
+    .btn-ghost:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn {
+      color: #fff;
+      background: linear-gradient(145deg, var(--brick), var(--brick-dark));
+      box-shadow: 0 18px 30px rgba(181, 79, 59, 0.24);
+    }
+
+    .btn-ghost {
+      color: var(--cream);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--cream);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 78px;
+      left: 12px;
+      right: 12px;
+      z-index: 40;
+      padding: 16px;
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(12, 12, 12, 0.98), rgba(18, 18, 18, 0.96));
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mobile-menu.open {
+      display: grid;
+      gap: 8px;
+    }
+
+    .mobile-menu a {
+      padding: 14px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-weight: 700;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: 0;
+    }
+
+    .hero {
+      position: relative;
+      padding: 22px 0 58px;
+      min-height: calc(100vh - 68px);
+      background: #050505 url("hero-pizze-premium-hd.png") center 36%/cover no-repeat;
+      overflow: hidden;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 36%;
+      display: block;
+    }
+
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(var(--accent-rgb), 0.14), transparent 28%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.01) 45%, rgba(0, 0, 0, 0.15) 100%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(360px, 430px);
+      gap: 24px;
+      align-items: center;
+      min-height: calc(100vh - 130px);
+    }
+
+    .hero-copy,
+    .booking-card,
+    .panel,
+    .review,
+    .hours-card,
+    .contact-card,
+    .map-card,
+    .price-card,
+    .feature-card,
+    .taste-card {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-xl);
+    }
+
+    .hero-copy {
+      position: relative;
+      padding: 42px 38px;
+      min-height: 500px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background:
+        linear-gradient(145deg, rgba(12, 12, 12, 0.015), rgba(8, 8, 8, 0.004)),
+        linear-gradient(120deg, rgba(255, 255, 255, 0.008), rgba(255, 255, 255, 0));
+      border-width: 1.5px;
+      border-color: rgba(255, 255, 255, 0.68);
+      backdrop-filter: none;
+      box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.18),
+        0 16px 34px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -4% auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, rgba(var(--accent-rgb), 0.07) 0%, rgba(var(--accent-rgb), 0.01) 56%, transparent 72%);
+      pointer-events: none;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      top: -12%;
+      right: -42px;
+      width: 180px;
+      height: 500px;
+      border-radius: 999px;
+      background:
+        linear-gradient(180deg, rgba(110, 183, 188, 0.025), rgba(110, 183, 188, 0));
+      transform: rotate(18deg);
+      pointer-events: none;
+    }
+
+    .eyebrow,
+    .section-eyebrow,
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .eyebrow {
+      margin-bottom: 22px;
+      color: var(--gold);
+      background: rgba(var(--accent-rgb), 0.1);
+      border: 1px solid rgba(var(--accent-rgb), 0.18);
+    }
+
+    .hero-copy h1,
+    .section-title h2 {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      letter-spacing: -0.04em;
+      color: var(--cream);
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.32);
+    }
+
+    .hero-copy h1 {
+      max-width: 760px;
+      font-size: clamp(2.8rem, 5.4vw, 4.9rem);
+      line-height: 0.95;
+      margin-bottom: 14px;
+      text-wrap: balance;
+    }
+
+    .hero-copy p {
+      max-width: 640px;
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.72;
+      color: rgba(247, 239, 228, 0.8);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-emphasis {
+      color: var(--brick);
+      font-style: italic;
+    }
+
+    .hero-call-cta {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+      width: fit-content;
+    }
+
+    .booking-card {
+      position: relative;
+      z-index: 1;
+      scroll-margin-top: 92px;
+      padding: 26px;
+      background:
+        linear-gradient(180deg, rgba(14, 14, 14, 0.018), rgba(9, 9, 9, 0.004));
+      border-width: 1.5px;
+      border-color: rgba(255, 255, 255, 0.68);
+      backdrop-filter: none;
+      display: grid;
+      gap: 16px;
+      box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.18),
+        0 16px 34px rgba(0, 0, 0, 0.1);
+    }
+
+    .booking-card h2 {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.65rem, 3vw, 2.15rem);
+      letter-spacing: -0.03em;
+      line-height: 0.98;
+    }
+
+    .booking-text {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: rgba(255, 250, 244, 0.94);
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
+    }
+
+    .form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 800;
+      color: rgba(255, 250, 244, 0.98);
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.28);
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px 15px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: transparent;
+      color: var(--cream);
+      font: inherit;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(var(--accent-rgb), 0.56);
+      box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(255, 250, 244, 0.92);
+      opacity: 1;
+    }
+
+    input[type="date"],
+    input[type="time"] {
+      color-scheme: dark;
+    }
+
+    input::-webkit-datetime-edit,
+    input::-webkit-datetime-edit-text,
+    input::-webkit-datetime-edit-month-field,
+    input::-webkit-datetime-edit-day-field,
+    input::-webkit-datetime-edit-year-field,
+    input::-webkit-datetime-edit-hour-field,
+    input::-webkit-datetime-edit-minute-field {
+      color: rgba(255, 250, 244, 0.92);
+    }
+
+    input::-webkit-calendar-picker-indicator {
+      filter: invert(1) brightness(1.08);
+      opacity: 0.92;
+    }
+
+    .booking-actions {
+      display: grid;
+      gap: 0;
+      margin-top: 4px;
+    }
+
+    .booking-actions .btn {
+      width: 100%;
+    }
+
+    .btn-wa-icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+
+    .hero-aside {
+      display: grid;
+      gap: 18px;
+      padding: 22px;
+      background:
+        linear-gradient(180deg, rgba(16, 16, 16, 0.94), rgba(10, 10, 10, 0.98));
+      color: #f8f1e7;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-aside::before {
+      content: "";
+      position: absolute;
+      inset: auto -18% -20% auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(var(--accent-rgb), 0.12);
+      filter: blur(8px);
+    }
+
+    .aside-photo {
+      min-height: 260px;
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(9, 18, 26, 0.2), rgba(9, 18, 26, 0.68)),
+        url("https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+      box-shadow: inset 0 -30px 60px rgba(9, 18, 26, 0.26);
+    }
+
+    .aside-copy,
+    .aside-stats {
+      position: relative;
+      z-index: 1;
+      padding: 6px;
+    }
+
+    .aside-copy h2 {
+      margin: 0 0 10px;
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.3rem, 4vw, 3.5rem);
+      line-height: 0.96;
+      letter-spacing: -0.03em;
+    }
+
+    .aside-copy p {
+      margin: 0;
+      color: rgba(248, 241, 231, 0.82);
+      line-height: 1.75;
+    }
+
+    .aside-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .aside-stat {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .aside-stat strong {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      color: var(--gold);
+    }
+
+    .aside-stat span {
+      display: block;
+      font-size: 0.94rem;
+      line-height: 1.55;
+      color: rgba(248, 241, 231, 0.82);
+    }
+
+    .section {
+      padding: 94px 0;
+    }
+
+    .section-title {
+      max-width: 820px;
+      margin-bottom: 26px;
+    }
+
+    .section-eyebrow {
+      margin-bottom: 16px;
+      color: var(--gold);
+      background: rgba(var(--accent-rgb), 0.08);
+      border: 1px solid rgba(var(--accent-rgb), 0.18);
+    }
+
+    .section-title h2 {
+      font-size: clamp(2.6rem, 4.8vw, 4.5rem);
+      line-height: 0.98;
+      margin-bottom: 14px;
+    }
+
+    .section-title p {
+      margin: 0;
+      font-size: 1.06rem;
+      line-height: 1.8;
+      color: rgba(247, 239, 228, 0.72);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .panel {
+      padding: 34px;
+      background: rgba(16, 16, 16, 0.88);
+    }
+
+    .story-copy {
+      min-height: clamp(420px, 38vw, 520px);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .story-copy .section-title {
+      max-width: 700px;
+      margin: 0 auto 24px;
+      text-align: center;
+    }
+
+    .story-copy .section-title h2 {
+      font-size: clamp(2rem, 3.4vw, 3rem);
+    }
+
+    .story-copy p {
+      max-width: 720px;
+      margin: 0 auto 18px;
+      font-size: clamp(1.04rem, 1.28vw, 1.14rem);
+      line-height: 1.86;
+      color: rgba(247, 239, 228, 0.72);
+    }
+
+    .price-card {
+      padding: 34px;
+      background:
+        linear-gradient(180deg, rgba(181, 79, 59, 0.92), rgba(143, 60, 45, 0.96));
+      color: #fff9f2;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-card::before {
+      content: "";
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .price-card h3 {
+      margin: 0 0 12px;
+      font-family: "Fraunces", serif;
+      font-size: 2.3rem;
+      letter-spacing: -0.03em;
+    }
+
+    .price-card p {
+      margin: 0 0 20px;
+      line-height: 1.8;
+      color: rgba(255, 249, 242, 0.86);
+    }
+
+    .price-card ul,
+    .hours-list,
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .price-card li {
+      padding: 12px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      line-height: 1.6;
+    }
+
+    .story-photo-card {
+      padding: 0;
+      min-height: clamp(420px, 38vw, 520px);
+      background: rgba(10, 10, 10, 0.92);
+      align-self: stretch;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .story-photo-card::before {
+      display: none;
+    }
+
+    .story-photo-card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      flex: 1 1 auto;
+    }
+
+    .story-photo-note {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      max-width: 290px;
+      padding: 18px 20px;
+      border-radius: 22px;
+      background: rgba(16, 13, 11, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(16px);
+    }
+
+    .story-photo-note strong {
+      display: block;
+      margin-bottom: 8px;
+      font-family: "Fraunces", serif;
+      font-size: 1.55rem;
+      line-height: 1.02;
+      color: #fff9f2;
+    }
+
+    .story-photo-note span {
+      display: block;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: rgba(247, 239, 228, 0.84);
+    }
+
+    .menu-section {
+      box-sizing: border-box;
+      padding: clamp(44px, 5.8vh, 60px) 0;
+      min-height: calc(100svh - 68px);
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-showcase {
+      width: 100%;
+      display: grid;
+      gap: clamp(16px, 2vh, 24px);
+      align-content: center;
+    }
+
+    .menu-header {
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .menu-kicker {
+      display: inline-block;
+      margin-bottom: 18px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: rgba(var(--accent-rgb), 0.94);
+    }
+
+    .menu-header .section-title {
+      max-width: none;
+      margin: 0;
+      text-align: center;
+    }
+
+    .menu-header .section-title h2 {
+      margin-bottom: 18px;
+      font-size: clamp(2.85rem, 5.1vw, 5.6rem);
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+      color: #f8f1e8;
+      text-wrap: balance;
+    }
+
+    .menu-header .section-title h2 .menu-title-accent {
+      display: inline-block;
+      color: var(--gold);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .menu-header .section-title p {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: clamp(1.04rem, 1.16vw, 1.18rem);
+      line-height: 1.74;
+      color: rgba(230, 216, 199, 0.84);
+      text-wrap: balance;
+    }
+
+    .menu-visual-grid {
+      width: min(100%, 1140px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .menu-visual-card {
+      position: relative;
+      min-height: clamp(290px, 34vh, 392px);
+      overflow: hidden;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: var(--shadow);
+      background: rgba(14, 14, 14, 0.9);
+    }
+
+    .menu-visual-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.12));
+      pointer-events: none;
+    }
+
+    .menu-visual-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .menu-cta-row {
+      display: flex;
+      justify-content: center;
+    }
+
+    .menu-cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(var(--accent-rgb), 0.26);
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--gold);
+      background: rgba(255, 255, 255, 0.03);
+      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.16);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .menu-cta-button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(var(--accent-rgb), 0.44);
+      background: rgba(var(--accent-rgb), 0.1);
+      box-shadow: 0 16px 26px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(3, 3, 3, 0.78);
+      backdrop-filter: blur(18px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+    }
+
+    .menu-modal.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .menu-modal-dialog {
+      position: relative;
+      width: min(980px, 100%);
+      max-height: calc(100svh - 56px);
+      padding: 38px 32px 30px;
+      overflow: auto;
+      border-radius: 34px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        radial-gradient(circle at top right, rgba(var(--accent-rgb), 0.06), transparent 24%),
+        linear-gradient(180deg, rgba(22, 19, 16, 0.99), rgba(14, 12, 10, 0.98));
+      box-shadow: 0 40px 120px rgba(0, 0, 0, 0.48);
+    }
+
+    .menu-modal-close {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff9f2;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .menu-modal-close:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .menu-modal-close svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .menu-modal-head {
+      max-width: 760px;
+      margin-bottom: 26px;
+      padding-right: 62px;
+    }
+
+    .menu-modal-head h3 {
+      margin: 0 0 12px;
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.45rem, 4.2vw, 3.95rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      color: #f8f1e8;
+    }
+
+    .menu-modal-head p {
+      margin: 0;
+      max-width: 640px;
+      color: rgba(230, 216, 199, 0.78);
+      line-height: 1.7;
+    }
+
+    .menu-modal-tabs {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .menu-tab {
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      color: rgba(247, 239, 228, 0.72);
+      background: rgba(255, 255, 255, 0.03);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .menu-tab.active {
+      background: linear-gradient(145deg, #ff9b57, #e06d2c);
+      color: #15120b;
+    }
+
+    .menu-modal-body {
+      display: block;
+    }
+
+    .menu-panel {
+      display: block;
+    }
+
+    .menu-panel[hidden] {
+      display: none;
+    }
+
+    .menu-detail-card {
+      padding: 28px 28px 26px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .menu-detail-header {
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .menu-detail-header h4 {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #fff9f2;
+    }
+
+    .menu-detail-block + .menu-detail-block {
+      margin-top: 24px;
+    }
+
+    .menu-detail-label {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .menu-special-list {
+      display: grid;
+      gap: 4px;
+    }
+
+    .menu-special-item {
+      padding: 14px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .menu-special-item:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .menu-special-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .menu-special-head strong {
+      font-family: "Fraunces", serif;
+      font-size: 1.38rem;
+      line-height: 1.06;
+      color: #fff9f2;
+    }
+
+    .menu-special-head span {
+      flex: 0 0 auto;
+      color: var(--gold);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .menu-special-item p {
+      margin: 0;
+      color: rgba(230, 216, 199, 0.76);
+      line-height: 1.62;
+    }
+
+    .menu-varie-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .menu-varie-card {
+      padding: 20px 18px 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .menu-varie-card h4 {
+      margin: 0 0 14px;
+      font-family: "Fraunces", serif;
+      font-size: 1.45rem;
+      line-height: 1.04;
+      color: #fff9f2;
+    }
+
+    .menu-varie-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: rgba(230, 216, 199, 0.78);
+    }
+
+    .menu-varie-list li {
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      line-height: 1.55;
+    }
+
+    .menu-varie-list li:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .features-grid,
+    .taste-grid,
+    .shop-grid,
+    .review-grid,
+    .hours-grid,
+    .contact-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .features-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .feature-card {
+      padding: 28px;
+      background: rgba(16, 16, 16, 0.88);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::after {
+      content: "";
+      position: absolute;
+      right: -30px;
+      bottom: -36px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(var(--accent-rgb), 0.06);
+    }
+
+    .feature-card strong,
+    .taste-card strong {
+      display: block;
+      font-family: "Fraunces", serif;
+      font-size: 1.7rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p,
+    .taste-card p,
+    .review p,
+    .contact-note,
+    .hours-card p {
+      margin: 0;
+      line-height: 1.75;
+      color: rgba(247, 239, 228, 0.72);
+    }
+
+    .taste-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .shop-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .shop-card {
+      padding: 28px;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(16, 16, 16, 0.92), rgba(10, 10, 10, 0.96));
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .shop-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(var(--accent-rgb), 0.18);
+      background: rgba(var(--accent-rgb), 0.08);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .shop-card strong {
+      display: block;
+      font-family: "Fraunces", serif;
+      font-size: 1.75rem;
+      letter-spacing: -0.03em;
+    }
+
+    .shop-card p {
+      margin: 0;
+      line-height: 1.75;
+      color: rgba(247, 239, 228, 0.72);
+    }
+
+    .shop-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cream);
+      font-weight: 700;
+    }
+
+    .taste-card {
+      min-height: 360px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: #fff;
+      overflow: hidden;
+      background-color: #080808;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .taste-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(12, 21, 28, 0.02) 12%, rgba(12, 21, 28, 0.82) 100%);
+    }
+
+    .taste-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .taste-card p {
+      color: rgba(255, 248, 240, 0.82);
+    }
+
+    .taste-card.one {
+      background-image:
+        linear-gradient(180deg, rgba(10, 18, 26, 0.06), rgba(10, 18, 26, 0.5)),
+        url("https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=1200&q=80");
+    }
+
+    .taste-card.two {
+      background-image:
+        linear-gradient(180deg, rgba(10, 18, 26, 0.06), rgba(10, 18, 26, 0.54)),
+        url("https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80");
+    }
+
+    .taste-card.three {
+      background-image:
+        linear-gradient(180deg, rgba(10, 18, 26, 0.06), rgba(10, 18, 26, 0.54)),
+        url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80");
+    }
+
+    .reviews-shell {
+      position: relative;
+      width: min(1260px, calc(100% - 64px));
+      margin: 0 auto;
+      display: grid;
+      justify-items: center;
+    }
+
+    .reviews-shell::before {
+      content: "";
+      position: absolute;
+      top: 68px;
+      left: 50%;
+      width: min(760px, 76vw);
+      height: 340px;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(216, 177, 102, 0.08), transparent 68%);
+      filter: blur(14px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .reviews-shell > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .review-grid {
+      width: 100%;
+      grid-template-columns: repeat(3, minmax(0, 360px));
+      gap: 18px;
+      justify-content: center;
+    }
+
+    .review {
+      position: relative;
+      min-height: 248px;
+      padding: 22px 24px 20px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: linear-gradient(180deg, rgba(31, 28, 26, 0.96), rgba(25, 22, 20, 0.99));
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.025),
+        0 10px 24px rgba(0, 0, 0, 0.08);
+      display: grid;
+      align-content: start;
+      gap: 14px;
+    }
+
+    .reviews-intro {
+      width: 100%;
+      max-width: none;
+      margin-bottom: 24px;
+      text-align: center;
+      justify-self: center;
+    }
+
+    .reviews-intro .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(var(--accent-rgb), 0.08);
+      border: 1px solid rgba(var(--accent-rgb), 0.18);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .reviews-intro h2 {
+      margin-inline: auto;
+      max-width: 840px;
+      font-size: clamp(3.3rem, 4.6vw, 4.55rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    .review-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .review-source-pill {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 38px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.065);
+      border: 1px solid rgba(255, 255, 255, 0.085);
+      color: rgba(247, 239, 228, 0.84);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .google-badge-icon {
+      width: 16px;
+      height: 16px;
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .stars {
+      margin: 0;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      font-size: 1.26rem;
+      line-height: 1;
+    }
+
+    .review p {
+      margin: 0;
+      max-width: 31ch;
+      font-size: 0.93rem;
+      line-height: 1.66;
+      color: rgba(247, 239, 228, 0.86);
+      font-weight: 500;
+    }
+
+    .review footer {
+      margin-top: auto;
+      display: grid;
+      gap: 4px;
+    }
+
+    .review footer strong {
+      font-size: 0.9rem;
+      letter-spacing: -0.01em;
+    }
+
+    .review footer span {
+      font-size: 0.8rem;
+      color: rgba(247, 239, 228, 0.62);
+    }
+
+    .reviews-cta-wrap {
+      margin-top: 24px;
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .reviews-google-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 50px;
+      min-width: 0;
+      padding: 0 22px;
+      border-radius: 999px;
+      background: linear-gradient(145deg, #ff9b57, #e06d2c);
+      color: #16120b;
+      font-weight: 800;
+      font-size: 0.92rem;
+      letter-spacing: -0.01em;
+      box-shadow: 0 12px 22px rgba(var(--accent-rgb), 0.18);
+    }
+
+    .reviews-google-button:hover {
+      transform: translateY(-1px);
+    }
+
+    .reviews-google-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+    }
+
+    .reviews-note {
+      color: rgba(var(--accent-rgb), 0.92);
+      font-size: 0.86rem;
+    }
+
+    .hours-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hours-card {
+      padding: 32px;
+      background: rgba(16, 16, 16, 0.88);
+    }
+
+    .hours-card.highlight {
+      background:
+        linear-gradient(180deg, rgba(15, 91, 103, 0.92), rgba(12, 74, 84, 0.96));
+      color: #fff9f2;
+    }
+
+    .hours-card.highlight p,
+    .hours-card.highlight .hours-item span {
+      color: rgba(255, 249, 242, 0.82);
+    }
+
+    .hours-card h3,
+    .contact-card h3 {
+      margin: 0 0 14px;
+      font-family: "Fraunces", serif;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hours-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .hours-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.98rem;
+    }
+
+    .hours-card.highlight .hours-item {
+      border-bottom-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .hours-item strong {
+      font-size: 1rem;
+    }
+
+    .hours-item span {
+      text-align: right;
+      color: rgba(247, 239, 228, 0.62);
+    }
+
+    .hours-note {
+      margin-top: 18px;
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .contact-grid {
+      grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+      justify-content: center;
+      align-items: stretch;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .contact-card,
+    .map-card {
+      position: relative;
+      padding: 22px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(19, 19, 19, 0.96), rgba(11, 11, 11, 0.98));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .contact-card {
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      top: -120px;
+      right: -50px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(var(--accent-rgb), 0.16), rgba(var(--accent-rgb), 0));
+      pointer-events: none;
+    }
+
+    .contact-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    #contatti {
+      padding-top: 36px;
+      padding-bottom: 32px;
+    }
+
+    .contact-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .contact-list li {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      align-items: start;
+      gap: 14px;
+      padding: 13px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
+
+    .contact-item-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(var(--accent-rgb), 0.08);
+      border: 1px solid rgba(var(--accent-rgb), 0.22);
+      color: var(--gold);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .contact-item-icon svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
+    .contact-item-body {
+      min-width: 0;
+    }
+
+    .contact-list small {
+      display: block;
+      margin-bottom: 4px;
+      color: rgba(247, 239, 228, 0.48);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.74rem;
+      font-weight: 800;
+    }
+
+    .contact-list strong,
+    .contact-list a {
+      font-size: 1rem;
+      line-height: 1.48;
+      color: var(--ivory);
+      text-decoration: none;
+    }
+
+    .contact-list strong span {
+      display: block;
+    }
+
+    .contact-list a:hover {
+      color: var(--gold);
+    }
+
+    .contact-section-intro {
+      max-width: 720px;
+      margin-bottom: 4px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .contact-section-intro h2 {
+      margin-bottom: 0;
+      font-size: clamp(2.25rem, 3vw, 3rem);
+    }
+
+    .contact-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .contact-actions .btn,
+    .contact-actions .btn-ghost {
+      min-height: 52px;
+      padding-inline: 22px;
+      width: 100%;
+    }
+
+    .contact-phone-icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+
+    .map-card {
+      overflow: hidden;
+      padding: 0;
+      min-height: 100%;
+      background: #090909;
+    }
+
+    .map-card iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      border: 0;
+      display: block;
+      filter: saturate(0.92) contrast(1.04);
+    }
+
+    .map-card::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 104px;
+      background: linear-gradient(180deg, rgba(9, 9, 9, 0), rgba(9, 9, 9, 0.82));
+      pointer-events: none;
+    }
+
+    .map-card-badge {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      z-index: 1;
+      display: grid;
+      gap: 4px;
+      padding: 14px 16px;
+      border-radius: 20px;
+      background: rgba(8, 8, 8, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 16px 34px rgba(0, 0, 0, 0.26),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(10px);
+    }
+
+    .map-card-badge strong {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: 1.12rem;
+      letter-spacing: -0.02em;
+      color: var(--ivory);
+    }
+
+    .map-card-badge span {
+      font-size: 0.86rem;
+      color: rgba(247, 239, 228, 0.68);
+    }
+
+    .footer {
+      padding: 18px 0 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(247, 239, 228, 0.68);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+        #060606;
+    }
+
+    .footer-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) repeat(2, minmax(0, 0.92fr)) auto;
+      gap: 18px 22px;
+      padding: 20px 22px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 26px;
+      background: rgba(17, 17, 17, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.2);
+    }
+
+    .footer-shell::before {
+      content: "";
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      top: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(var(--accent-rgb), 0), rgba(var(--accent-rgb), 0.5), rgba(var(--accent-rgb), 0));
+    }
+
+    .footer-brand-block,
+    .footer-block {
+      display: grid;
+      align-content: start;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-brand-block {
+      padding-right: 10px;
+    }
+
+    .footer-block {
+      padding-left: 18px;
+      border-left: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .footer-kicker,
+    .footer-block small {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(var(--accent-rgb), 0.2);
+      background: rgba(var(--accent-rgb), 0.06);
+      color: var(--gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .footer-brand-block h3 {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.45rem, 1.9vw, 1.9rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      color: var(--ivory);
+    }
+
+    .footer-legal-space {
+      min-height: 52px;
+      border-radius: 20px;
+      border: 1px dashed rgba(var(--accent-rgb), 0.22);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.008)),
+        linear-gradient(135deg, rgba(var(--accent-rgb), 0.09), rgba(var(--accent-rgb), 0));
+    }
+
+    .footer-brand-block p,
+    .footer-block p {
+      margin: 0;
+      font-size: 0.94rem;
+      line-height: 1.62;
+      color: rgba(247, 239, 228, 0.7);
+    }
+
+    .footer-block a {
+      display: inline-flex;
+      align-items: center;
+      color: var(--ivory);
+      text-decoration: none;
+      font-size: 1rem;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+
+    .footer-block a:hover {
+      color: var(--gold);
+    }
+
+    .footer-social-block {
+      justify-items: start;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      color: var(--ivory);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-1px);
+      color: var(--gold);
+      border-color: rgba(var(--accent-rgb), 0.4);
+    }
+
+    .social-link svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+
+    .footer-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.82rem;
+      color: rgba(247, 239, 228, 0.46);
+    }
+
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    [data-animate].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      z-index: 25;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 22px;
+      background: rgba(10, 10, 10, 0.94);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mobile-cta .btn,
+    .mobile-cta .btn-ghost {
+      flex: 1;
+      padding: 14px 16px;
+      min-height: 54px;
+    }
+
+    @media (max-width: 1080px) {
+      .reviews-shell {
+        width: min(760px, calc(100% - 32px));
+      }
+
+      .hero-grid,
+      .story-grid,
+      .contact-grid,
+      .features-grid,
+      .taste-grid,
+      .shop-grid,
+      .review-grid,
+      .hours-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        min-height: auto;
+      }
+
+      .story-copy {
+        min-height: auto;
+      }
+
+      .story-photo-card {
+        min-height: 460px;
+      }
+
+      .menu-section {
+        min-height: auto;
+      }
+
+      .menu-visual-card {
+        min-height: 250px;
+      }
+
+      .menu-varie-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-list {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-shell {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-brand-block,
+      .footer-block {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .footer-block {
+        border-left: 0;
+      }
+
+      .footer-meta {
+        flex-direction: column;
+      }
+
+      .reviews-intro h2 {
+        max-width: 860px;
+      }
+
+      .menu-kicker {
+        margin-bottom: 14px;
+        letter-spacing: 0.28em;
+      }
+
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+    @media (max-width: 880px) {
+      .nav {
+        min-height: 64px;
+        gap: 14px;
+      }
+
+      .nav-links,
+      .nav-actions .btn-ghost {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .hero {
+        padding-top: 22px;
+      }
+
+      .hero-copy,
+      .booking-card,
+      .panel,
+      .price-card,
+      .feature-card,
+      .shop-card,
+      .taste-card,
+      .review,
+      .hours-card,
+      .contact-card {
+        padding: 24px;
+        border-radius: 26px;
+      }
+
+      .review {
+        min-height: auto;
+        gap: 18px;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.8rem, 12vw, 4.4rem);
+      }
+
+      .brand-logo-wrap {
+        min-width: 140px;
+        min-height: 54px;
+        padding: 4px 10px;
+      }
+
+      .brand-logo {
+        width: 64px;
+      }
+
+      .mobile-menu {
+        top: 76px;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .map-card iframe {
+        min-height: 248px;
+      }
+
+      .map-card-badge {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+      }
+
+      .mobile-cta {
+        display: flex;
+      }
+
+      body {
+        padding-bottom: 92px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(var(--max), calc(100% - 18px));
+      }
+
+      .reviews-shell {
+        width: calc(100% - 18px);
+      }
+
+      .reviews-intro h2 {
+        font-size: clamp(2.9rem, 12vw, 4.5rem);
+      }
+
+      .reviews-google-button {
+        width: auto;
+        max-width: 100%;
+        min-width: 0;
+        min-height: 54px;
+        padding: 0 20px;
+        font-size: 0.96rem;
+      }
+
+      .contact-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .contact-list li {
+        grid-template-columns: 42px minmax(0, 1fr);
+        gap: 12px;
+      }
+
+      .contact-item-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+      }
+
+      .footer-shell {
+        grid-template-columns: 1fr;
+        padding: 20px 18px;
+        border-radius: 24px;
+      }
+
+      .footer-meta {
+        text-align: center;
+        align-items: center;
+      }
+
+      .brand-mark {
+        width: 46px;
+        height: 46px;
+        border-radius: 16px;
+        font-size: 20px;
+      }
+
+      .brand-name {
+        font-size: 20px;
+      }
+
+      .brand-logo-wrap {
+        min-width: 124px;
+        min-height: 50px;
+        padding: 4px 8px;
+      }
+
+      .brand-logo {
+        width: 56px;
+      }
+
+      .hero-copy,
+      .booking-card {
+        padding: 20px;
+      }
+
+      .hero-copy {
+        padding-top: 20px;
+      }
+
+      .hero-copy p,
+      .booking-text,
+      .section-title p,
+      .story-copy p,
+      .feature-card p,
+      .shop-card p,
+      .taste-card p,
+      .review p,
+      .hours-card p,
+      .contact-note {
+        font-size: 0.98rem;
+        line-height: 1.7;
+      }
+
+      .section-title h2 {
+        font-size: clamp(2.2rem, 11vw, 3rem);
+      }
+
+      .aside-copy h2 {
+        font-size: clamp(2rem, 10vw, 2.8rem);
+      }
+
+      .lang-switcher {
+        gap: 8px;
+      }
+
+      .lang-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.75rem;
+      }
+
+      .aside-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hours-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hours-item span {
+        text-align: left;
+      }
+
+      .contact-actions,
+      .hero-call-cta,
+      .mobile-cta {
+        flex-direction: column;
+      }
+
+      .mobile-cta .btn-ghost {
+        display: none;
+      }
+
+      .footer-meta {
+        flex-direction: column;
+      }
+
+      .story-photo-card {
+        min-height: 380px;
+      }
+
+      .story-photo-note {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+        max-width: none;
+        padding: 16px 18px;
+      }
+
+      .story-photo-note strong {
+        font-size: 1.35rem;
+      }
+
+      .menu-visual-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-visual-card {
+        min-height: 210px;
+      }
+
+      .menu-kicker {
+        font-size: 0.78rem;
+        letter-spacing: 0.24em;
+      }
+
+      .menu-cta-row {
+        padding: 18px;
+      }
+
+      .menu-cta-button {
+        width: auto;
+      }
+
+      .menu-modal {
+        padding: 14px;
+      }
+
+      .menu-modal-dialog {
+        padding: 22px 18px 18px;
+        border-radius: 28px;
+      }
+
+      .menu-modal-head {
+        padding-right: 48px;
+      }
+
+      .menu-modal-tabs {
+        justify-content: flex-start;
+      }
+
+      .menu-detail-card {
+        padding: 22px 18px 18px;
+      }
+
+      .menu-detail-header {
+        flex-direction: column;
+      }
+
+      .menu-special-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .menu-varie-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Pizzeria M'aMa">
+        <span class="brand-logo-wrap">
+          <img class="brand-logo" src="Screenshot%202026-04-20%20(16.28.15).png" alt="Brand Pizzeria M'aMa" />
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Sezioni del sito">
+        <a href="#storia" data-i18n="nav_story">La nostra storia</a>
+        <a href="#menu" data-i18n="nav_menu">Menu</a>
+        <a href="#prodotti-online" data-i18n="nav_shop">Prodotti online</a>
+        <a href="#recensioni" data-i18n="nav_reviews">Recensioni</a>
+        <a href="#contatti" data-i18n="nav_contacts">Contatti</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-switcher" aria-label="Language switcher">
+          <button class="lang-btn active" type="button" data-lang="it">IT</button>
+          <button class="lang-btn" type="button" data-lang="en">EN</button>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#storia" data-i18n="nav_story">La nostra storia</a>
+    <a href="#menu" data-i18n="nav_menu">Menu</a>
+    <a href="#prodotti-online" data-i18n="nav_shop">Prodotti online</a>
+    <a href="#recensioni" data-i18n="nav_reviews">Recensioni</a>
+    <a href="#contatti" data-i18n="nav_contacts">Contatti</a>
+  </div>
+
+    <main>
+      <section class="hero" id="top">
+        <div class="hero-media" aria-hidden="true">
+          <img class="hero-image" src="hero-pizze-premium-hd.png" alt="" loading="eager" fetchpriority="high" />
+        </div>
+      <div class="container hero-grid">
+        <div class="hero-copy" data-animate>
+          <h1 data-i18n="hero_title">Pizza superiore, atmosfera vista mare.</h1>
+          <p data-i18n="hero_text">
+            Da M'aMa ogni tavolo nasce per farti stare bene: impasti speciali, ingredienti selezionati e una veranda che fa venire voglia di fermarsi per tutta la sera.
+          </p>
+
+          <div class="hero-call-cta">
+            <a class="btn" href="tel:01851772110">
+              <span data-i18n="call_now">Chiama ora</span>
+            </a>
+          </div>
+        </div>
+
+        <aside class="booking-card" id="prenota" data-animate>
+          <span class="eyebrow" data-i18n="booking_eyebrow">Prenotazioni</span>
+          <h2 data-i18n="booking_title">Prenota il tuo tavolo</h2>
+          <p class="booking-text" data-i18n="booking_text">
+            Compila il form e invia la tua richiesta di prenotazione su WhatsApp in pochi secondi.
+          </p>
+
+          <form class="form booking-form" onsubmit="submitBooking(event)">
+            <div class="field">
+              <label for="booking-name" data-i18n="form_name">Nome e cognome</label>
+              <input id="booking-name" name="name" type="text" data-ph="ph_name" placeholder="Nome e cognome" required />
+            </div>
+
+            <div class="field-grid">
+              <div class="field">
+                <label for="booking-phone" data-i18n="form_phone">Telefono</label>
+                <input id="booking-phone" name="phone" type="tel" data-ph="ph_phone" placeholder="Telefono" required />
+              </div>
+              <div class="field">
+                <label for="booking-guests" data-i18n="form_guests">Persone</label>
+                <input id="booking-guests" name="guests" type="number" min="1" max="20" data-ph="ph_guests" placeholder="Persone" required />
+              </div>
+            </div>
+
+            <div class="field-grid">
+              <div class="field">
+                <label for="booking-date" data-i18n="form_date">Data</label>
+                <input id="booking-date" name="date" type="date" required />
+              </div>
+              <div class="field">
+                <label for="booking-time" data-i18n="form_time">Orario</label>
+                <input id="booking-time" name="time" type="time" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="booking-notes" data-i18n="form_notes">Note</label>
+              <textarea id="booking-notes" name="notes" data-ph="ph_notes" placeholder="Eventuali richieste speciali o preferenze tavolo."></textarea>
+            </div>
+
+            <div class="booking-actions">
+              <button class="btn" type="submit">
+                <svg class="btn-wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.52 3.48A11.8 11.8 0 0012.01 0C5.38 0 .01 5.37 0 12c0 2.11.55 4.17 1.6 6L0 24l6.18-1.6A11.94 11.94 0 0012.01 24C18.64 24 24 18.63 24 12c0-3.2-1.25-6.2-3.48-8.52zM12.01 21.8c-1.8 0-3.57-.48-5.12-1.39l-.37-.22-3.67.95.98-3.58-.24-.37A9.77 9.77 0 012.2 12c0-5.4 4.4-9.8 9.8-9.8 2.62 0 5.08 1.02 6.93 2.87A9.72 9.72 0 0121.8 12c0 5.4-4.4 9.8-9.79 9.8zm5.39-7.34c-.29-.15-1.72-.85-1.99-.94-.27-.1-.47-.15-.67.15-.2.29-.77.94-.95 1.14-.17.2-.35.22-.64.07-.29-.15-1.24-.46-2.36-1.46-.87-.77-1.46-1.72-1.63-2.01-.17-.29-.02-.44.13-.59.13-.13.29-.35.44-.52.15-.17.2-.29.3-.49.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.29-1.04 1.02-1.04 2.49 0 1.47 1.07 2.9 1.22 3.1.15.2 2.11 3.22 5.11 4.52.71.31 1.27.5 1.7.64.71.22 1.35.19 1.86.12.57-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.2-.55-.35z"/>
+                </svg>
+                <span data-i18n="booking_submit">Prenota ora</span>
+              </button>
+            </div>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="storia">
+      <div class="container story-grid">
+        <div class="panel story-copy" data-animate>
+          <div class="section-title">
+            <span class="section-eyebrow">La nostra storia</span>
+            <h2>Dal 2012 M'aMa porta a Chiavari una pizza che punta pi&ugrave; in alto.</h2>
+            <p>
+              La nostra storia parte da una promessa semplice ma forte: fare una pizza superiore, con farine scelte, ingredienti italiani e un'esperienza che sa di mare, passeggiata serale e tavoli pieni di energia.
+            </p>
+          </div>
+
+          <p>
+            M'aMa si racconta come una pizzeria contemporanea, nata per unire impasti curati, servizio rapido e una location affacciata sul mare. Non solo cena fuori, ma un posto da scegliere quando si vuole stare bene e mangiare con gusto.
+          </p>
+        </div>
+
+        <div class="price-card story-photo-card" data-animate>
+          <img src="IMG_0305.JPG" alt="Veranda sul mare di Pizzeria M'aMa al tramonto" loading="lazy" />
+          <div class="story-photo-note">
+            <strong>Vista sul mare</strong>
+            <span>Veranda affacciata sul tramonto, luce soffusa e un'atmosfera che invita a restare.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section menu-section" id="menu">
+      <div class="container menu-showcase">
+        <div class="menu-header" data-animate>
+          <div class="section-title">
+            <span class="menu-kicker" data-i18n="menu_eyebrow">Le nostre specialit&agrave;</span>
+            <h2 data-i18n-html="menu_title">Pizze fatte bene, <span class="menu-title-accent">servite con piacere</span>.</h2>
+            <p data-i18n="menu_text">
+              Dalle pi&ugrave; classiche alle pi&ugrave; ricercate, ogni proposta nasce da impasti curati, ingredienti scelti e quella voglia di farti stare bene a tavola.
+            </p>
+          </div>
+        </div>
+
+        <div class="menu-visual-grid">
+          <article class="menu-visual-card" data-animate>
+            <img src="menu-pizza-classica-premium.png" alt="Pizza classica premium di Pizzeria M'aMa" loading="lazy" />
+          </article>
+          <article class="menu-visual-card" data-animate>
+            <img src="menu-pizza-gourmet-premium.png" alt="Pizza gourmet premium di Pizzeria M'aMa" loading="lazy" />
+          </article>
+        </div>
+
+        <div class="menu-cta-row" data-animate>
+          <button class="menu-cta-button" type="button" data-open-menu-modal data-i18n="menu_open">Il nostro menù</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="menu-modal" id="menuModal" aria-hidden="true">
+      <div class="menu-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="menuModalTitle">
+        <button class="menu-modal-close" type="button" data-close-menu-modal aria-label="Chiudi menu">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"></path>
+          </svg>
+        </button>
+
+        <div class="menu-modal-head">
+          <h3 id="menuModalTitle" data-i18n="menu_modal_title">Sfoglia il nostro menù</h3>
+          <p data-i18n="menu_modal_text">
+            Seleziona la categoria che preferisci e scopri le nostre pizze.
+          </p>
+        </div>
+
+        <div class="menu-modal-tabs" role="tablist" aria-label="Categorie menu">
+          <button class="menu-tab active" type="button" role="tab" aria-selected="true" data-menu-tab="speciali" data-i18n="menu_tab_speciali">Pizze Speciali</button>
+          <button class="menu-tab" type="button" role="tab" aria-selected="false" data-menu-tab="varie" data-i18n="menu_tab_varie">Varie</button>
+        </div>
+
+        <div class="menu-modal-body">
+          <div class="menu-panel" data-menu-panel="speciali">
+            <article class="menu-detail-card">
+              <div class="menu-detail-header">
+                <h4 data-i18n="menu_speciali_heading">Le speciali di M'aMa</h4>
+              </div>
+
+              <div class="menu-detail-block">
+                <div class="menu-special-list">
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Matteo (2 emisferi)</strong>
+                      <span>16,00 €</span>
+                    </div>
+                    <p>1° emisfero: pomodoro, stracchino, porcini* saltati da noi in padella e fiocco di culatello. 2° emisfero: stracchino, pesto della casa, scaglie di grana e pinoli.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Maria</strong>
+                      <span>15,00 €</span>
+                    </div>
+                    <p>Pomodoro, stracchino, bresaola valtellina IGP, rucola, pomodorino pachino e scaglie di grana.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Gabrielona</strong>
+                      <span>15,00 €</span>
+                    </div>
+                    <p>Stracchino, caprino, pomodorino pachino e fiocco di culatello.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Davidino</strong>
+                      <span>13,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella di bufala DOP e salame DOP piacentino.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Frutti di Terra</strong>
+                      <span>15,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, crema di tartufo, coppa di Parma e rucola.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Affumicata</strong>
+                      <span>15,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, scamorza affumicata, pancetta arrotolata e prosciutto di Praga.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Finemente Porcellina</strong>
+                      <span>16,00 €</span>
+                    </div>
+                    <p>Doppio impasto, pomodoro, mozzarella, funghi champignon Italia, salsiccia, speck di Moena e salame piccante.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Fior di Pistacchio</strong>
+                      <span>15,00 €</span>
+                    </div>
+                    <p>Stracchino, granella di pistacchio e roselline di speck di Moena.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Fior di Noce</strong>
+                      <span>13,00 €</span>
+                    </div>
+                    <p>Stracchino, granella di noce, cannella, semi di papavero e noci.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Jenny</strong>
+                      <span>15,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, crema di tartufo, porcini* e uovo. (*prodotto congelato)</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>La Saporita del Sud</strong>
+                      <span>15,00 €</span>
+                    </div>
+                    <p>Pomodoro. A fine cottura pomodori secchi, burrata e scaglie di pecorino sardo.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Burratina</strong>
+                      <span>13,00 €</span>
+                    </div>
+                    <p>Pomodoro. A fine cottura burrata e olio extra vergine d'oliva 100% italiano.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Stramilano</strong>
+                      <span>15,00 €</span>
+                    </div>
+                    <p>Stracchino, panna, zafferano, porcini* saltati da noi in padella e prosciutto crudo di Parma 14/16 mesi servito a parte. (*prodotto congelato)</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>M'aMa</strong>
+                      <span>15,00 €</span>
+                    </div>
+                    <p>Mozzarella di bufala DOP, rucola e code di gamberoni argentini*. (*prodotto congelato)</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Frutti di Mare</strong>
+                      <span>20,00 €</span>
+                    </div>
+                    <p>Pomodoro, frutti di mare* saltati con vino bianco e aglio, prezzemolo a fine cottura. (*prodotto congelato)</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>San Ste</strong>
+                      <span>14,00 €</span>
+                    </div>
+                    <p>Pomodoro, San Ste, noce moscata. Chiedere disponibilità: produzione limitata.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Carlofortina</strong>
+                      <span>14,00 €</span>
+                    </div>
+                    <p>Stracchino. A fine cottura bottarga di tonno e pomodorino pachino.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Calzone Godereccio</strong>
+                      <span>15,00 €</span>
+                    </div>
+                    <p>Pomodoro, stracchino, ricotta, crema di tartufo e speck di Moena.</p>
+                  </article>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="menu-panel" data-menu-panel="varie" hidden>
+            <article class="menu-detail-card">
+              <div class="menu-detail-header">
+                <h4 data-i18n="menu_varie_heading">Le varie di M'aMa</h4>
+              </div>
+
+              <div class="menu-detail-block">
+                <div class="menu-special-list">
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Marinara</strong>
+                      <span>7,50 €</span>
+                    </div>
+                    <p>Pomodoro, aglio.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Margherita</strong>
+                      <span>8,50 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Prosciutto Cotto</strong>
+                      <span>10,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, prosciutto cotto.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Wurstel</strong>
+                      <span>10,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, wurstel.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Funghi</strong>
+                      <span>10,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, funghi champignon trifolati Italia.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Pugliese</strong>
+                      <span>10,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, cipolle rosse.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Bresaola IGP</strong>
+                      <span>12,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, bresaola valtellina IGP e rucola.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Salame Piccante</strong>
+                      <span>11,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, salame piccante.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Biancaneve</strong>
+                      <span>11,00 €</span>
+                    </div>
+                    <p>Mozzarella, stracchino.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Siciliana</strong>
+                      <span>11,00 €</span>
+                    </div>
+                    <p>Pomodoro, acciughe, capperi di Pantelleria IGP e olive.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Praga</strong>
+                      <span>11,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella e prosciutto cotto di Praga.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Napoli</strong>
+                      <span>11,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, acciughe e capperi di Pantelleria IGP.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Bufalina</strong>
+                      <span>11,00 €</span>
+                    </div>
+                    <p>Pomodoro e mozzarella di bufala DOP.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Calzone</strong>
+                      <span>11,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella e prosciutto cotto.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Tonno &amp; Cipolla</strong>
+                      <span>12,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, tonno e cipolle rosse.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Salsiccia</strong>
+                      <span>11,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella e salsiccia.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Bismarck</strong>
+                      <span>12,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, prosciutto cotto e uovo.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Usa</strong>
+                      <span>11,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, patatine fritte* e wurstel. (*prodotto congelato)</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>4 Stagioni</strong>
+                      <span>12,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, prosciutto cotto, carciofi Italia, funghi champignon Italia e olive.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>4 Formaggi Bianca/Rossa</strong>
+                      <span>12,00 €</span>
+                    </div>
+                    <p>(Pomodoro), mozzarella, stracchino, gorgonzola e ricotta.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Capricciosa</strong>
+                      <span>12,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, prosciutto cotto, funghi champignon Italia, carciofi Italia, olive e salsiccia.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Pesto</strong>
+                      <span>12,50 €</span>
+                    </div>
+                    <p>Mozzarella, stracchino, pesto della casa.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Speck &amp; Brie</strong>
+                      <span>12,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, speck di Moena e brie.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Calzone Farcito</strong>
+                      <span>12,50 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, prosciutto cotto, funghi champignon Italia e carciofi Italia.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Porcini</strong>
+                      <span>11,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, porcini*. *prodotto prima scelta congelato intero.</p>
+                  </article>
+
+                  <article class="menu-special-item">
+                    <div class="menu-special-head">
+                      <strong>Ratatouille</strong>
+                      <span>11,00 €</span>
+                    </div>
+                    <p>Pomodoro, mozzarella, dadolata di verdure al forno (peperoni, melanzane, zucchine, cipolla, sale, pepe).</p>
+                  </article>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="prodotti-online">
+      <div class="container">
+        <div class="section-title" data-animate>
+          <span class="section-eyebrow">Prodotti online</span>
+          <h2>Una sezione pronta a valorizzare l'asporto, il ritiro e le proposte pi&ugrave; richieste anche fuori sala.</h2>
+          <p>
+            Qui il sito pu&ograve; mostrare prodotti ordinabili o richiedibili rapidamente, senza perdere l'immagine premium del brand. Ho impostato il blocco come una piccola vetrina scura, coerente con il resto del sito.
+          </p>
+        </div>
+
+        <div class="shop-grid">
+          <article class="shop-card" data-animate>
+            <span class="shop-tag">Online</span>
+            <strong>Pizze classiche</strong>
+            <p>
+              Le pizze pi&ugrave; richieste devono essere facili da trovare e veloci da ordinare, con una presentazione pulita pensata anche per smartphone.
+            </p>
+            <a href="tel:01851772110">Ordina al telefono</a>
+          </article>
+
+          <article class="shop-card" data-animate>
+            <span class="shop-tag">Online</span>
+            <strong>Pizze gourmet</strong>
+            <p>
+              La vetrina online pu&ograve; dare spazio alle proposte pi&ugrave; distintive, utili per alzare il valore medio e rafforzare l'identit&agrave; del locale.
+            </p>
+            <a href="#contatti">Richiedi informazioni</a>
+          </article>
+
+          <article class="shop-card" data-animate>
+            <span class="shop-tag">Online</span>
+            <strong>Impasti selezionati</strong>
+            <p>
+              La scelta degli impasti pu&ograve; diventare un filtro o una categoria dedicata, cos&igrave; da trasformare una qualit&agrave; tecnica in uno strumento di vendita.
+            </p>
+            <a href="#menu">Vedi il menu</a>
+          </article>
+
+          <article class="shop-card" data-animate>
+            <span class="shop-tag">Online</span>
+            <strong>Bevande e dolci</strong>
+            <p>
+              Anche drink, birre e dessert meritano una presenza chiara nella parte online, per completare l'ordine e dare pi&ugrave; profondit&agrave; all'offerta.
+            </p>
+            <a href="tel:01851772110">Aggiungi al tuo ordine</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="recensioni">
+      <div class="reviews-shell">
+        <div class="section-title reviews-intro" data-animate>
+          <span class="section-eyebrow" data-i18n="reviews_eyebrow">Recensioni</span>
+          <h2 data-i18n="reviews_title">Le parole dei nostri clienti</h2>
+        </div>
+
+        <div class="review-grid">
+          <article class="review" data-animate>
+            <div class="review-top">
+              <div class="stars" aria-hidden="true">★★★★★</div>
+              <span class="review-source-pill" aria-hidden="true">
+                <svg class="google-badge-icon" viewBox="0 0 18 18" fill="none">
+                  <path d="M16.16 9.2c0-.48-.04-.85-.13-1.25H9v2.42h4.02c-.08.6-.47 1.51-1.34 2.12l-.01.08 1.93 1.5.13.01c1.19-1.1 1.88-2.72 1.88-4.88Z" fill="#4285F4"/>
+                  <path d="M9 16.5c2.02 0 3.71-.66 4.95-1.79l-2.36-1.83c-.63.44-1.47.74-2.59.74-1.98 0-3.66-1.3-4.26-3.11l-.08.01-2.01 1.56-.03.08A7.48 7.48 0 0 0 9 16.5Z" fill="#34A853"/>
+                  <path d="M4.74 10.51A4.51 4.51 0 0 1 4.49 9c0-.52.09-1.02.24-1.51l-.01-.1-2.04-1.58-.07.03A7.47 7.47 0 0 0 1.5 9c0 1.17.28 2.27.77 3.24l2.47-1.73Z" fill="#F38A41"/>
+                  <path d="M9 4.38c1.41 0 2.37.61 2.91 1.12l2.12-2.06C12.7 2.27 11.02 1.5 9 1.5a7.48 7.48 0 0 0-6.39 3.66l2.12 1.65C5.34 5.68 7.02 4.38 9 4.38Z" fill="#EA4335"/>
+                </svg>
+                <span>Google</span>
+              </span>
+            </div>
+            <p data-i18n="reviews_quote_1">"Pizza buonissima, serviti in un batter d'occhio, anche i dolci veramente buoni."</p>
+            <footer>
+              <strong data-i18n="reviews_verified">Cliente verificato</strong>
+              <span data-i18n="reviews_source">Recensione online</span>
+            </footer>
+          </article>
+
+          <article class="review" data-animate>
+            <div class="review-top">
+              <div class="stars" aria-hidden="true">★★★★★</div>
+              <span class="review-source-pill" aria-hidden="true">
+                <svg class="google-badge-icon" viewBox="0 0 18 18" fill="none">
+                  <path d="M16.16 9.2c0-.48-.04-.85-.13-1.25H9v2.42h4.02c-.08.6-.47 1.51-1.34 2.12l-.01.08 1.93 1.5.13.01c1.19-1.1 1.88-2.72 1.88-4.88Z" fill="#4285F4"/>
+                  <path d="M9 16.5c2.02 0 3.71-.66 4.95-1.79l-2.36-1.83c-.63.44-1.47.74-2.59.74-1.98 0-3.66-1.3-4.26-3.11l-.08.01-2.01 1.56-.03.08A7.48 7.48 0 0 0 9 16.5Z" fill="#34A853"/>
+                  <path d="M4.74 10.51A4.51 4.51 0 0 1 4.49 9c0-.52.09-1.02.24-1.51l-.01-.1-2.04-1.58-.07.03A7.47 7.47 0 0 0 1.5 9c0 1.17.28 2.27.77 3.24l2.47-1.73Z" fill="#F38A41"/>
+                  <path d="M9 4.38c1.41 0 2.37.61 2.91 1.12l2.12-2.06C12.7 2.27 11.02 1.5 9 1.5a7.48 7.48 0 0 0-6.39 3.66l2.12 1.65C5.34 5.68 7.02 4.38 9 4.38Z" fill="#EA4335"/>
+                </svg>
+                <span>Google</span>
+              </span>
+            </div>
+            <p data-i18n="reviews_quote_2">"Pizza leggera, impasto gradevole, buona cottura e ingredienti genuini."</p>
+            <footer>
+              <strong data-i18n="reviews_verified">Cliente verificato</strong>
+              <span data-i18n="reviews_source">Recensione online</span>
+            </footer>
+          </article>
+
+          <article class="review" data-animate>
+            <div class="review-top">
+              <div class="stars" aria-hidden="true">★★★★★</div>
+              <span class="review-source-pill" aria-hidden="true">
+                <svg class="google-badge-icon" viewBox="0 0 18 18" fill="none">
+                  <path d="M16.16 9.2c0-.48-.04-.85-.13-1.25H9v2.42h4.02c-.08.6-.47 1.51-1.34 2.12l-.01.08 1.93 1.5.13.01c1.19-1.1 1.88-2.72 1.88-4.88Z" fill="#4285F4"/>
+                  <path d="M9 16.5c2.02 0 3.71-.66 4.95-1.79l-2.36-1.83c-.63.44-1.47.74-2.59.74-1.98 0-3.66-1.3-4.26-3.11l-.08.01-2.01 1.56-.03.08A7.48 7.48 0 0 0 9 16.5Z" fill="#34A853"/>
+                  <path d="M4.74 10.51A4.51 4.51 0 0 1 4.49 9c0-.52.09-1.02.24-1.51l-.01-.1-2.04-1.58-.07.03A7.47 7.47 0 0 0 1.5 9c0 1.17.28 2.27.77 3.24l2.47-1.73Z" fill="#F38A41"/>
+                  <path d="M9 4.38c1.41 0 2.37.61 2.91 1.12l2.12-2.06C12.7 2.27 11.02 1.5 9 1.5a7.48 7.48 0 0 0-6.39 3.66l2.12 1.65C5.34 5.68 7.02 4.38 9 4.38Z" fill="#EA4335"/>
+                </svg>
+                <span>Google</span>
+              </span>
+            </div>
+            <p data-i18n="reviews_quote_3">"La pizza senza glutine &egrave; davvero ottima, leggera e molto digeribile."</p>
+            <footer>
+              <strong data-i18n="reviews_verified">Cliente verificato</strong>
+              <span data-i18n="reviews_source">Recensione online</span>
+            </footer>
+          </article>
+        </div>
+
+        <div class="reviews-cta-wrap" data-animate>
+          <a
+            class="reviews-google-button"
+            href="https://www.google.com/search?sca_esv=72715453fbfc6ad1&amp;rlz=1C5CHFA_enIT984IT984&amp;sxsrf=ANbL-n5188z8485KLXXavTPGJCEiKtZ3vQ:1776761128222&amp;si=AL3DRZFIhG6pAqfNLal55wUTwygCG0fClF3UxiOmgw9Hq7nbWfeP4bCObYGMPQzO-7APoPypzYF87lmnu1lsTgv6OSh0tRMqRjJlgDb83nQeVo2giFrffzFRLyvjm_2ZjOSi24lF7-O-DHYPxy8XO0qKI_vpWgqfBw%3D%3D&amp;q=Pizzeria+M%27aMa+Recensioni&amp;sa=X&amp;ved=2ahUKEwjx0Jf_xv6TAxUw8wIHHYdyIr0Q0bkNegQIHhAH&amp;biw=729&amp;bih=704&amp;dpr=2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="reviews-google-icon" aria-hidden="true">
+              <svg class="google-badge-icon" viewBox="0 0 18 18" fill="none">
+                <path d="M16.16 9.2c0-.48-.04-.85-.13-1.25H9v2.42h4.02c-.08.6-.47 1.51-1.34 2.12l-.01.08 1.93 1.5.13.01c1.19-1.1 1.88-2.72 1.88-4.88Z" fill="#4285F4"/>
+                <path d="M9 16.5c2.02 0 3.71-.66 4.95-1.79l-2.36-1.83c-.63.44-1.47.74-2.59.74-1.98 0-3.66-1.3-4.26-3.11l-.08.01-2.01 1.56-.03.08A7.48 7.48 0 0 0 9 16.5Z" fill="#34A853"/>
+                <path d="M4.74 10.51A4.51 4.51 0 0 1 4.49 9c0-.52.09-1.02.24-1.51l-.01-.1-2.04-1.58-.07.03A7.47 7.47 0 0 0 1.5 9c0 1.17.28 2.27.77 3.24l2.47-1.73Z" fill="#F38A41"/>
+                <path d="M9 4.38c1.41 0 2.37.61 2.91 1.12l2.12-2.06C12.7 2.27 11.02 1.5 9 1.5a7.48 7.48 0 0 0-6.39 3.66l2.12 1.65C5.34 5.68 7.02 4.38 9 4.38Z" fill="#EA4335"/>
+              </svg>
+            </span>
+            <span data-i18n="reviews_cta">Lascia una recensione su Google</span>
+          </a>
+          <div class="reviews-note" data-i18n="reviews_note">Ci vogliono solo 10 secondi</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contatti">
+      <div class="container contact-grid">
+        <div class="contact-card" data-animate>
+          <div class="section-title contact-section-intro" style="margin-bottom: 0;">
+            <span class="section-eyebrow">Contatti</span>
+            <h2>Vieni a trovarci.</h2>
+          </div>
+
+          <ul class="contact-list">
+            <li>
+              <span class="contact-item-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2a6.5 6.5 0 0 0-6.5 6.5c0 4.55 5.3 10.9 6.07 11.8a.57.57 0 0 0 .86 0c.77-.9 6.07-7.25 6.07-11.8A6.5 6.5 0 0 0 12 2Zm0 8.8a2.3 2.3 0 1 1 0-4.6 2.3 2.3 0 0 1 0 4.6Z"/>
+                </svg>
+              </span>
+              <div class="contact-item-body">
+                <small>Indirizzo</small>
+                <strong>Corso Valparaiso, 150<br />16043 Chiavari GE</strong>
+              </div>
+            </li>
+            <li>
+              <span class="contact-item-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6.62 10.79a15.54 15.54 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                </svg>
+              </span>
+              <div class="contact-item-body">
+                <small>Numero fisso</small>
+                <a href="tel:01851772110"><strong>0185 1772110</strong></a>
+              </div>
+            </li>
+            <li>
+              <span class="contact-item-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M7 2.75A2.75 2.75 0 0 0 4.25 5.5v13A2.75 2.75 0 0 0 7 21.25h10A2.75 2.75 0 0 0 19.75 18.5v-13A2.75 2.75 0 0 0 17 2.75H7Zm5 16.25a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2Zm4-4.35H8V5.9h8v8.75Z"/>
+                </svg>
+              </span>
+              <div class="contact-item-body">
+                <small>Cellulare</small>
+                <a href="tel:+393792041914"><strong>+39 379 204 1914</strong></a>
+              </div>
+            </li>
+            <li>
+              <span class="contact-item-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 1.75A10.25 10.25 0 1 0 22.25 12 10.26 10.26 0 0 0 12 1.75Zm0 18.5a8.25 8.25 0 1 1 8.25-8.25A8.26 8.26 0 0 1 12 20.25Zm.75-13h-1.5v5.06l4.02 2.41.73-1.21-3.25-1.95Z"/>
+                </svg>
+              </span>
+              <div class="contact-item-body">
+                <small>Orari</small>
+                <strong>
+                  <span>Luned&igrave; e Marted&igrave;: chiuso</span>
+                  <span>Mercoled&igrave; - Domenica: 19:00 - 23:00</span>
+                </strong>
+              </div>
+            </li>
+          </ul>
+
+          <div class="contact-actions">
+            <a class="btn" href="#prenota">
+              <svg class="btn-wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.52 3.48A11.8 11.8 0 0012.01 0C5.38 0 .01 5.37 0 12c0 2.11.55 4.17 1.6 6L0 24l6.18-1.6A11.94 11.94 0 0012.01 24C18.64 24 24 18.63 24 12c0-3.2-1.25-6.2-3.48-8.52zM12.01 21.8c-1.8 0-3.57-.48-5.12-1.39l-.37-.22-3.67.95.98-3.58-.24-.37A9.77 9.77 0 012.2 12c0-5.4 4.4-9.8 9.8-9.8 2.62 0 5.08 1.02 6.93 2.87A9.72 9.72 0 0121.8 12c0 5.4-4.4 9.8-9.79 9.8zm5.39-7.34c-.29-.15-1.72-.85-1.99-.94-.27-.1-.47-.15-.67.15-.2.29-.77.94-.95 1.14-.17.2-.35.22-.64.07-.29-.15-1.24-.46-2.36-1.46-.87-.77-1.46-1.72-1.63-2.01-.17-.29-.02-.44.13-.59.13-.13.29-.35.44-.52.15-.17.2-.29.3-.49.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.29-1.04 1.02-1.04 2.49 0 1.47 1.07 2.9 1.22 3.1.15.2 2.11 3.22 5.11 4.52.71.31 1.27.5 1.7.64.71.22 1.35.19 1.86.12.57-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.2-.55-.35z"/>
+              </svg>
+              <span>Prenota ora</span>
+            </a>
+            <a class="btn-ghost" href="tel:01851772110">
+              <svg class="contact-phone-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M6.62 10.79a15.54 15.54 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              <span>Chiama ora</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="map-card" data-animate>
+          <iframe
+            title="Mappa per raggiungere Pizzeria M'aMa"
+            src="https://www.google.com/maps?q=Corso+Valparaiso+150,+16043+Chiavari+GE&z=16&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+          <div class="map-card-badge">
+            <strong>Chiavari, fronte mare</strong>
+            <span>Corso Valparaiso 150</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-shell">
+      <div class="footer-brand-block">
+        <span class="footer-kicker">Pizzeria M'aMa</span>
+        <div class="footer-legal-space" aria-hidden="true"></div>
+      </div>
+
+      <div class="footer-block">
+        <small>Dove siamo</small>
+        <p>Corso Valparaiso, 150<br />16043 Chiavari GE</p>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Corso+Valparaiso+150,+16043+Chiavari+GE" target="_blank" rel="noopener noreferrer">Apri la mappa</a>
+      </div>
+
+      <div class="footer-block">
+        <small>Contatti</small>
+        <a href="tel:01851772110">0185 1772110</a>
+        <a href="tel:+393792041914">+39 379 204 1914</a>
+      </div>
+
+      <div class="footer-block footer-social-block">
+        <small>Seguici</small>
+        <div class="footer-socials">
+          <a class="social-link" href="https://www.instagram.com/pizzeriamama2012?igsh=MXhhZXI3N3M5dmVodA%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5.5" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="17.2" cy="6.8" r="1.15" fill="currentColor"/>
+            </svg>
+          </a>
+          <a class="social-link" href="https://www.facebook.com/PizzeriaMaMaChiavari?mibextid=wwXIfr&amp;rdid=uraAX7TsyOE58tdn&amp;share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AyJeU2yKE%2F%3Fmibextid%3DwwXIfr#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M13.36 20v-6.58h2.22l.33-2.57h-2.55V9.22c0-.74.21-1.24 1.27-1.24H16V5.67c-.23-.03-1-.09-1.9-.09-1.88 0-3.17 1.15-3.17 3.25v2.02H8.8v2.57h2.13V20h2.43z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-meta">
+      <span>Pizzeria M'aMa · Corso Valparaiso 150, Chiavari</span>
+      <span>&copy; <span id="year"></span> Tutti i diritti riservati</span>
+    </div>
+  </footer>
+
+  <div class="mobile-cta">
+    <a class="btn" href="tel:01851772110">Chiama</a>
+    <a class="btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Corso+Valparaiso+150,+16043+Chiavari+GE" target="_blank" rel="noopener noreferrer">Mappa</a>
+  </div>
+
+  <script>
+    const toggle = document.querySelector(".menu-toggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const menuLinks = mobileMenu.querySelectorAll("a");
+    const langButtons = document.querySelectorAll(".lang-btn");
+    const menuModal = document.getElementById("menuModal");
+    const menuModalTriggers = document.querySelectorAll("[data-open-menu-modal]");
+    const menuModalClosers = document.querySelectorAll("[data-close-menu-modal]");
+    const menuTabs = document.querySelectorAll(".menu-tab");
+    const menuPanels = document.querySelectorAll("[data-menu-panel]");
+    const whatsappNumber = "393792041914";
+
+    const translations = {
+      it: {
+        nav_story: "La nostra storia",
+        nav_menu: "Menu",
+        nav_shop: "Prodotti online",
+        nav_reviews: "Recensioni",
+        nav_contacts: "Contatti",
+        reviews_eyebrow: "Recensioni",
+        reviews_title: "Le parole dei nostri clienti",
+        reviews_quote_1: "\"Pizza buonissima, serviti in un batter d'occhio, anche i dolci veramente buoni.\"",
+        reviews_quote_2: "\"Pizza leggera, impasto gradevole, buona cottura e ingredienti genuini.\"",
+        reviews_quote_3: "\"La pizza senza glutine e' davvero ottima, leggera e molto digeribile.\"",
+        reviews_verified: "Cliente verificato",
+        reviews_source: "Recensione online",
+        reviews_cta: "Lascia una recensione su Google",
+        reviews_note: "Ci vogliono solo 10 secondi",
+        menu_eyebrow: "Le nostre specialità",
+        menu_title: "Pizze fatte bene, <span class=\"menu-title-accent\">servite con piacere</span>.",
+        menu_text: "Dalle più classiche alle più ricercate, ogni proposta nasce da impasti curati, ingredienti scelti e quella voglia di farti stare bene a tavola.",
+        menu_open: "Il nostro menù",
+        menu_modal_title: "Sfoglia il nostro menù",
+        menu_modal_text: "Seleziona la categoria che preferisci e scopri le nostre pizze.",
+        menu_tab_speciali: "Pizze Speciali",
+        menu_tab_varie: "Varie",
+        menu_speciali_heading: "Le speciali di M'aMa",
+        menu_varie_heading: "Le varie di M'aMa",
+        hero_title: "Pizza superiore, atmosfera vista mare.",
+        hero_text: "Da M'aMa ogni tavolo nasce per farti stare bene: impasti speciali, ingredienti selezionati e una veranda che fa venire voglia di fermarsi per tutta la sera.",
+        booking_eyebrow: "Prenotazioni",
+        booking_title: "Prenota il tuo tavolo",
+        booking_text: "Compila il form e invia la tua richiesta di prenotazione su WhatsApp in pochi secondi.",
+        form_name: "Nome e cognome",
+        form_phone: "Telefono",
+        form_guests: "Persone",
+        form_date: "Data",
+        form_time: "Orario",
+        form_notes: "Note",
+        ph_name: "Nome e cognome",
+        ph_phone: "Telefono",
+        ph_guests: "Persone",
+        ph_notes: "Eventuali richieste speciali o preferenze tavolo.",
+        booking_submit: "Prenota ora",
+        call_now: "Chiama ora"
+      },
+      en: {
+        nav_story: "Our Story",
+        nav_menu: "Menu",
+        nav_shop: "Online Products",
+        nav_reviews: "Reviews",
+        nav_contacts: "Contacts",
+        reviews_eyebrow: "Reviews",
+        reviews_title: "What our guests are saying",
+        reviews_quote_1: "\"Outstanding pizza, served in no time, and the desserts were genuinely excellent too.\"",
+        reviews_quote_2: "\"Light pizza, pleasant dough, great bake and truly genuine ingredients.\"",
+        reviews_quote_3: "\"The gluten-free pizza is genuinely excellent, light and very easy to digest.\"",
+        reviews_verified: "Verified customer",
+        reviews_source: "Online review",
+        reviews_cta: "Leave a review on Google",
+        reviews_note: "It only takes 10 seconds",
+        menu_eyebrow: "Our specialties",
+        menu_title: "Pizzas made properly, <span class=\"menu-title-accent\">served with care</span>.",
+        menu_text: "From timeless classics to more refined creations, every pizza starts with thoughtful doughs, selected ingredients and a genuine desire to make you feel good at the table.",
+        menu_open: "Our menu",
+        menu_modal_title: "Browse our menu",
+        menu_modal_text: "Choose the category you prefer and discover our pizzas.",
+        menu_tab_speciali: "Special Pizzas",
+        menu_tab_varie: "More",
+        menu_speciali_heading: "M'aMa signature pizzas",
+        menu_varie_heading: "M'aMa classics",
+        hero_title: "Elevated pizza, seaside atmosphere.",
+        hero_text: "At M'aMa every table is designed to make you feel good: special doughs, selected ingredients and a seafront veranda made for lingering all evening.",
+        booking_eyebrow: "Reservations",
+        booking_title: "Book your table",
+        booking_text: "Fill out the form and send your reservation request on WhatsApp in just a few seconds.",
+        form_name: "Full name",
+        form_phone: "Phone",
+        form_guests: "Guests",
+        form_date: "Date",
+        form_time: "Time",
+        form_notes: "Notes",
+        ph_name: "Full name",
+        ph_phone: "Phone",
+        ph_guests: "Guests",
+        ph_notes: "Any special requests or table preferences.",
+        booking_submit: "Book now",
+        call_now: "Call now"
+      }
+    };
+
+    function setLanguage(language) {
+      const lang = translations[language] ? language : "it";
+      const dictionary = translations[lang];
+
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        if (dictionary[key]) {
+          element.textContent = dictionary[key];
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-html]").forEach((element) => {
+        const key = element.dataset.i18nHtml;
+        if (dictionary[key]) {
+          element.innerHTML = dictionary[key];
+        }
+      });
+
+      document.querySelectorAll("[data-ph]").forEach((element) => {
+        const key = element.dataset.ph;
+        if (dictionary[key]) {
+          element.placeholder = dictionary[key];
+        }
+      });
+
+      langButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === lang);
+      });
+
+      localStorage.setItem("mama-language", lang);
+    }
+
+    function submitBooking(event) {
+      event.preventDefault();
+
+      const form = event.currentTarget;
+      const formData = new FormData(form);
+      const lang = document.documentElement.lang === "en" ? "en" : "it";
+      const copy = {
+        it: {
+          intro: "Ciao M'aMa, vorrei prenotare un tavolo.",
+          name: "Nome",
+          phone: "Telefono",
+          guests: "Persone",
+          date: "Data",
+          time: "Orario",
+          notes: "Note"
+        },
+        en: {
+          intro: "Hello M'aMa, I would like to reserve a table.",
+          name: "Name",
+          phone: "Phone",
+          guests: "Guests",
+          date: "Date",
+          time: "Time",
+          notes: "Notes"
+        }
+      }[lang];
+
+      const values = {
+        name: formData.get("name"),
+        phone: formData.get("phone"),
+        guests: formData.get("guests"),
+        date: formData.get("date"),
+        time: formData.get("time"),
+        notes: formData.get("notes")
+      };
+
+      const lines = [
+        copy.intro,
+        "",
+        `${copy.name}: ${values.name}`,
+        `${copy.phone}: ${values.phone}`,
+        `${copy.guests}: ${values.guests}`,
+        `${copy.date}: ${values.date}`,
+        `${copy.time}: ${values.time}`
+      ];
+
+      if (values.notes) {
+        lines.push(`${copy.notes}: ${values.notes}`);
+      }
+
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`;
+      window.open(whatsappUrl, "_blank", "noopener");
+    }
+
+    function setMenuTab(tabName) {
+      menuTabs.forEach((button) => {
+        const isActive = button.dataset.menuTab === tabName;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-selected", String(isActive));
+      });
+
+      menuPanels.forEach((panel) => {
+        panel.hidden = panel.dataset.menuPanel !== tabName;
+      });
+    }
+
+    function openMenuModal() {
+      if (!menuModal) {
+        return;
+      }
+
+      menuModal.classList.add("open");
+      menuModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("menu-modal-open");
+    }
+
+    function closeMenuModal() {
+      if (!menuModal) {
+        return;
+      }
+
+      menuModal.classList.remove("open");
+      menuModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("menu-modal-open");
+    }
+
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+      });
+    }
+
+    menuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        if (toggle) {
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    langButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setLanguage(button.dataset.lang);
+      });
+    });
+
+    menuModalTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", openMenuModal);
+    });
+
+    menuModalClosers.forEach((trigger) => {
+      trigger.addEventListener("click", closeMenuModal);
+    });
+
+    menuTabs.forEach((button) => {
+      button.addEventListener("click", () => {
+        setMenuTab(button.dataset.menuTab);
+      });
+    });
+
+    if (menuModal) {
+      menuModal.addEventListener("click", (event) => {
+        if (event.target === menuModal) {
+          closeMenuModal();
+        }
+      });
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && menuModal && menuModal.classList.contains("open")) {
+        closeMenuModal();
+      }
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.16 }
+    );
+
+    document.querySelectorAll("[data-animate]").forEach((element) => {
+      observer.observe(element);
+    });
+
+    setMenuTab("speciali");
+    setLanguage(localStorage.getItem("mama-language") || "it");
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
