@@ -889,6 +889,10 @@
       color: rgba(247, 239, 228, 0.84);
     }
 
+    .story-photo-note-mobile {
+      display: none;
+    }
+
     .menu-section {
       box-sizing: border-box;
       padding: clamp(44px, 5.8vh, 60px) 0;
@@ -2314,10 +2318,14 @@
         gap: 14px;
         justify-content: start;
         overflow-x: auto;
+        overflow-y: hidden;
         padding: 2px 2px 6px;
         scroll-snap-type: x mandatory;
         scroll-padding-inline: 2px;
         overscroll-behavior-x: contain;
+        overscroll-behavior-y: none;
+        touch-action: pan-x;
+        -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
       }
 
@@ -2383,14 +2391,7 @@
       }
 
       .contact-actions {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .contact-actions .btn,
-      .contact-actions .btn-ghost {
-        min-height: 48px;
-        padding-inline: 16px;
-        font-size: 0.94rem;
+        display: none;
       }
 
       .map-card-badge {
@@ -3437,7 +3438,8 @@
         height: 16px;
       }
 
-      .booking-sheet .field-grid {
+      .booking-sheet .field-grid,
+      .booking-sheet .booking-date-time-grid {
         grid-template-columns: 1fr;
       }
 
@@ -3827,12 +3829,51 @@
         display: none !important;
       }
 
+      .contact-actions {
+        display: none !important;
+      }
+
       .booking-sheet .field-grid {
         grid-template-columns: 1fr;
       }
 
-      .booking-sheet .booking-date-time-grid {
-        grid-template-columns: minmax(0, 1.08fr) minmax(112px, 0.92fr);
+      .booking-sheet .field,
+      .booking-sheet input,
+      .booking-sheet textarea {
+        width: 100%;
+      }
+
+      .story-copy {
+        justify-content: flex-start;
+        gap: 0;
+      }
+
+      .story-copy .story-photo-note-mobile {
+        display: block;
+        position: static;
+        width: min(100%, 420px);
+        max-width: none;
+        margin: 8px auto 0;
+      }
+
+      .story-photo-card {
+        height: 360px;
+        min-height: 360px;
+        display: block;
+        background: rgba(10, 10, 10, 0.92);
+      }
+
+      .story-photo-card img {
+        width: 100%;
+        height: 100%;
+        min-height: 360px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: inherit;
+      }
+
+      .story-photo-card .story-photo-note {
+        display: none;
       }
     }
 
@@ -3863,24 +3904,22 @@
       }
 
       .story-photo-card {
-        display: flex;
-        flex-direction: column-reverse;
-        gap: 10px;
-        min-height: auto;
-        background: transparent;
+        height: 280px;
+        min-height: 280px;
       }
 
       .story-photo-card img {
-        min-height: 240px;
-        border-radius: 24px;
+        min-height: 280px;
       }
 
-      .story-photo-note {
-        position: static;
-        left: auto;
-        right: auto;
-        bottom: auto;
-        margin: 0;
+      .story-copy .story-photo-note-mobile {
+        margin-top: 12px;
+        padding: 14px 15px;
+        border-radius: 20px;
+      }
+
+      .story-copy .story-photo-note-mobile strong {
+        font-size: 1.2rem;
       }
     }
 
@@ -4048,6 +4087,11 @@
           <p>
             M'aMa si racconta come una pizzeria contemporanea, nata per unire impasti curati, servizio rapido e una location affacciata sul mare. Non solo cena fuori, ma un posto da scegliere quando si vuole stare bene e mangiare con gusto.
           </p>
+
+          <div class="story-photo-note story-photo-note-mobile">
+            <strong>Vista sul mare</strong>
+            <span>Veranda affacciata sul tramonto, luce soffusa e un'atmosfera che invita a restare.</span>
+          </div>
         </div>
 
         <div class="price-card story-photo-card" data-animate>
