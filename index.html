@@ -2442,8 +2442,7 @@
       .hero {
         min-height: clamp(620px, calc(100svh - 60px), 820px);
         padding: 0;
-        background-position: center 32%;
-        background-size: cover;
+        background: #050505;
       }
 
       .hero-media {
@@ -2452,15 +2451,26 @@
         height: auto;
       }
 
+      .hero-media::before {
+        content: "";
+        position: absolute;
+        inset: -8%;
+        background:
+          linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.34)),
+          url("hero-pizze-premium-hd.png") center 34% / cover no-repeat;
+        filter: blur(26px) saturate(0.88) brightness(0.56);
+        transform: scale(1.08);
+      }
+
       .hero-image {
-        object-fit: cover;
-        object-position: center 32%;
+        object-fit: contain;
+        object-position: center 34%;
         image-rendering: -webkit-optimize-contrast;
       }
 
       .hero-media::after {
         background:
-          linear-gradient(180deg, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.14) 26%, rgba(0, 0, 0, 0.34) 62%, rgba(0, 0, 0, 0.74) 100%);
+          linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.16) 26%, rgba(0, 0, 0, 0.38) 64%, rgba(0, 0, 0, 0.76) 100%);
       }
 
       .hero-grid {
@@ -2664,13 +2674,11 @@
       .hero {
         min-height: clamp(600px, calc(100svh - 60px), 760px);
         padding: 0;
-        background-position: center 31%;
-        background-size: cover;
       }
 
       .hero-image {
-        object-fit: cover;
-        object-position: center 31%;
+        object-fit: contain;
+        object-position: center 35%;
       }
 
       .hero-grid {
@@ -3050,11 +3058,10 @@
     @media (max-width: 430px) {
       .hero {
         min-height: clamp(560px, calc(100svh - 60px), 700px);
-        background-position: center 30%;
       }
 
       .hero-image {
-        object-position: center 30%;
+        object-position: center 36%;
       }
 
       .hero-copy {
@@ -4186,7 +4193,7 @@
     }
 
     function openBookingPanel(event) {
-      if (!bookingCard || !bookingPanelMedia.matches) {
+      if (!bookingCard) {
         return;
       }
 
@@ -4197,6 +4204,15 @@
       mobileMenu.classList.remove("open");
       if (toggle) {
         toggle.setAttribute("aria-expanded", "false");
+      }
+
+      if (!bookingPanelMedia.matches) {
+        bookingCard.scrollIntoView({ behavior: "smooth", block: "center" });
+
+        setTimeout(() => {
+          bookingCard.querySelector("input, textarea")?.focus({ preventScroll: true });
+        }, 360);
+        return;
       }
 
       bookingCard.classList.add("is-visible");
