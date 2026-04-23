@@ -3750,6 +3750,18 @@
     }
 
     @media (max-width: 880px) {
+      body,
+      main,
+      .section,
+      .footer {
+        background: #000000 !important;
+      }
+
+      body::before,
+      body::after {
+        display: none !important;
+      }
+
       .hero {
         min-height: clamp(500px, 76svh, 680px) !important;
         padding: 0 !important;
@@ -3916,9 +3928,13 @@
 
       .booking-sheet input[type="date"],
       .booking-sheet input[type="time"] {
+        -webkit-appearance: none;
+        appearance: none;
         width: 100% !important;
         inline-size: 100% !important;
         max-width: 100% !important;
+        min-height: 58px;
+        padding-right: 14px;
       }
 
       .booking-sheet .booking-actions,
@@ -3964,7 +3980,7 @@
         height: 100%;
         min-height: 360px;
         object-fit: cover;
-        object-position: center center;
+        object-position: 48% center;
         border-radius: inherit;
       }
 
@@ -4012,6 +4028,7 @@
 
       .story-photo-card img {
         min-height: 280px;
+        object-position: 48% center;
       }
 
       .story-copy .story-photo-note-mobile {
