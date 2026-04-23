@@ -3883,19 +3883,53 @@
         display: none !important;
       }
 
-      .booking-sheet .field-grid {
-        grid-template-columns: 1fr;
+      .booking-sheet .form {
+        width: 100%;
+        gap: 12px;
       }
 
-      .booking-sheet .field,
+      .booking-sheet .field-grid,
+      .booking-sheet .booking-date-time-grid {
+        display: grid !important;
+        width: 100% !important;
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+
+      .booking-sheet .field {
+        display: grid;
+        gap: 8px;
+        width: 100% !important;
+        max-width: none !important;
+      }
+
       .booking-sheet input,
       .booking-sheet textarea {
+        display: block;
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+      }
+
+      .booking-sheet .booking-actions,
+      .booking-sheet .booking-actions .btn {
         width: 100%;
       }
 
       .story-copy {
-        justify-content: flex-start;
-        gap: 0;
+        justify-content: center;
+        text-align: center;
+        gap: 12px;
+      }
+
+      .story-copy .section-title {
+        margin: 0 auto 16px;
+      }
+
+      .story-copy p {
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .story-copy .story-photo-note-mobile {
