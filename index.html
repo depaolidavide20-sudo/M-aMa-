@@ -1331,6 +1331,18 @@
       align-content: start;
     }
 
+    #prodotti-online .section-title p,
+    #prodotti-online .shop-card p {
+      color: #ffffff;
+    }
+
+    .shop-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
     .shop-tag {
       display: inline-flex;
       align-items: center;
@@ -1352,6 +1364,10 @@
       font-family: "Fraunces", serif;
       font-size: 1.75rem;
       letter-spacing: -0.03em;
+      margin: 0;
+      color: #ffffff;
+      line-height: 1.02;
+      flex: 1 1 auto;
     }
 
     .shop-card p {
@@ -1360,12 +1376,57 @@
       color: rgba(247, 239, 228, 0.72);
     }
 
+    .shop-price {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(var(--accent-rgb), 0.16);
+      border: 1px solid rgba(255, 166, 92, 0.42);
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.14);
+    }
+
     .shop-card a {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
-      color: var(--cream);
-      font-weight: 700;
+      width: fit-content;
+      margin-top: auto;
+      padding: 12px 18px;
+      border-radius: 999px;
+      color: #ffffff;
+      font-weight: 800;
+      background: rgba(var(--accent-rgb), 0.18);
+      border: 1.5px solid rgba(255, 166, 92, 0.72);
+      box-shadow:
+        0 0 0 1px rgba(255, 191, 130, 0.12),
+        0 12px 24px rgba(0, 0, 0, 0.16);
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .shop-card a:hover,
+    .shop-card a:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(var(--accent-rgb), 0.24);
+      border-color: rgba(255, 182, 112, 0.9);
+    }
+
+    .shop-stripe-wrap {
+      width: min(100%, 340px);
+      margin-top: auto;
+    }
+
+    .shop-stripe-wrap stripe-buy-button {
+      display: block;
+      width: 100%;
+      min-width: 0;
     }
 
     .taste-card {
@@ -2102,6 +2163,14 @@
 
       .story-copy {
         min-height: auto;
+      }
+
+      .shop-card-head {
+        flex-direction: column;
+      }
+
+      .shop-price {
+        align-self: flex-start;
       }
 
       .story-photo-card {
@@ -4658,47 +4727,73 @@
       <div class="container">
         <div class="section-title" data-animate>
           <span class="section-eyebrow">Prodotti online</span>
-          <h2>Una sezione pronta a valorizzare l'asporto, il ritiro e le proposte pi&ugrave; richieste anche fuori sala.</h2>
-          <p>
-            Qui il sito pu&ograve; mostrare prodotti ordinabili o richiedibili rapidamente, senza perdere l'immagine premium del brand. Ho impostato il blocco come una piccola vetrina scura, coerente con il resto del sito.
-          </p>
+          <h2 data-i18n="shop_title">Porta il M'aMa a casa tua</h2>
+          <p data-i18n="shop_text">Prodotti selezionati disponibili per l'acquisto online</p>
         </div>
 
         <div class="shop-grid">
           <article class="shop-card" data-animate>
             <span class="shop-tag">Online</span>
-            <strong>Pizze classiche</strong>
-            <p>
-              Le pizze pi&ugrave; richieste devono essere facili da trovare e veloci da ordinare, con una presentazione pulita pensata anche per smartphone.
-            </p>
-            <a href="tel:01851772110">Ordina al telefono</a>
+            <div class="shop-card-head">
+              <strong data-i18n="shop_card_1_title">Fai la pizza come noi</strong>
+              <span class="shop-price" data-i18n="shop_price_1">da 15€</span>
+            </div>
+            <p data-i18n="shop_card_1_text">Kit completo con ingredienti selezionati</p>
+            <div class="shop-stripe-wrap">
+              <stripe-buy-button
+                buy-button-id="buy_btn_1TPK07LBTzh3fqu6SJZrhHqm"
+                publishable-key="pk_test_51TPJrnLBTzh3fqu65ntCiXqshZhINdlNRCi4Y2bIQJVN2Pk6ndShUoYnek3xWbXZxOQOYQPvUUSkYmE7UHmKvlHK00pgmH2VBk"
+              >
+              </stripe-buy-button>
+            </div>
           </article>
 
           <article class="shop-card" data-animate>
             <span class="shop-tag">Online</span>
-            <strong>Pizze gourmet</strong>
-            <p>
-              La vetrina online pu&ograve; dare spazio alle proposte pi&ugrave; distintive, utili per alzare il valore medio e rafforzare l'identit&agrave; del locale.
-            </p>
-            <a href="#contatti">Richiedi informazioni</a>
+            <div class="shop-card-head">
+              <strong data-i18n="shop_card_2_title">Le nostre specialit&agrave;</strong>
+              <span class="shop-price" data-i18n="shop_price_2">da 19€</span>
+            </div>
+            <p data-i18n="shop_card_2_text">Prodotti Artigianali da gustare anche a casa</p>
+            <div class="shop-stripe-wrap">
+              <stripe-buy-button
+                buy-button-id="buy_btn_1TPM6RLBTzh3fqu6oJ4ESO0q"
+                publishable-key="pk_test_51TPJrnLBTzh3fqu65ntCiXqshZhINdlNRCi4Y2bIQJVN2Pk6ndShUoYnek3xWbXZxOQOYQPvUUSkYmE7UHmKvlHK00pgmH2VBk"
+              >
+              </stripe-buy-button>
+            </div>
           </article>
 
           <article class="shop-card" data-animate>
             <span class="shop-tag">Online</span>
-            <strong>Impasti selezionati</strong>
-            <p>
-              La scelta degli impasti pu&ograve; diventare un filtro o una categoria dedicata, cos&igrave; da trasformare una qualit&agrave; tecnica in uno strumento di vendita.
-            </p>
-            <a href="#menu">Vedi il menu</a>
+            <div class="shop-card-head">
+              <strong data-i18n="shop_card_3_title">Dolci Artigianali</strong>
+              <span class="shop-price" data-i18n="shop_price_3">da 10€</span>
+            </div>
+            <p data-i18n="shop_card_3_text">Dessert della casa preparati con cura</p>
+            <div class="shop-stripe-wrap">
+              <stripe-buy-button
+                buy-button-id="buy_btn_1TPMB0LBTzh3fqu6TZqh7nVw"
+                publishable-key="pk_test_51TPJrnLBTzh3fqu65ntCiXqshZhINdlNRCi4Y2bIQJVN2Pk6ndShUoYnek3xWbXZxOQOYQPvUUSkYmE7UHmKvlHK00pgmH2VBk"
+              >
+              </stripe-buy-button>
+            </div>
           </article>
 
           <article class="shop-card" data-animate>
             <span class="shop-tag">Online</span>
-            <strong>Bevande e dolci</strong>
-            <p>
-              Anche drink, birre e dessert meritano una presenza chiara nella parte online, per completare l'ordine e dare pi&ugrave; profondit&agrave; all'offerta.
-            </p>
-            <a href="tel:01851772110">Aggiungi al tuo ordine</a>
+            <div class="shop-card-head">
+              <strong data-i18n="shop_card_4_title">Topping &amp; Special</strong>
+              <span class="shop-price" data-i18n="shop_price_4">da 8€</span>
+            </div>
+            <p data-i18n="shop_card_4_text">Salse, ingredienti e prodotti selezionati firmati il M'aMa</p>
+            <div class="shop-stripe-wrap">
+              <stripe-buy-button
+                buy-button-id="buy_btn_1TPMCWLBTzh3fqu6lbcdNciJ"
+                publishable-key="pk_test_51TPJrnLBTzh3fqu65ntCiXqshZhINdlNRCi4Y2bIQJVN2Pk6ndShUoYnek3xWbXZxOQOYQPvUUSkYmE7UHmKvlHK00pgmH2VBk"
+              >
+              </stripe-buy-button>
+            </div>
           </article>
         </div>
       </div>
@@ -5001,6 +5096,8 @@
     </a>
   </div>
 
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+
   <script>
     const toggle = document.querySelector(".menu-toggle");
     const mobileMenu = document.getElementById("mobileMenu");
@@ -5045,6 +5142,21 @@
         menu_tab_varie: "Varie",
         menu_speciali_heading: "Le speciali di M'aMa",
         menu_varie_heading: "Le varie di M'aMa",
+        shop_title: "Porta il M'aMa a casa tua",
+        shop_text: "Prodotti selezionati disponibili per l'acquisto online",
+        shop_card_1_title: "Fai la pizza come noi",
+        shop_card_1_text: "Kit completo con ingredienti selezionati",
+        shop_price_1: "da 15€",
+        shop_card_2_title: "Le nostre specialità",
+        shop_card_2_text: "Prodotti Artigianali da gustare anche a casa",
+        shop_price_2: "da 19€",
+        shop_card_3_title: "Dolci Artigianali",
+        shop_card_3_text: "Dessert della casa preparati con cura",
+        shop_price_3: "da 10€",
+        shop_card_4_title: "Topping & Special",
+        shop_card_4_text: "Salse, ingredienti e prodotti selezionati firmati il M'aMa",
+        shop_price_4: "da 8€",
+        shop_cta: "Scopri e acquista",
         hero_title: "<span class=\"hero-title-line\">Pizza superiore</span><span class=\"hero-title-line\">Atmosfera vista mare</span>",
         hero_text: "Da M'aMa ogni tavolo nasce per farti stare bene: impasti speciali, ingredienti selezionati e una veranda che fa venire voglia di fermarsi per tutta la sera.",
         hero_badge: "Dal 2012 sul lungomare di Chiavari",
@@ -5093,6 +5205,21 @@
         menu_tab_varie: "More",
         menu_speciali_heading: "M'aMa signature pizzas",
         menu_varie_heading: "M'aMa classics",
+        shop_title: "Bring M'aMa home",
+        shop_text: "Selected products available for online purchase",
+        shop_card_1_title: "Make pizza like we do",
+        shop_card_1_text: "Complete kit with selected ingredients",
+        shop_price_1: "from 15€",
+        shop_card_2_title: "Our specialties",
+        shop_card_2_text: "Artisanal products to enjoy at home too",
+        shop_price_2: "from 19€",
+        shop_card_3_title: "Artisanal desserts",
+        shop_card_3_text: "House desserts carefully prepared",
+        shop_price_3: "from 10€",
+        shop_card_4_title: "Topping & Special",
+        shop_card_4_text: "Sauces, ingredients and selected M'aMa signature products",
+        shop_price_4: "from 8€",
+        shop_cta: "Discover & shop",
         hero_title: "<span class=\"hero-title-line\">Elevated pizza</span><span class=\"hero-title-line\">Seaside atmosphere</span>",
         hero_text: "At M'aMa every table is designed to make you feel good: special doughs, selected ingredients and a seafront veranda made for lingering all evening.",
         hero_badge: "Since 2012 on Chiavari seafront",
