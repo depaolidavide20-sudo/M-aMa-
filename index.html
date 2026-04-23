@@ -1316,18 +1316,79 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
+    #prodotti-online .container {
+      display: grid;
+      gap: 26px;
+    }
+
+    #prodotti-online .section-title {
+      max-width: 820px;
+      margin: 0 auto;
+      display: grid;
+      justify-items: center;
+      text-align: center;
+    }
+
+    #prodotti-online .section-title h2 {
+      font-size: clamp(2.55rem, 4.6vw, 4.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
+    }
+
+    #prodotti-online .section-title p {
+      max-width: none;
+      margin-inline: auto;
+      font-size: clamp(0.9rem, 1.55vw, 1rem);
+      line-height: 1.34;
+      white-space: nowrap;
+    }
+
+    .shop-shipping-note {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: fit-content;
+      margin: 18px auto 0;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 166, 92, 0.28);
+      background: linear-gradient(180deg, rgba(var(--accent-rgb), 0.14), rgba(var(--accent-rgb), 0.05));
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
+      color: #ffffff;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .shop-shipping-note::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #ffbc80, #ea7b34);
+      box-shadow: 0 0 0 6px rgba(var(--accent-rgb), 0.1);
+    }
+
     .shop-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+      gap: 22px;
     }
 
     .shop-card {
-      padding: 28px;
+      min-height: 100%;
+      padding: 32px 30px 28px;
       border-radius: var(--radius-xl);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: linear-gradient(180deg, rgba(16, 16, 16, 0.92), rgba(10, 10, 10, 0.96));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background:
+        radial-gradient(circle at top right, rgba(var(--accent-rgb), 0.08), transparent 32%),
+        linear-gradient(180deg, rgba(18, 18, 18, 0.95), rgba(10, 10, 10, 0.98));
       box-shadow: var(--shadow);
       display: grid;
-      gap: 14px;
+      gap: 16px;
       align-content: start;
     }
 
@@ -1340,7 +1401,7 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 12px;
+      gap: 14px;
     }
 
     .shop-tag {
@@ -1348,31 +1409,33 @@
       align-items: center;
       justify-content: center;
       width: fit-content;
-      padding: 8px 12px;
+      padding: 8px 13px;
       border-radius: 999px;
       border: 1px solid rgba(var(--accent-rgb), 0.18);
       background: rgba(var(--accent-rgb), 0.08);
       color: var(--gold);
-      font-size: 12px;
+      font-size: 0.69rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
     }
 
     .shop-card strong {
       display: block;
       font-family: "Fraunces", serif;
-      font-size: 1.75rem;
+      font-size: clamp(1.72rem, 2.3vw, 2.08rem);
       letter-spacing: -0.03em;
       margin: 0;
       color: #ffffff;
-      line-height: 1.02;
+      line-height: 0.98;
       flex: 1 1 auto;
     }
 
     .shop-card p {
       margin: 0;
-      line-height: 1.75;
+      max-width: 34ch;
+      font-size: 0.98rem;
+      line-height: 1.68;
       color: rgba(247, 239, 228, 0.72);
     }
 
@@ -1380,12 +1443,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 9px 12px;
+      padding: 10px 13px;
       border-radius: 999px;
       background: rgba(var(--accent-rgb), 0.16);
       border: 1px solid rgba(255, 166, 92, 0.42);
       color: #ffffff;
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       font-weight: 800;
       letter-spacing: 0.02em;
       white-space: nowrap;
@@ -1419,8 +1482,9 @@
     }
 
     .shop-stripe-wrap {
-      width: min(100%, 340px);
+      width: min(100%, 310px);
       margin-top: auto;
+      padding-top: 4px;
     }
 
     .shop-stripe-wrap stripe-buy-button {
@@ -4133,6 +4197,140 @@
       }
 
     }
+
+    @media (max-width: 880px) {
+      #prodotti-online .container {
+        gap: 20px !important;
+      }
+
+      #prodotti-online .section-title h2 {
+        font-size: clamp(2.15rem, 9.2vw, 3.1rem) !important;
+      }
+
+      #prodotti-online .section-title p {
+        max-width: none;
+        font-size: clamp(0.72rem, 2.85vw, 0.88rem) !important;
+        line-height: 1.3 !important;
+        white-space: nowrap;
+      }
+
+      .shop-shipping-note {
+        margin-top: 14px;
+        padding: 9px 14px;
+        font-size: 0.76rem;
+        letter-spacing: 0.07em;
+      }
+
+      .shop-grid {
+        gap: 14px !important;
+      }
+
+      .shop-card {
+        padding: 22px 20px 20px !important;
+        gap: 12px !important;
+        border-radius: 24px !important;
+      }
+
+      .shop-card strong {
+        font-size: clamp(1.5rem, 6.5vw, 1.94rem) !important;
+      }
+
+      .shop-card p {
+        max-width: none;
+        font-size: 0.92rem !important;
+        line-height: 1.56 !important;
+      }
+
+      .shop-price {
+        padding: 8px 11px;
+        font-size: 0.8rem;
+      }
+
+      .shop-tag {
+        padding: 7px 10px;
+        font-size: 0.64rem;
+      }
+
+      .shop-stripe-wrap {
+        width: 100%;
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer {
+        padding: 8px 0 12px !important;
+      }
+
+      .footer-shell {
+        padding: 14px !important;
+        border-radius: 18px !important;
+        gap: 10px !important;
+      }
+
+      .footer-shell::before {
+        left: 16px;
+        right: 16px;
+      }
+
+      .footer-brand-block,
+      .footer-block {
+        gap: 6px !important;
+      }
+
+      .footer-kicker,
+      .footer-block small {
+        padding: 6px 10px !important;
+        font-size: 0.62rem !important;
+        letter-spacing: 0.14em !important;
+      }
+
+      .footer-legal-space {
+        min-height: 28px !important;
+        border-radius: 14px !important;
+      }
+
+      .footer-brand-block p,
+      .footer-block p,
+      .footer-block a {
+        font-size: 0.86rem !important;
+        line-height: 1.45 !important;
+      }
+
+      .footer-socials {
+        gap: 7px !important;
+      }
+
+      .social-link {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 14px !important;
+      }
+
+      .footer-meta {
+        margin-top: 8px !important;
+        padding-top: 8px !important;
+        gap: 6px !important;
+        font-size: 0.72rem !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .footer-shell {
+        padding: 12px !important;
+        gap: 9px !important;
+      }
+
+      .footer-brand-block p,
+      .footer-block p,
+      .footer-block a {
+        font-size: 0.82rem !important;
+      }
+
+      .footer-meta {
+        font-size: 0.68rem !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -4729,6 +4927,7 @@
           <span class="section-eyebrow">Prodotti online</span>
           <h2 data-i18n="shop_title">Porta il M'aMa a casa tua</h2>
           <p data-i18n="shop_text">Prodotti selezionati disponibili per l'acquisto online</p>
+          <div class="shop-shipping-note" data-i18n="shop_shipping_note">Spedizione in tutta Italia</div>
         </div>
 
         <div class="shop-grid">
@@ -5116,6 +5315,36 @@
     const whatsappNumber = "393792041914";
     const bookingPanelMedia = window.matchMedia("(max-width: 880px)");
 
+    function remountStripeButtons() {
+      document.querySelectorAll(".shop-stripe-wrap").forEach((wrap) => {
+        const currentButton = wrap.querySelector("stripe-buy-button");
+        const buyButtonId = currentButton?.getAttribute("buy-button-id");
+        const publishableKey = currentButton?.getAttribute("publishable-key");
+
+        if (!buyButtonId || !publishableKey) {
+          return;
+        }
+
+        const freshButton = document.createElement("stripe-buy-button");
+        freshButton.setAttribute("buy-button-id", buyButtonId);
+        freshButton.setAttribute("publishable-key", publishableKey);
+        wrap.replaceChildren(freshButton);
+      });
+    }
+
+    function initStripeButtons(attempt = 0) {
+      if (!customElements.get("stripe-buy-button")) {
+        if (attempt < 20) {
+          window.setTimeout(() => initStripeButtons(attempt + 1), 250);
+        }
+        return;
+      }
+
+      remountStripeButtons();
+      window.setTimeout(remountStripeButtons, 700);
+      window.setTimeout(remountStripeButtons, 1600);
+    }
+
     const translations = {
       it: {
         nav_story: "La nostra storia",
@@ -5144,6 +5373,7 @@
         menu_varie_heading: "Le varie di M'aMa",
         shop_title: "Porta il M'aMa a casa tua",
         shop_text: "Prodotti selezionati disponibili per l'acquisto online",
+        shop_shipping_note: "Spedizione in tutta Italia",
         shop_card_1_title: "Fai la pizza come noi",
         shop_card_1_text: "Kit completo con ingredienti selezionati",
         shop_price_1: "da 15€",
@@ -5207,6 +5437,7 @@
         menu_varie_heading: "M'aMa classics",
         shop_title: "Bring M'aMa home",
         shop_text: "Selected products available for online purchase",
+        shop_shipping_note: "Shipping throughout Italy",
         shop_card_1_title: "Make pizza like we do",
         shop_card_1_text: "Complete kit with selected ingredients",
         shop_price_1: "from 15€",
@@ -5544,6 +5775,8 @@
 
     setMenuTab("speciali");
     setLanguage(localStorage.getItem("mama-language") || "it");
+    initStripeButtons();
+    window.addEventListener("pageshow", () => initStripeButtons());
     syncBookingPanelState();
     window.openBookingPanel = openBookingPanel;
     window.closeBookingPanel = closeBookingPanel;
