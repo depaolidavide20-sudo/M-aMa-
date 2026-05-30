@@ -73,6 +73,13 @@
       gap: 18px;
     }
 
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      min-width: 0;
+      flex: 0 0 auto;
+    }
+
     .brand-logo-wrap {
       display: inline-flex;
       align-items: center;
@@ -92,11 +99,102 @@
 
     .nav-links {
       display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 auto;
       flex-wrap: wrap;
       gap: 14px;
       color: rgba(247, 239, 228, 0.82);
       font-size: 0.95rem;
       font-weight: 700;
+    }
+
+    .nav-actions {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: transparent;
+      color: rgba(247, 239, 228, 0.86);
+      border-radius: 999px;
+      padding: 0;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .lang-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(145deg, #ff9b57, #e06d2c);
+      color: #15120b;
+      border-color: transparent;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--cream);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-toggle svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 78px;
+      left: 12px;
+      right: 12px;
+      z-index: 26;
+      padding: 16px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(12, 12, 12, 0.98), rgba(18, 18, 18, 0.96));
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mobile-menu.open {
+      display: grid;
+      gap: 8px;
+    }
+
+    .mobile-menu a {
+      padding: 14px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: rgba(247, 239, 228, 0.88);
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: 0;
     }
 
     .page {
@@ -292,6 +390,38 @@
       line-height: 1.4;
     }
 
+    .page-footer-socials {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .social-link {
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      color: var(--cream);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-1px);
+      color: var(--gold);
+      border-color: rgba(var(--accent-rgb), 0.4);
+    }
+
+    .social-link svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
     @media (max-width: 880px) {
       .content-grid {
         grid-template-columns: 1fr;
@@ -301,7 +431,8 @@
     @media (max-width: 640px) {
       .nav {
         min-height: 56px;
-        gap: 10px;
+        flex-direction: row;
+        gap: 12px;
         padding: 8px 0;
       }
 
@@ -316,10 +447,24 @@
       }
 
       .nav-links {
-        justify-content: flex-end;
-        gap: 10px;
-        font-size: 0.76rem;
-        line-height: 1.16;
+        display: none;
+      }
+
+      .nav-actions {
+        display: flex;
+      }
+
+      .lang-btn {
+        width: 36px;
+        height: 36px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .mobile-menu {
+        top: 74px;
       }
 
       .card {
@@ -357,37 +502,64 @@
         gap: 6px;
         font-size: 0.8rem;
       }
+
+      .page-footer-socials {
+        gap: 6px;
+      }
+
+      .social-link {
+        width: 38px;
+        height: 38px;
+        border-radius: 13px;
+      }
     }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="container nav">
-      <a href="index.html#top" aria-label="Pizzeria M'aMa">
+      <a class="brand" href="index.html#top" aria-label="Pizzeria M'aMa">
         <span class="brand-logo-wrap">
           <img class="brand-logo" src="brand-logo-optimized.png" alt="Brand Pizzeria M'aMa" width="240" height="234" />
         </span>
       </a>
       <nav class="nav-links" aria-label="Navigazione secondaria">
-        <a href="index.html#storia">La nostra storia</a>
-        <a href="index.html#menu">Menù</a>
-        <a href="index.html#contatti">Contatti</a>
+        <a href="index.html#storia" data-i18n="nav_story">La nostra storia</a>
+        <a href="index.html#menu" data-i18n="nav_menu">Menù</a>
+        <a href="index.html#contatti" data-i18n="nav_contacts">Contatti</a>
       </nav>
+      <div class="nav-actions">
+        <div class="lang-switcher" aria-label="Language switcher">
+          <button class="lang-btn active" type="button" data-lang="it">IT</button>
+          <button class="lang-btn" type="button" data-lang="en">EN</button>
+        </div>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Apri il menu">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path>
+          </svg>
+        </button>
+      </div>
     </div>
   </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#storia" data-i18n="nav_story">La nostra storia</a>
+    <a href="index.html#menu" data-i18n="nav_menu">Menù</a>
+    <a href="index.html#contatti" data-i18n="nav_contacts">Contatti</a>
+  </div>
 
   <main class="page">
     <div class="container">
       <section class="page-hero">
-        <span class="eyebrow">Approfondimento</span>
-        <h1>La nostra storia</h1>
+        <span class="eyebrow" data-i18n="eyebrow">Approfondimento</span>
+        <h1 data-i18n="page_title">La nostra storia</h1>
       </section>
 
       <section class="content-grid">
         <article class="card copy-card">
-          <p>Era l'8 dicembre 2012 quando con un pizzico di follia e tanto entusiasmo abbiamo aperto la nostra pizzeria. Gli anni sono passati ma la passione e l'amore per il nostro lavoro non sono cambiati, anzi ci hanno aiutato a camminare e a conquistare vette di eccellenza sempre pi&ugrave; alte.</p>
-          <p>La continua ricerca di materie prime italiane, sostenibili e di piccole produzioni locali, un servizio giovane, attento e dinamico e una location sul mare con una vista che rinfranca l'anima, hanno contribuito a rendere il nostro locale un punto di riferimento per chiavaresi e turisti. Il loro affetto &egrave; la nostra forza e ci colma il cuore di gratitudine.</p>
-          <p class="story-signature">Matteo e Maria</p>
+          <p data-i18n="story_p1">Era l'8 dicembre 2012 quando con un pizzico di follia e tanto entusiasmo abbiamo aperto la nostra pizzeria. Gli anni sono passati ma la passione e l'amore per il nostro lavoro non sono cambiati, anzi ci hanno aiutato a camminare e a conquistare vette di eccellenza sempre pi&ugrave; alte.</p>
+          <p data-i18n="story_p2">La continua ricerca di materie prime italiane, sostenibili e di piccole produzioni locali, un servizio giovane, attento e dinamico e una location sul mare con una vista che rinfranca l'anima, hanno contribuito a rendere il nostro locale un punto di riferimento per chiavaresi e turisti. Il loro affetto &egrave; la nostra forza e ci colma il cuore di gratitudine.</p>
+          <p class="story-signature" data-i18n="story_signature">Matteo e Maria</p>
         </article>
 
         <aside class="card image-card">
@@ -396,8 +568,8 @@
       </section>
 
       <div class="cta-row">
-        <a class="btn-ghost" href="index.html#storia">Torna al sito</a>
-        <a class="btn" href="index.html#contatti">Prenota o contattaci</a>
+        <a class="btn-ghost" href="index.html#storia" data-i18n="cta_back">Torna al sito</a>
+        <a class="btn" href="index.html#contatti" data-i18n="cta_contact">Prenota o contattaci</a>
       </div>
     </div>
   </main>
@@ -411,13 +583,114 @@
         <p class="page-footer-line"><a href="tel:+390185312963">Tel. +39 0185 312963</a> &middot; <a href="mailto:ilcavallucciomarino85@legalmail.it">PEC: ilcavallucciomarino85@legalmail.it</a></p>
       </div>
       <nav class="page-footer-links" aria-label="Link legali">
-        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="privacy-policy.html" data-i18n="legal_privacy">Privacy Policy</a>
         <span>&middot;</span>
-        <a href="cookie-policy.html">Cookie Policy</a>
+        <a href="cookie-policy.html" data-i18n="legal_cookie">Cookie Policy</a>
         <span>&middot;</span>
-        <a href="note-legali.html">Note legali</a>
+        <a href="note-legali.html" data-i18n="legal_notes">Note legali</a>
       </nav>
+      <div class="page-footer-socials">
+        <a class="social-link" href="https://www.instagram.com/pizzeriamama2012?igsh=MXhhZXI3N3M5dmVodA%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5.5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="17.2" cy="6.8" r="1.15" fill="currentColor"/>
+          </svg>
+        </a>
+        <a class="social-link" href="https://www.facebook.com/PizzeriaMaMaChiavari?mibextid=wwXIfr&amp;rdid=uraAX7TsyOE58tdn&amp;share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AyJeU2yKE%2F%3Fmibextid%3DwwXIfr#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M13.36 20v-6.58h2.22l.33-2.57h-2.55V9.22c0-.74.21-1.24 1.27-1.24H16V5.67c-.23-.03-1-.09-1.9-.09-1.88 0-3.17 1.15-3.17 3.25v2.02H8.8v2.57h2.13V20h2.43z"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </footer>
+
+  <script>
+    const toggle = document.querySelector(".menu-toggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const menuLinks = mobileMenu ? mobileMenu.querySelectorAll("a") : [];
+    const langButtons = document.querySelectorAll(".lang-btn");
+
+    const translations = {
+      it: {
+        meta_title: "La Nostra Storia | Pizzeria M'aMa",
+        nav_story: "La nostra storia",
+        nav_menu: "Menù",
+        nav_contacts: "Contatti",
+        eyebrow: "Approfondimento",
+        page_title: "La nostra storia",
+        story_p1: "Era l'8 dicembre 2012 quando con un pizzico di follia e tanto entusiasmo abbiamo aperto la nostra pizzeria. Gli anni sono passati ma la passione e l'amore per il nostro lavoro non sono cambiati, anzi ci hanno aiutato a camminare e a conquistare vette di eccellenza sempre più alte.",
+        story_p2: "La continua ricerca di materie prime italiane, sostenibili e di piccole produzioni locali, un servizio giovane, attento e dinamico e una location sul mare con una vista che rinfranca l'anima, hanno contribuito a rendere il nostro locale un punto di riferimento per chiavaresi e turisti. Il loro affetto è la nostra forza e ci colma il cuore di gratitudine.",
+        story_signature: "Matteo e Maria",
+        cta_back: "Torna al sito",
+        cta_contact: "Prenota o contattaci",
+        legal_privacy: "Privacy Policy",
+        legal_cookie: "Cookie Policy",
+        legal_notes: "Note legali"
+      },
+      en: {
+        meta_title: "Our Story | Pizzeria M'aMa",
+        nav_story: "Our story",
+        nav_menu: "Menu",
+        nav_contacts: "Contacts",
+        eyebrow: "In depth",
+        page_title: "Our story",
+        story_p1: "It was December 8th, 2012 when, with a touch of madness and a lot of enthusiasm, we opened our pizzeria. The years have passed, but the passion and love for our work have not changed. If anything, they have helped us keep moving forward and reach ever higher standards of excellence.",
+        story_p2: "Our constant search for Italian, sustainable and small-batch local ingredients, a young and attentive service, and a seafront location with a view that refreshes the soul have helped make our place a point of reference for locals and visitors alike. Their affection is our strength and fills our hearts with gratitude.",
+        story_signature: "Matteo and Maria",
+        cta_back: "Back to the site",
+        cta_contact: "Book or contact us",
+        legal_privacy: "Privacy Policy",
+        legal_cookie: "Cookie Policy",
+        legal_notes: "Legal notice"
+      }
+    };
+
+    function setLanguage(language) {
+      const lang = translations[language] ? language : "it";
+      const dictionary = translations[lang];
+
+      document.documentElement.lang = lang;
+      document.title = dictionary.meta_title;
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        if (dictionary[key]) {
+          element.textContent = dictionary[key];
+        }
+      });
+
+      langButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === lang);
+      });
+
+      localStorage.setItem("mama-language", lang);
+    }
+
+    if (toggle && mobileMenu) {
+      toggle.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+      });
+    }
+
+    menuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        if (toggle) {
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    langButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setLanguage(button.dataset.lang);
+      });
+    });
+
+    setLanguage(localStorage.getItem("mama-language") || "it");
+  </script>
 </body>
 </html>
