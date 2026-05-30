@@ -3111,14 +3111,30 @@
       }
 
       .menu-visual-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: 100%;
         gap: 12px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0 2px 6px;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: 2px;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+      }
+
+      .menu-visual-grid::-webkit-scrollbar {
+        display: none;
       }
 
       .menu-visual-card {
         min-height: 0;
         aspect-ratio: 4 / 3;
         border-radius: 22px;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
       }
 
       .menu-kicker {
@@ -3135,6 +3151,42 @@
         min-height: 46px;
         padding: 0 18px;
         font-size: 0.95rem;
+      }
+
+      .map-card {
+        min-height: 430px;
+      }
+
+      .map-card::after {
+        height: 0;
+      }
+
+      .map-card-consent {
+        padding: 28px 18px 24px;
+        gap: 16px;
+        align-content: center;
+      }
+
+      .map-card-consent strong {
+        font-size: 1.12rem;
+        line-height: 1.08;
+      }
+
+      .map-card-consent p {
+        max-width: 22ch;
+        font-size: 0.92rem;
+        line-height: 1.5;
+      }
+
+      .map-card-consent-actions {
+        display: grid;
+        width: min(100%, 320px);
+        gap: 10px;
+      }
+
+      .map-card-consent-actions .btn,
+      .map-card-consent-actions .btn-ghost {
+        width: 100%;
       }
 
       .menu-modal {
@@ -3494,7 +3546,7 @@
       }
 
       body.booking-panel-open .booking-card {
-        display: grid !important;
+        display: none !important;
       }
 
       .booking-mobile-close {
@@ -3727,6 +3779,9 @@
         right: 8px;
         top: max(68px, calc(env(safe-area-inset-top) + 8px));
         bottom: calc(78px + env(safe-area-inset-bottom));
+        width: auto;
+        max-width: none;
+        transform: none;
         padding: 54px 16px 16px;
         border-radius: 22px;
       }
@@ -3754,6 +3809,26 @@
       .booking-sheet-dialog {
         top: max(66px, calc(env(safe-area-inset-top) + 8px));
         bottom: calc(74px + env(safe-area-inset-bottom));
+      }
+
+      .map-card {
+        min-height: 464px;
+      }
+
+      .map-card-consent {
+        padding: 26px 16px 24px;
+        justify-content: center;
+      }
+
+      .map-card-consent strong {
+        font-size: 1rem;
+        line-height: 1.14;
+      }
+
+      .map-card-consent p {
+        max-width: 21ch;
+        font-size: 0.87rem;
+        line-height: 1.48;
       }
     }
 
@@ -5703,7 +5778,10 @@
       }
 
       requestAnimationFrame(() => {
-        bookingMobileDialog?.querySelector("input, textarea")?.focus({ preventScroll: true });
+        bookingMobileDialog?.scrollTo({ top: 0, behavior: "auto" });
+        if (!bookingPanelMedia.matches) {
+          bookingMobileDialog?.querySelector("input, textarea")?.focus({ preventScroll: true });
+        }
       });
     }
 
