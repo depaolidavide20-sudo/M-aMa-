@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Nostra Storia | Pizzeria M'aMa</title>
+  <meta
+    name="description"
+    content="Approfondimento sulla storia di Pizzeria M'aMa: dal 2012 sul lungomare di Chiavari, tra impasti curati, ingredienti scelti e atmosfera vista mare."
+  />
+  <style>
+    :root {
+      --cream: #f7efe4;
+      --ink: #e6d8c7;
+      --gold: #f38a41;
+      --accent-rgb: 243, 138, 65;
+      --max: 1120px;
+      --shadow: 0 26px 70px rgba(0, 0, 0, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body,
+    body * {
+      font-family: Georgia, "Times New Roman", serif !important;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Fraunces", serif !important;
+    }
+
+    body {
+      margin: 0;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at top left, rgba(var(--accent-rgb), 0.12), transparent 26%),
+        linear-gradient(180deg, #020202 0%, #070707 42%, #0d0d0d 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 28px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(6, 6, 6, 0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand-logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 150px;
+      min-height: 56px;
+      padding: 4px 12px;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 16px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    .brand-logo {
+      width: 74px;
+      height: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      color: rgba(247, 239, 228, 0.82);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .page {
+      padding: 38px 0 54px;
+    }
+
+    .page-hero {
+      display: grid;
+      gap: 16px;
+      max-width: 780px;
+      margin: 0 auto 28px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      justify-content: center;
+      width: fit-content;
+      margin: 0 auto;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(var(--accent-rgb), 0.22);
+      background: rgba(var(--accent-rgb), 0.08);
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.4rem, 5.2vw, 4.6rem);
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.98fr) minmax(280px, 1.02fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .card {
+      padding: 28px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(17, 17, 17, 0.94), rgba(10, 10, 10, 0.98));
+      box-shadow: var(--shadow);
+    }
+
+    .copy-card h2 {
+      margin: 0 0 12px;
+      font-family: "Fraunces", serif;
+      font-size: 1.9rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .copy-card p {
+      margin: 0 0 16px;
+      color: rgba(230, 216, 199, 0.8);
+      line-height: 1.8;
+    }
+
+    .copy-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .copy-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100%;
+    }
+
+    .story-signature {
+      margin-top: 28px;
+      padding-top: 0;
+      font-size: 1.08rem;
+      letter-spacing: 0.04em;
+      color: var(--gold);
+    }
+
+    .image-card {
+      overflow: hidden;
+      padding: 0;
+      min-height: 100%;
+      background: linear-gradient(180deg, rgba(14, 14, 14, 0.96), rgba(8, 8, 8, 0.98));
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      object-position: center 28%;
+    }
+
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover,
+    .btn-ghost:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn {
+      color: #fff;
+      background: linear-gradient(145deg, #d56b35, #a9481f);
+      box-shadow: 0 18px 30px rgba(181, 79, 59, 0.24);
+    }
+
+    .btn-ghost {
+      color: var(--cream);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    @media (max-width: 880px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        justify-content: center;
+        padding: 12px 0;
+      }
+
+      .nav-links {
+        justify-content: center;
+        font-size: 0.88rem;
+      }
+
+      .card {
+        padding: 22px 18px;
+        border-radius: 24px;
+      }
+
+      .image-card {
+        padding: 0;
+      }
+
+      .image-card {
+        min-height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html#top" aria-label="Pizzeria M'aMa">
+        <span class="brand-logo-wrap">
+          <img class="brand-logo" src="brand-logo-optimized.png" alt="Brand Pizzeria M'aMa" width="240" height="234" />
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Navigazione secondaria">
+        <a href="index.html#storia">La nostra storia</a>
+        <a href="index.html#menu">Menù</a>
+        <a href="index.html#contatti">Contatti</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <section class="page-hero">
+        <span class="eyebrow">Approfondimento</span>
+        <h1>La nostra storia</h1>
+      </section>
+
+      <section class="content-grid">
+        <article class="card copy-card">
+          <p>Era l'8 dicembre 2012 quando con un pizzico di follia e tanto entusiasmo abbiamo aperto la nostra pizzeria. Gli anni sono passati ma la passione e l'amore per il nostro lavoro non sono cambiati, anzi ci hanno aiutato a camminare e a conquistare vette di eccellenza sempre pi&ugrave; alte.</p>
+          <p>La continua ricerca di materie prime italiane, sostenibili e di piccole produzioni locali, un servizio giovane, attento e dinamico e una location sul mare con una vista che rinfranca l'anima, hanno contribuito a rendere il nostro locale un punto di riferimento per chiavaresi e turisti. Il loro affetto &egrave; la nostra forza e ci colma il cuore di gratitudine.</p>
+          <p class="story-signature">Matteo e Maria</p>
+        </article>
+
+        <aside class="card image-card">
+          <img src="storia-coppia-optimized.jpg" alt="Matteo e Maria al tramonto sul porto" width="1170" height="1160" loading="lazy" decoding="async" fetchpriority="low" />
+        </aside>
+      </section>
+
+      <div class="cta-row">
+        <a class="btn-ghost" href="index.html#storia">Torna al sito</a>
+        <a class="btn" href="index.html#contatti">Prenota o contattaci</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

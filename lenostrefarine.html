@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le nostre farine, dal grano all'impasto | Pizzeria M'aMa</title>
+  <meta
+    name="description"
+    content="Approfondimento sulle farine di Pizzeria M'aMa: grani selezionati, lavorazioni delicate e un impasto soffice, fragrante e leggero."
+  />
+  <style>
+    :root {
+      --cream: #f7efe4;
+      --ink: #e6d8c7;
+      --gold: #f38a41;
+      --accent-rgb: 243, 138, 65;
+      --max: 1120px;
+      --shadow: 0 26px 70px rgba(0, 0, 0, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body,
+    body * {
+      font-family: Georgia, "Times New Roman", serif !important;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Fraunces", serif !important;
+    }
+
+    body {
+      margin: 0;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at top left, rgba(var(--accent-rgb), 0.12), transparent 26%),
+        linear-gradient(180deg, #020202 0%, #070707 42%, #0d0d0d 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 28px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(6, 6, 6, 0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand-logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 150px;
+      min-height: 56px;
+      padding: 4px 12px;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 16px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    .brand-logo {
+      width: 74px;
+      height: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      color: rgba(247, 239, 228, 0.82);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .page {
+      padding: 34px 0 50px;
+    }
+
+    .page-hero {
+      display: grid;
+      gap: 14px;
+      max-width: 820px;
+      margin: 0 auto 24px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      justify-content: center;
+      width: fit-content;
+      margin: 0 auto;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(var(--accent-rgb), 0.22);
+      background: rgba(var(--accent-rgb), 0.08);
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.4rem, 5.2vw, 4.6rem);
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
+    }
+
+    h1 span {
+      color: var(--gold);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .lead {
+      margin: 0 auto;
+      max-width: 58ch;
+      color: rgba(230, 216, 199, 0.82);
+      font-size: 1rem;
+      line-height: 1.66;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(300px, 0.94fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .card {
+      padding: 24px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(17, 17, 17, 0.94), rgba(10, 10, 10, 0.98));
+      box-shadow: var(--shadow);
+    }
+
+    .copy-card {
+      text-align: left;
+    }
+
+    .copy-card p {
+      max-width: 60ch;
+      margin: 0 0 14px;
+      color: rgba(230, 216, 199, 0.8);
+      font-size: 0.985rem;
+      line-height: 1.68;
+    }
+
+    .copy-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .image-card {
+      overflow: hidden;
+      padding: 0;
+      min-height: auto;
+      aspect-ratio: 0.96;
+      background: linear-gradient(180deg, rgba(14, 14, 14, 0.96), rgba(8, 8, 8, 0.98));
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      object-position: center 52%;
+    }
+
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover,
+    .btn-ghost:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn {
+      color: #fff;
+      background: linear-gradient(145deg, #d56b35, #a9481f);
+      box-shadow: 0 18px 30px rgba(181, 79, 59, 0.24);
+    }
+
+    .btn-ghost {
+      color: var(--cream);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    @media (max-width: 880px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        justify-content: center;
+        padding: 12px 0;
+      }
+
+      .nav-links {
+        justify-content: center;
+        font-size: 0.88rem;
+      }
+
+      .card {
+        padding: 20px 18px;
+        border-radius: 24px;
+      }
+
+      .copy-card p {
+        max-width: 100%;
+        margin: 0 0 12px;
+        font-size: 0.95rem;
+        line-height: 1.62;
+      }
+
+      .image-card {
+        padding: 0;
+        aspect-ratio: 1.02;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html#top" aria-label="Pizzeria M'aMa">
+        <span class="brand-logo-wrap">
+          <img class="brand-logo" src="brand-logo-optimized.png" alt="Brand Pizzeria M'aMa" width="240" height="234" />
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Navigazione secondaria">
+        <a href="index.html#storia">La nostra storia</a>
+        <a href="index.html#menu">Menù</a>
+        <a href="index.html#contatti">Contatti</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <section class="page-hero">
+        <span class="eyebrow">Approfondimento</span>
+        <h1>Le nostre farine,<br /><span>dal grano all'impasto.</span></h1>
+        <p class="lead">Un approfondimento dedicato ai grani, alle lavorazioni e al carattere dell'impasto che definisce il profilo di M'aMa.</p>
+      </section>
+
+      <section class="content-grid">
+        <article class="card copy-card">
+          <p>Non tutte le farine sono uguali. Per questo abbiamo scelto di utilizzare esclusivamente farine italiane selezionate, del Molino Paolo Mariani, lavorate per ottenere impasti ad alta digeribilit&agrave; e dal gusto autentico.</p>
+          <p>Farine di tipo 1, tipo 2, integrali e multicereali vengono accuratamente selezionate per offrire il perfetto equilibrio tra sapore, struttura e leggerezza. Meno raffinate e pi&ugrave; ricche delle componenti nobili del chicco, preservano profumi autentici e caratteristiche naturali che donano all'impasto una personalit&agrave; unica e riconoscibile.</p>
+          <p>A fare la differenza &egrave; anche il tempo. Le lunghe fasi di maturazione e lievitazione permettono all'impasto di sviluppare una struttura bilanciata, leggera e fragrante, valorizzando ogni ingrediente e garantendo un'esperienza di gusto piacevole e appagante.</p>
+          <p>Ogni impasto nasce da un'attenta selezione delle farine e da una lavorazione studiata per offrire armonia e gusto in ogni morso. Il risultato &egrave; una pizza che unisce tradizione e ricerca.</p>
+          <p>Per noi la farina non &egrave; semplicemente un ingrediente. &Egrave; il punto di partenza di ogni pizza, la base su cui costruiamo la nostra identit&agrave; e il nostro modo di interpretare la tradizione, con la stessa cura che mettiamo in ogni dettaglio.</p>
+        </article>
+
+        <aside class="card image-card">
+          <img src="farine-impasto-optimized.jpg" alt="Impasti di farine speciali in lievitazione" width="1425" height="1104" loading="lazy" decoding="async" fetchpriority="low" />
+        </aside>
+      </section>
+
+      <div class="cta-row">
+        <a class="btn-ghost" href="index.html#menu">Torna al menù</a>
+        <a class="btn" href="index.html#contatti">Contattaci</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
