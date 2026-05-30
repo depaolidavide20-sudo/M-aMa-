@@ -9,8 +9,6 @@
     content="Nuovo concept web per Pizzeria M'aMa: pizza superiore dal 2012, farine piemontesi tipo 1 e 2, ingredienti ricercati e location vista Portofino sul lungomare di Chiavari."
   />
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
-
     :root {
       --cream: #f7efe4;
       --paper: rgba(18, 18, 18, 0.86);
@@ -37,13 +35,25 @@
       box-sizing: border-box;
     }
 
+    body,
+    body * {
+      font-family: Georgia, "Times New Roman", serif !important;
+    }
+
+    h1,
+    h2,
+    h3,
+    .brand-name,
+    .footer-legal-company {
+      font-family: "Fraunces", serif !important;
+    }
+
     html {
       scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
-      font-family: "Manrope", sans-serif;
       color: var(--cream);
       background:
         radial-gradient(circle at top left, rgba(var(--accent-rgb), 0.14), transparent 24%),
@@ -56,7 +66,8 @@
       overflow: hidden;
     }
 
-    body.booking-panel-open {
+    body.booking-panel-open,
+    body.booking-modal-open {
       overflow: hidden;
     }
 
@@ -326,7 +337,7 @@
       position: relative;
       padding: 22px 0 58px;
       min-height: calc(100vh - 68px);
-      background: #050505 url("hero-mobile-pizze-hd.jpg") center 42%/cover no-repeat;
+      background: #050505;
       overflow: hidden;
     }
 
@@ -365,8 +376,8 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(360px, 430px);
-      gap: 24px;
+      grid-template-columns: minmax(0, 1.16fr) minmax(330px, 400px);
+      gap: 22px;
       align-items: center;
       min-height: calc(100vh - 130px);
     }
@@ -388,7 +399,7 @@
 
     .hero-copy {
       position: relative;
-      padding: 42px 38px;
+      padding: 40px 30px;
       min-height: 500px;
       overflow: hidden;
       display: flex;
@@ -462,19 +473,21 @@
     }
 
     .hero-copy h1 {
-      max-width: 760px;
-      font-size: clamp(2.8rem, 5.4vw, 4.9rem);
-      line-height: 0.95;
+      max-width: 100%;
+      margin-inline: auto;
+      font-size: clamp(2.15rem, 3.95vw, 3.62rem);
+      line-height: 0.92;
       margin-bottom: 14px;
       text-wrap: balance;
     }
 
     .hero-title-line {
-      display: inline;
+      display: block;
+      white-space: nowrap;
     }
 
     .hero-title-line + .hero-title-line::before {
-      content: ", ";
+      content: none;
     }
 
     .hero-copy p {
@@ -526,6 +539,72 @@
 
     .booking-sheet {
       display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 260;
+      overflow: hidden;
+    }
+
+    body.booking-modal-open .booking-sheet {
+      display: block;
+    }
+
+    .booking-sheet-backdrop {
+      position: absolute;
+      inset: 0;
+      border: 0;
+      padding: 0;
+      background: rgba(4, 4, 4, 0.68);
+      backdrop-filter: blur(12px);
+    }
+
+    .booking-sheet-dialog {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(540px, calc(100% - 28px));
+      max-height: calc(100svh - 44px);
+      display: grid;
+      align-content: start;
+      gap: 16px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 58px 24px 22px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(18, 18, 18, 0.985), rgba(10, 10, 10, 0.995));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.42);
+      transform: translate(-50%, -50%);
+      overscroll-behavior: contain;
+    }
+
+    .booking-sheet-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 999px;
+      color: rgba(255, 250, 244, 0.94);
+      background: rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+    }
+
+    .booking-sheet-close svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .booking-sheet h2 {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.8rem, 4vw, 2.2rem);
+      letter-spacing: -0.03em;
+      line-height: 0.98;
     }
 
     .booking-mobile-close {
@@ -790,6 +869,21 @@
       color: rgba(247, 239, 228, 0.72);
     }
 
+    .story-cta-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    .story-cta-link {
+      min-height: 46px;
+      padding-inline: 22px;
+      color: #fff;
+      background: linear-gradient(145deg, var(--brick), var(--brick-dark));
+      border: 0;
+      box-shadow: 0 18px 30px rgba(181, 79, 59, 0.24);
+    }
+
     .price-card {
       padding: 34px;
       background:
@@ -965,7 +1059,8 @@
 
     .menu-visual-card {
       position: relative;
-      min-height: clamp(290px, 34vh, 392px);
+      min-height: clamp(300px, 31vw, 390px);
+      aspect-ratio: 4 / 3;
       overflow: hidden;
       border-radius: 30px;
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -985,38 +1080,40 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center center;
+      image-rendering: -webkit-optimize-contrast;
     }
 
     .menu-cta-row {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .menu-cta-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 42px;
-      padding: 0 20px;
+      min-height: 46px;
+      padding: 0 22px;
       border-radius: 999px;
-      border: 1px solid rgba(var(--accent-rgb), 0.26);
+      border: 0;
       font: inherit;
-      font-size: 0.92rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: none;
       cursor: pointer;
-      color: var(--gold);
-      background: rgba(255, 255, 255, 0.03);
-      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.16);
+      color: #fff;
+      background: linear-gradient(145deg, var(--brick), var(--brick-dark));
+      box-shadow: 0 18px 30px rgba(181, 79, 59, 0.24);
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
 
     .menu-cta-button:hover {
       transform: translateY(-1px);
-      border-color: rgba(var(--accent-rgb), 0.44);
-      background: rgba(var(--accent-rgb), 0.1);
-      box-shadow: 0 16px 26px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 22px 36px rgba(181, 79, 59, 0.28);
     }
 
     .menu-modal {
@@ -1702,7 +1799,7 @@
       padding: 0 22px;
       border-radius: 999px;
       background: linear-gradient(145deg, #ff9b57, #e06d2c);
-      color: #16120b;
+      color: #ffffff;
       font-weight: 800;
       font-size: 0.92rem;
       letter-spacing: -0.01em;
@@ -1899,6 +1996,29 @@
       display: block;
     }
 
+    .contact-hours {
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-hours-group {
+      display: grid;
+      gap: 4px;
+    }
+
+    .contact-hours-group + .contact-hours-group {
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .contact-hours-season {
+      color: var(--gold);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
     .contact-list a:hover {
       color: var(--gold);
     }
@@ -1948,6 +2068,14 @@
       border: 0;
       display: block;
       filter: saturate(0.92) contrast(1.04);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+    }
+
+    .map-card.loaded iframe {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .map-card::after {
@@ -1957,6 +2085,54 @@
       height: 104px;
       background: linear-gradient(180deg, rgba(9, 9, 9, 0), rgba(9, 9, 9, 0.82));
       pointer-events: none;
+    }
+
+    .map-card-consent {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 14px;
+      padding: 26px;
+      text-align: center;
+      background:
+        linear-gradient(180deg, rgba(8, 8, 8, 0.9), rgba(8, 8, 8, 0.72)),
+        radial-gradient(circle at center, rgba(var(--accent-rgb), 0.08), transparent 58%);
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .map-card.loaded .map-card-consent {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .map-card-consent strong {
+      font-family: "Fraunces", serif;
+      font-size: 1.3rem;
+      line-height: 1.02;
+      color: #fff9f2;
+    }
+
+    .map-card-consent p {
+      max-width: 34ch;
+      margin: 0;
+      color: rgba(247, 239, 228, 0.8);
+      line-height: 1.6;
+    }
+
+    .map-card-consent-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .map-card:not(.loaded) .map-card-badge {
+      opacity: 0;
+      transform: translateY(8px);
     }
 
     .map-card-badge {
@@ -1974,6 +2150,7 @@
         0 16px 34px rgba(0, 0, 0, 0.26),
         inset 0 1px 0 rgba(255, 255, 255, 0.04);
       backdrop-filter: blur(10px);
+      transition: opacity 0.22s ease, transform 0.22s ease;
     }
 
     .map-card-badge strong {
@@ -1990,127 +2167,110 @@
     }
 
     .footer {
-      padding: 18px 0 22px;
+      padding: 16px 0 18px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      color: rgba(247, 239, 228, 0.68);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
-        #060606;
+      color: rgba(247, 239, 228, 0.72);
+      background: #060606;
     }
 
     .footer-shell {
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) repeat(2, minmax(0, 0.92fr)) auto;
-      gap: 18px 22px;
-      padding: 20px 22px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 26px;
-      background: rgba(17, 17, 17, 0.88);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.2);
+      justify-items: center;
+      gap: 10px;
+      padding: 0;
     }
 
     .footer-shell::before {
-      content: "";
-      position: absolute;
-      left: 24px;
-      right: 24px;
-      top: 0;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(var(--accent-rgb), 0), rgba(var(--accent-rgb), 0.5), rgba(var(--accent-rgb), 0));
-    }
-
-    .footer-brand-block,
-    .footer-block {
-      display: grid;
-      align-content: start;
-      gap: 10px;
-      position: relative;
-      z-index: 1;
+      content: none;
     }
 
     .footer-brand-block {
-      padding-right: 10px;
-    }
-
-    .footer-block {
-      padding-left: 18px;
-      border-left: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .footer-kicker,
-    .footer-block small {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(var(--accent-rgb), 0.2);
-      background: rgba(var(--accent-rgb), 0.06);
-      color: var(--gold);
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-weight: 800;
-    }
-
-    .footer-brand-block h3 {
-      margin: 0;
-      font-family: "Fraunces", serif;
-      font-size: clamp(1.45rem, 1.9vw, 1.9rem);
-      line-height: 1.06;
-      letter-spacing: -0.03em;
-      color: var(--ivory);
+      display: grid;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 980px;
+      justify-items: center;
+      text-align: center;
     }
 
     .footer-legal-space {
-      min-height: 52px;
-      border-radius: 20px;
-      border: 1px dashed rgba(var(--accent-rgb), 0.22);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.008)),
-        linear-gradient(135deg, rgba(var(--accent-rgb), 0.09), rgba(var(--accent-rgb), 0));
+      width: 100%;
+      max-width: 980px;
+      min-height: 0;
+      padding: 0;
+      display: grid;
+      gap: 6px;
+      align-content: start;
+      border: 0;
+      background: none;
+      box-shadow: none;
     }
 
-    .footer-brand-block p,
-    .footer-block p {
+    .footer-legal-line {
       margin: 0;
-      font-size: 0.94rem;
-      line-height: 1.62;
-      color: rgba(247, 239, 228, 0.7);
+      color: rgba(247, 239, 228, 0.84);
+      font-size: 0.95rem;
+      line-height: 1.42;
+      font-weight: 500;
     }
 
-    .footer-block a {
-      display: inline-flex;
-      align-items: center;
-      color: var(--ivory);
-      text-decoration: none;
-      font-size: 1rem;
-      line-height: 1.55;
+    .footer-legal-company {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.06rem, 1.6vw, 1.3rem);
+      line-height: 1.08;
+      color: #fff9f2;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-legal-space a {
+      color: rgba(247, 239, 228, 0.88);
+      font-size: inherit;
+      line-height: inherit;
       font-weight: 600;
+      word-break: break-word;
+      text-decoration: none;
     }
 
-    .footer-block a:hover {
+    .footer-legal-space a:hover {
       color: var(--gold);
     }
 
-    .footer-social-block {
-      justify-items: start;
+    .footer-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 2px;
+      color: rgba(247, 239, 228, 0.62);
+      font-size: 0.92rem;
+      line-height: 1.44;
+    }
+
+    .footer-links-row a {
+      color: rgba(247, 239, 228, 0.86);
+      text-decoration: none;
+    }
+
+    .footer-links-row a:hover {
+      color: var(--gold);
     }
 
     .footer-socials {
       display: flex;
-      gap: 10px;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 2px;
     }
 
     .social-link {
-      width: 50px;
-      height: 50px;
+      width: 44px;
+      height: 44px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border-radius: 18px;
+      border-radius: 15px;
       color: var(--ivory);
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -2125,20 +2285,13 @@
     }
 
     .social-link svg {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       display: block;
     }
 
     .footer-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      margin-top: 12px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      font-size: 0.82rem;
-      color: rgba(247, 239, 228, 0.46);
+      display: none;
     }
 
     [data-animate] {
@@ -2246,7 +2399,7 @@
       }
 
       .menu-visual-card {
-        min-height: 250px;
+        min-height: 0;
       }
 
       .menu-varie-grid {
@@ -2258,17 +2411,7 @@
       }
 
       .footer-shell {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .footer-brand-block,
-      .footer-block {
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      .footer-block {
-        border-left: 0;
+        grid-template-columns: 1fr;
       }
 
       .footer-meta {
@@ -2533,33 +2676,28 @@
       }
 
       .footer {
-        padding: 12px 0 18px;
+        padding: 14px 0 16px;
       }
 
       .footer-shell {
-        gap: 14px 18px;
-        padding: 18px;
-      }
-
-      .footer-brand-block,
-      .footer-block {
-        gap: 8px;
-      }
-
-      .footer-brand-block p,
-      .footer-block p,
-      .footer-block a {
-        font-size: 0.92rem;
+        gap: 9px;
+        padding: 0;
       }
 
       .footer-legal-space {
-        min-height: 42px;
+        min-height: 0;
+        padding: 0;
+        gap: 5px;
+      }
+
+      .footer-legal-line {
+        font-size: 0.87rem;
       }
 
       .social-link {
-        width: 46px;
-        height: 46px;
-        border-radius: 16px;
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
       }
 
       .mobile-cta {
@@ -2604,9 +2742,7 @@
         position: absolute;
         inset: -8%;
         z-index: 0;
-        background:
-          linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.34)),
-          url("hero-pizze-premium-hd.png") center 34% / cover no-repeat;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.34));
         filter: blur(26px) saturate(0.88) brightness(0.56);
         transform: scale(1.08);
       }
@@ -2790,17 +2926,9 @@
 
       .footer-shell {
         grid-template-columns: 1fr;
-        padding: 16px;
-        border-radius: 20px;
-        gap: 14px;
-      }
-
-      .footer-meta {
-        text-align: center;
-        align-items: center;
-        margin-top: 10px;
+        padding: 0;
+        border-radius: 0;
         gap: 8px;
-        font-size: 0.76rem;
       }
 
       .brand-mark {
@@ -2983,13 +3111,13 @@
       }
 
       .menu-visual-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
 
       .menu-visual-card {
         min-height: 0;
-        aspect-ratio: 0.95;
+        aspect-ratio: 4 / 3;
         border-radius: 22px;
       }
 
@@ -3004,9 +3132,9 @@
 
       .menu-cta-button {
         width: auto;
-        min-height: 40px;
+        min-height: 46px;
         padding: 0 18px;
-        font-size: 0.84rem;
+        font-size: 0.95rem;
       }
 
       .menu-modal {
@@ -3270,9 +3398,7 @@
         content: "" !important;
         position: absolute !important;
         inset: -6% !important;
-        background:
-          linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.34)),
-          url("hero-pizze-premium-hd.png") center 36% / cover no-repeat !important;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.34)) !important;
         filter: blur(24px) brightness(0.64) saturate(0.92) !important;
         transform: scale(1.08) !important;
         z-index: 0 !important;
@@ -3433,9 +3559,7 @@
       .hero {
         min-height: calc(100svh - 60px) !important;
         padding: 0 !important;
-        background:
-          linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.24)),
-          url("hero-mobile-pizze-hd.jpg") center 42% / cover no-repeat !important;
+        background: #120c08 !important;
         overflow: hidden !important;
       }
 
@@ -4259,77 +4383,68 @@
 
     @media (max-width: 640px) {
       .footer {
-        padding: 8px 0 12px !important;
+        padding: 10px 0 14px !important;
       }
 
       .footer-shell {
-        padding: 14px !important;
-        border-radius: 18px !important;
-        gap: 10px !important;
-      }
-
-      .footer-shell::before {
-        left: 16px;
-        right: 16px;
-      }
-
-      .footer-brand-block,
-      .footer-block {
-        gap: 6px !important;
-      }
-
-      .footer-kicker,
-      .footer-block small {
-        padding: 6px 10px !important;
-        font-size: 0.62rem !important;
-        letter-spacing: 0.14em !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        gap: 8px !important;
       }
 
       .footer-legal-space {
-        min-height: 28px !important;
-        border-radius: 14px !important;
+        min-height: 0 !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        gap: 4px !important;
       }
 
-      .footer-brand-block p,
-      .footer-block p,
-      .footer-block a {
-        font-size: 0.86rem !important;
-        line-height: 1.45 !important;
+      .footer-legal-line,
+      .footer-legal-space a {
+        font-size: 0.8rem !important;
+        line-height: 1.34 !important;
+      }
+
+      .footer-legal-company {
+        font-size: 0.96rem !important;
+      }
+
+      .footer-links-row {
+        gap: 6px !important;
+        font-size: 0.8rem !important;
       }
 
       .footer-socials {
-        gap: 7px !important;
+        gap: 6px !important;
       }
 
       .social-link {
-        width: 40px !important;
-        height: 40px !important;
-        border-radius: 14px !important;
-      }
-
-      .footer-meta {
-        margin-top: 8px !important;
-        padding-top: 8px !important;
-        gap: 6px !important;
-        font-size: 0.72rem !important;
+        width: 38px !important;
+        height: 38px !important;
+        border-radius: 13px !important;
       }
     }
 
     @media (max-width: 430px) {
       .footer-shell {
-        padding: 12px !important;
-        gap: 9px !important;
+        gap: 7px !important;
       }
+    }
 
-      .footer-brand-block p,
-      .footer-block p,
-      .footer-block a {
-        font-size: 0.82rem !important;
-      }
+    .hero-copy h1 {
+      font-size: clamp(1.5rem, 3.3vw, 2.75rem) !important;
+      line-height: 0.94 !important;
+    }
 
-      .footer-meta {
-        font-size: 0.68rem !important;
-      }
+    .hero-title-line {
+      display: block !important;
+      white-space: normal !important;
+      text-wrap: balance !important;
+    }
+
+    .hero-title-line + .hero-title-line::before {
+      content: none !important;
     }
   </style>
 </head>
@@ -4338,14 +4453,13 @@
     <div class="container nav">
       <a class="brand" href="#top" aria-label="Pizzeria M'aMa">
         <span class="brand-logo-wrap">
-          <img class="brand-logo" src="Screenshot%202026-04-20%20(16.28.15).png" alt="Brand Pizzeria M'aMa" />
+          <img class="brand-logo" src="brand-logo-optimized.png" alt="Brand Pizzeria M'aMa" width="240" height="234" />
         </span>
       </a>
 
       <nav class="nav-links" aria-label="Sezioni del sito">
         <a href="#storia" data-i18n="nav_story">La nostra storia</a>
-        <a href="#menu" data-i18n="nav_menu">Menu</a>
-        <a href="#prodotti-online" data-i18n="nav_shop">Prodotti online</a>
+        <a href="#menu" data-i18n="nav_menu">Menù</a>
         <a href="#recensioni" data-i18n="nav_reviews">Recensioni</a>
         <a href="#contatti" data-i18n="nav_contacts">Contatti</a>
       </nav>
@@ -4366,8 +4480,7 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="#storia" data-i18n="nav_story">La nostra storia</a>
-    <a href="#menu" data-i18n="nav_menu">Menu</a>
-    <a href="#prodotti-online" data-i18n="nav_shop">Prodotti online</a>
+    <a href="#menu" data-i18n="nav_menu">Menù</a>
     <a href="#recensioni" data-i18n="nav_reviews">Recensioni</a>
     <a href="#contatti" data-i18n="nav_contacts">Contatti</a>
   </div>
@@ -4376,8 +4489,8 @@
       <section class="hero" id="top">
         <div class="hero-media" aria-hidden="true">
           <picture class="hero-picture">
-            <source media="(min-width: 881px)" srcset="hero-desktop-pizze-cover.png" />
-            <img class="hero-image" src="hero-mobile-pizze-cover.png" alt="" width="841" height="1870" loading="eager" fetchpriority="high" decoding="async" />
+            <source media="(min-width: 881px)" srcset="hero-desktop-pizze-cover-optimized.jpg" />
+            <img class="hero-image" src="hero-mobile-pizze-cover-optimized.jpg" alt="" width="719" height="1600" loading="eager" fetchpriority="high" decoding="async" />
           </picture>
         </div>
       <div class="container hero-grid">
@@ -4400,7 +4513,7 @@
             <a class="btn" href="tel:01851772110">
               <span data-i18n="call_now">Chiama ora</span>
             </a>
-            <a class="btn-ghost hero-menu-link" href="#menu" data-i18n="hero_menu_cta">Scopri il menu</a>
+            <a class="btn-ghost hero-menu-link" href="#menu" data-i18n="hero_menu_cta">Scopri il menù</a>
           </div>
         </div>
 
@@ -4482,10 +4595,14 @@
             <strong>Vista sul mare</strong>
             <span>Veranda affacciata sul tramonto, luce soffusa e un'atmosfera che invita a restare.</span>
           </div>
+
+          <div class="story-cta-row">
+            <a class="btn-ghost story-cta-link" href="storia.html" data-i18n="story_cta">Leggi di più</a>
+          </div>
         </div>
 
         <div class="price-card story-photo-card" data-animate>
-          <img src="IMG_0305.JPG" alt="Veranda sul mare di Pizzeria M'aMa al tramonto" loading="lazy" />
+          <img src="IMG_0305.JPG" alt="Veranda sul mare di Pizzeria M'aMa al tramonto" width="780" height="585" loading="lazy" decoding="async" fetchpriority="low" />
           <div class="story-photo-note">
             <strong>Vista sul mare</strong>
             <span>Veranda affacciata sul tramonto, luce soffusa e un'atmosfera che invita a restare.</span>
@@ -4508,15 +4625,22 @@
 
         <div class="menu-visual-grid">
           <article class="menu-visual-card" data-animate>
-            <img src="menu-pizza-classica-premium.png" alt="Pizza classica premium di Pizzeria M'aMa" loading="lazy" />
+            <img src="menu-visual-1-20260529.jpg" alt="Pizza del menu di Pizzeria M'aMa" width="1446" height="1088" loading="lazy" decoding="async" fetchpriority="low" />
           </article>
           <article class="menu-visual-card" data-animate>
-            <img src="menu-pizza-gourmet-premium.png" alt="Pizza gourmet premium di Pizzeria M'aMa" loading="lazy" />
+            <img src="menu-visual-2-optimized.jpg" alt="Specialità del menu di Pizzeria M'aMa" width="1600" height="1200" loading="lazy" decoding="async" fetchpriority="low" />
           </article>
         </div>
 
         <div class="menu-cta-row" data-animate>
-          <button class="menu-cta-button" type="button" data-open-menu-modal data-i18n="menu_open">Il nostro menù</button>
+          <a
+            class="menu-cta-button"
+            href="https://drive.google.com/file/d/1sEiY4xggOuVlsPKtQ6Wvb97dX7-j733Z/view"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="menu_open"
+          >Il nostro menù</a>
+          <a class="menu-cta-button" href="lenostrefarine.html" data-i18n="menu_flours_cta">Le nostre farine</a>
         </div>
       </div>
     </section>
@@ -4921,83 +5045,6 @@
       </div>
     </div>
 
-    <section class="section" id="prodotti-online">
-      <div class="container">
-        <div class="section-title" data-animate>
-          <span class="section-eyebrow">Prodotti online</span>
-          <h2 data-i18n="shop_title">Porta il M'aMa a casa tua</h2>
-          <p data-i18n="shop_text">Prodotti selezionati disponibili per l'acquisto online</p>
-          <div class="shop-shipping-note" data-i18n="shop_shipping_note">Spedizione in tutta Italia</div>
-        </div>
-
-        <div class="shop-grid">
-          <article class="shop-card" data-animate>
-            <span class="shop-tag">Online</span>
-            <div class="shop-card-head">
-              <strong data-i18n="shop_card_1_title">Fai la pizza come noi</strong>
-              <span class="shop-price" data-i18n="shop_price_1">da 15€</span>
-            </div>
-            <p data-i18n="shop_card_1_text">Kit completo con ingredienti selezionati</p>
-            <div class="shop-stripe-wrap">
-              <stripe-buy-button
-                buy-button-id="buy_btn_1TPK07LBTzh3fqu6SJZrhHqm"
-                publishable-key="pk_test_51TPJrnLBTzh3fqu65ntCiXqshZhINdlNRCi4Y2bIQJVN2Pk6ndShUoYnek3xWbXZxOQOYQPvUUSkYmE7UHmKvlHK00pgmH2VBk"
-              >
-              </stripe-buy-button>
-            </div>
-          </article>
-
-          <article class="shop-card" data-animate>
-            <span class="shop-tag">Online</span>
-            <div class="shop-card-head">
-              <strong data-i18n="shop_card_2_title">Le nostre specialit&agrave;</strong>
-              <span class="shop-price" data-i18n="shop_price_2">da 19€</span>
-            </div>
-            <p data-i18n="shop_card_2_text">Prodotti Artigianali da gustare anche a casa</p>
-            <div class="shop-stripe-wrap">
-              <stripe-buy-button
-                buy-button-id="buy_btn_1TPM6RLBTzh3fqu6oJ4ESO0q"
-                publishable-key="pk_test_51TPJrnLBTzh3fqu65ntCiXqshZhINdlNRCi4Y2bIQJVN2Pk6ndShUoYnek3xWbXZxOQOYQPvUUSkYmE7UHmKvlHK00pgmH2VBk"
-              >
-              </stripe-buy-button>
-            </div>
-          </article>
-
-          <article class="shop-card" data-animate>
-            <span class="shop-tag">Online</span>
-            <div class="shop-card-head">
-              <strong data-i18n="shop_card_3_title">Dolci Artigianali</strong>
-              <span class="shop-price" data-i18n="shop_price_3">da 10€</span>
-            </div>
-            <p data-i18n="shop_card_3_text">Dessert della casa preparati con cura</p>
-            <div class="shop-stripe-wrap">
-              <stripe-buy-button
-                buy-button-id="buy_btn_1TPMB0LBTzh3fqu6TZqh7nVw"
-                publishable-key="pk_test_51TPJrnLBTzh3fqu65ntCiXqshZhINdlNRCi4Y2bIQJVN2Pk6ndShUoYnek3xWbXZxOQOYQPvUUSkYmE7UHmKvlHK00pgmH2VBk"
-              >
-              </stripe-buy-button>
-            </div>
-          </article>
-
-          <article class="shop-card" data-animate>
-            <span class="shop-tag">Online</span>
-            <div class="shop-card-head">
-              <strong data-i18n="shop_card_4_title">Topping &amp; Special</strong>
-              <span class="shop-price" data-i18n="shop_price_4">da 8€</span>
-            </div>
-            <p data-i18n="shop_card_4_text">Salse, ingredienti e prodotti selezionati firmati il M'aMa</p>
-            <div class="shop-stripe-wrap">
-              <stripe-buy-button
-                buy-button-id="buy_btn_1TPMCWLBTzh3fqu6lbcdNciJ"
-                publishable-key="pk_test_51TPJrnLBTzh3fqu65ntCiXqshZhINdlNRCi4Y2bIQJVN2Pk6ndShUoYnek3xWbXZxOQOYQPvUUSkYmE7UHmKvlHK00pgmH2VBk"
-              >
-              </stripe-buy-button>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section class="section" id="recensioni">
       <div class="reviews-shell">
         <div class="section-title reviews-intro" data-animate>
@@ -5117,7 +5164,7 @@
               </span>
               <div class="contact-item-body">
                 <small>Numero fisso</small>
-                <a href="tel:01851772110"><strong>0185 1772110</strong></a>
+                <a href="tel:+3901851772110"><strong>+39 0185 1772110</strong></a>
               </div>
             </li>
             <li>
@@ -5139,21 +5186,28 @@
               </span>
               <div class="contact-item-body">
                 <small>Orari</small>
-                <strong>
-                  <span>Luned&igrave; e Marted&igrave;: chiuso</span>
-                  <span>Mercoled&igrave; - Domenica: 19:00 - 23:00</span>
+                <strong class="contact-hours">
+                  <span class="contact-hours-group">
+                    <span class="contact-hours-season">Orario invernale</span>
+                    <span>Mercoled&igrave; - Domenica: 19:00 - 00:00</span>
+                    <span>Luned&igrave; e Marted&igrave;: riposo</span>
+                  </span>
+                  <span class="contact-hours-group">
+                    <span class="contact-hours-season">Orario estivo</span>
+                    <span>Luned&igrave; - Domenica: 19:00 - 00:00</span>
+                  </span>
                 </strong>
               </div>
             </li>
           </ul>
 
           <div class="contact-actions">
-            <a class="btn" href="#prenota" data-open-booking-panel onclick="openBookingPanel(event)">
+            <button class="btn" type="button" data-open-booking-panel data-booking-mode="sheet" onclick="openBookingPanel(event)">
               <svg class="btn-wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M20.52 3.48A11.8 11.8 0 0012.01 0C5.38 0 .01 5.37 0 12c0 2.11.55 4.17 1.6 6L0 24l6.18-1.6A11.94 11.94 0 0012.01 24C18.64 24 24 18.63 24 12c0-3.2-1.25-6.2-3.48-8.52zM12.01 21.8c-1.8 0-3.57-.48-5.12-1.39l-.37-.22-3.67.95.98-3.58-.24-.37A9.77 9.77 0 012.2 12c0-5.4 4.4-9.8 9.8-9.8 2.62 0 5.08 1.02 6.93 2.87A9.72 9.72 0 0121.8 12c0 5.4-4.4 9.8-9.79 9.8zm5.39-7.34c-.29-.15-1.72-.85-1.99-.94-.27-.1-.47-.15-.67.15-.2.29-.77.94-.95 1.14-.17.2-.35.22-.64.07-.29-.15-1.24-.46-2.36-1.46-.87-.77-1.46-1.72-1.63-2.01-.17-.29-.02-.44.13-.59.13-.13.29-.35.44-.52.15-.17.2-.29.3-.49.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.29-1.04 1.02-1.04 2.49 0 1.47 1.07 2.9 1.22 3.1.15.2 2.11 3.22 5.11 4.52.71.31 1.27.5 1.7.64.71.22 1.35.19 1.86.12.57-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.2-.55-.35z"/>
               </svg>
               <span>Prenota ora</span>
-            </a>
+            </button>
             <a class="btn-ghost" href="tel:01851772110">
               <svg class="contact-phone-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M6.62 10.79a15.54 15.54 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
@@ -5164,9 +5218,17 @@
         </div>
 
         <div class="map-card" data-animate>
+          <div class="map-card-consent">
+            <strong>Google Maps</strong>
+            <p>La mappa viene caricata solo su richiesta, cos&igrave; evitiamo il caricamento automatico di contenuti di terze parti.</p>
+            <div class="map-card-consent-actions">
+              <button class="btn-ghost" type="button" data-load-map data-target="contactMapFrame" data-src="https://www.google.com/maps?q=Corso+Valparaiso+150,+16043+Chiavari+GE&z=16&output=embed">Carica la mappa</button>
+              <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Corso+Valparaiso+150,+16043+Chiavari+GE" target="_blank" rel="noopener noreferrer">Apri su Google Maps</a>
+            </div>
+          </div>
           <iframe
+            id="contactMapFrame"
             title="Mappa per raggiungere Pizzeria M'aMa"
-            src="https://www.google.com/maps?q=Corso+Valparaiso+150,+16043+Chiavari+GE&z=16&output=embed"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
@@ -5182,24 +5244,26 @@
   <footer class="footer">
     <div class="container footer-shell">
       <div class="footer-brand-block">
-        <span class="footer-kicker">Pizzeria M'aMa</span>
-        <div class="footer-legal-space" aria-hidden="true"></div>
-      </div>
-
-      <div class="footer-block">
-        <small>Dove siamo</small>
-        <p>Corso Valparaiso, 150<br />16043 Chiavari GE</p>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=Corso+Valparaiso+150,+16043+Chiavari+GE" target="_blank" rel="noopener noreferrer">Apri la mappa</a>
-      </div>
-
-      <div class="footer-block">
-        <small>Contatti</small>
-        <a href="tel:01851772110">0185 1772110</a>
-        <a href="tel:+393792041914">+39 379 204 1914</a>
-      </div>
-
-      <div class="footer-block footer-social-block">
-        <small>Seguici</small>
+        <div class="footer-legal-space">
+          <p class="footer-legal-line footer-legal-company">IL CAVALLUCCIO MARINO DI BUSSONE MATTEO &amp; C. S.A.S.</p>
+          <p class="footer-legal-line">C.F. e P.IVA 02108660990 &middot; REA GE-460444</p>
+          <p class="footer-legal-line">Corso Valparaiso 150-15 &middot; 16043 Chiavari (GE), Italia</p>
+          <p class="footer-legal-line">
+            <a href="tel:+3901851772110">Tel: +39 0185 1772110</a>
+            &middot;
+            <a href="tel:+393792041914">Cell: +39 379 204 1914</a>
+            &middot;
+            <a href="mailto:ilcavallucciomarino85@legalmail.it">PEC: ilcavallucciomarino85@legalmail.it</a>
+          </p>
+          <p class="footer-legal-line">&copy; <span id="year"></span> Pizzeria M'aMa &middot; Tutti i diritti riservati</p>
+        </div>
+        <nav class="footer-links-row" aria-label="Link legali">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <span>&middot;</span>
+          <a href="cookie-policy.html">Cookie Policy</a>
+          <span>&middot;</span>
+          <a href="note-legali.html">Note legali</a>
+        </nav>
         <div class="footer-socials">
           <a class="social-link" href="https://www.instagram.com/pizzeriamama2012?igsh=MXhhZXI3N3M5dmVodA%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -5215,10 +5279,6 @@
           </a>
         </div>
       </div>
-    </div>
-    <div class="container footer-meta">
-      <span>Pizzeria M'aMa · Corso Valparaiso 150, Chiavari</span>
-      <span>&copy; <span id="year"></span> Tutti i diritti riservati</span>
     </div>
   </footer>
 
@@ -5295,8 +5355,6 @@
     </a>
   </div>
 
-  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-
   <script>
     const toggle = document.querySelector(".menu-toggle");
     const mobileMenu = document.getElementById("mobileMenu");
@@ -5312,43 +5370,14 @@
     const menuModalClosers = document.querySelectorAll("[data-close-menu-modal]");
     const menuTabs = document.querySelectorAll(".menu-tab");
     const menuPanels = document.querySelectorAll("[data-menu-panel]");
+    const mapLoadButtons = document.querySelectorAll("[data-load-map]");
     const whatsappNumber = "393792041914";
     const bookingPanelMedia = window.matchMedia("(max-width: 880px)");
-
-    function remountStripeButtons() {
-      document.querySelectorAll(".shop-stripe-wrap").forEach((wrap) => {
-        const currentButton = wrap.querySelector("stripe-buy-button");
-        const buyButtonId = currentButton?.getAttribute("buy-button-id");
-        const publishableKey = currentButton?.getAttribute("publishable-key");
-
-        if (!buyButtonId || !publishableKey) {
-          return;
-        }
-
-        const freshButton = document.createElement("stripe-buy-button");
-        freshButton.setAttribute("buy-button-id", buyButtonId);
-        freshButton.setAttribute("publishable-key", publishableKey);
-        wrap.replaceChildren(freshButton);
-      });
-    }
-
-    function initStripeButtons(attempt = 0) {
-      if (!customElements.get("stripe-buy-button")) {
-        if (attempt < 20) {
-          window.setTimeout(() => initStripeButtons(attempt + 1), 250);
-        }
-        return;
-      }
-
-      remountStripeButtons();
-      window.setTimeout(remountStripeButtons, 700);
-      window.setTimeout(remountStripeButtons, 1600);
-    }
 
     const translations = {
       it: {
         nav_story: "La nostra storia",
-        nav_menu: "Menu",
+        nav_menu: "Menù",
         nav_shop: "Prodotti online",
         nav_reviews: "Recensioni",
         nav_contacts: "Contatti",
@@ -5356,7 +5385,7 @@
         reviews_title: "Le parole dei nostri clienti",
         reviews_quote_1: "\"Pizza buonissima, serviti in un batter d'occhio, anche i dolci veramente buoni.\"",
         reviews_quote_2: "\"Pizza leggera, impasto gradevole, buona cottura e ingredienti genuini.\"",
-        reviews_quote_3: "\"La pizza senza glutine e' davvero ottima, leggera e molto digeribile.\"",
+        reviews_quote_3: "\"La pizza senza glutine è davvero ottima, leggera e molto digeribile.\"",
         reviews_verified: "Cliente verificato",
         reviews_source: "Recensione online",
         reviews_cta: "Lascia una recensione su Google",
@@ -5365,6 +5394,8 @@
         menu_title: "Pizze fatte bene, <span class=\"menu-title-accent\">servite con piacere</span>.",
         menu_text: "Dalle più classiche alle più ricercate, ogni proposta nasce da impasti curati, ingredienti scelti e quella voglia di farti stare bene a tavola.",
         menu_open: "Il nostro menù",
+        menu_flours_cta: "Le nostre farine",
+        story_cta: "Leggi di più",
         menu_modal_title: "Sfoglia il nostro menù",
         menu_modal_text: "Seleziona la categoria che preferisci e scopri le nostre pizze.",
         menu_tab_speciali: "Pizze Speciali",
@@ -5393,7 +5424,7 @@
         hero_fact_1: "Farine tipo 1 e 2",
         hero_fact_2: "Impasti speciali",
         hero_fact_3: "Vista Portofino",
-        hero_menu_cta: "Scopri il menu",
+        hero_menu_cta: "Scopri il menù",
         booking_eyebrow: "Prenotazioni",
         booking_title: "Prenota il tuo tavolo",
         booking_text: "Compila il form e invia la tua richiesta di prenotazione su WhatsApp in pochi secondi.",
@@ -5429,6 +5460,8 @@
         menu_title: "Pizzas made properly, <span class=\"menu-title-accent\">served with care</span>.",
         menu_text: "From timeless classics to more refined creations, every pizza starts with thoughtful doughs, selected ingredients and a genuine desire to make you feel good at the table.",
         menu_open: "Our menu",
+        menu_flours_cta: "Our flours",
+        story_cta: "Read more",
         menu_modal_title: "Browse our menu",
         menu_modal_text: "Choose the category you prefer and discover our pizzas.",
         menu_tab_speciali: "Special Pizzas",
@@ -5602,23 +5635,36 @@
         return;
       }
 
+      const isMobileSheetOpen = document.body.classList.contains("booking-panel-open");
+      const isDesktopSheetOpen = document.body.classList.contains("booking-modal-open");
+      const isAnySheetOpen = isMobileSheetOpen || isDesktopSheetOpen;
+
       if (bookingPanelMedia.matches) {
+        if (isDesktopSheetOpen && !isMobileSheetOpen) {
+          document.body.classList.remove("booking-modal-open");
+          document.body.classList.add("booking-panel-open");
+        }
+
         bookingCard.setAttribute("aria-hidden", "true");
         if (bookingMobilePanel) {
           bookingMobilePanel.setAttribute(
             "aria-hidden",
-            document.body.classList.contains("booking-panel-open") ? "false" : "true"
+            isAnySheetOpen ? "false" : "true"
           );
-          bookingMobilePanel.style.display = document.body.classList.contains("booking-panel-open")
+          bookingMobilePanel.style.display = isAnySheetOpen
             ? "block"
             : "none";
         }
       } else {
-        document.body.classList.remove("booking-panel-open");
+        if (isMobileSheetOpen && !isDesktopSheetOpen) {
+          document.body.classList.remove("booking-panel-open");
+          document.body.classList.add("booking-modal-open");
+        }
+
         bookingCard.setAttribute("aria-hidden", "false");
         if (bookingMobilePanel) {
-          bookingMobilePanel.setAttribute("aria-hidden", "true");
-          bookingMobilePanel.style.display = "none";
+          bookingMobilePanel.setAttribute("aria-hidden", document.body.classList.contains("booking-modal-open") ? "false" : "true");
+          bookingMobilePanel.style.display = document.body.classList.contains("booking-modal-open") ? "block" : "none";
         }
       }
     }
@@ -5637,7 +5683,10 @@
         toggle.setAttribute("aria-expanded", "false");
       }
 
-      if (!bookingPanelMedia.matches) {
+      const trigger = event?.currentTarget ?? event?.target?.closest("[data-open-booking-panel]");
+      const forceSheet = trigger?.dataset.bookingMode === "sheet";
+
+      if (!bookingPanelMedia.matches && !forceSheet) {
         bookingCard.scrollIntoView({ behavior: "smooth", block: "center" });
 
         setTimeout(() => {
@@ -5646,7 +5695,8 @@
         return;
       }
 
-      document.body.classList.add("booking-panel-open");
+      document.body.classList.remove("booking-panel-open", "booking-modal-open");
+      document.body.classList.add(bookingPanelMedia.matches ? "booking-panel-open" : "booking-modal-open");
       if (bookingMobilePanel) {
         bookingMobilePanel.setAttribute("aria-hidden", "false");
         bookingMobilePanel.style.display = "block";
@@ -5662,13 +5712,11 @@
         return;
       }
 
-      document.body.classList.remove("booking-panel-open");
+      document.body.classList.remove("booking-panel-open", "booking-modal-open");
 
-      if (bookingPanelMedia.matches) {
-        if (bookingMobilePanel) {
-          bookingMobilePanel.setAttribute("aria-hidden", "true");
-          bookingMobilePanel.style.display = "none";
-        }
+      if (bookingMobilePanel) {
+        bookingMobilePanel.setAttribute("aria-hidden", "true");
+        bookingMobilePanel.style.display = "none";
       }
     }
 
@@ -5710,6 +5758,25 @@
       trigger.addEventListener("click", closeBookingPanel);
     });
 
+    mapLoadButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const iframeId = button.dataset.target;
+        const iframeSrc = button.dataset.src;
+        const iframe = iframeId ? document.getElementById(iframeId) : null;
+        const mapCard = button.closest(".map-card");
+
+        if (!iframe || !iframeSrc) {
+          return;
+        }
+
+        if (!iframe.src) {
+          iframe.src = iframeSrc;
+        }
+
+        mapCard?.classList.add("loaded");
+      });
+    });
+
     document.addEventListener("click", (event) => {
       const openTrigger = event.target.closest("[data-open-booking-panel]");
       if (openTrigger) {
@@ -5742,7 +5809,10 @@
         return;
       }
 
-      if (document.body.classList.contains("booking-panel-open")) {
+      if (
+        document.body.classList.contains("booking-panel-open") ||
+        document.body.classList.contains("booking-modal-open")
+      ) {
         closeBookingPanel();
       }
 
@@ -5775,8 +5845,6 @@
 
     setMenuTab("speciali");
     setLanguage(localStorage.getItem("mama-language") || "it");
-    initStripeButtons();
-    window.addEventListener("pageshow", () => initStripeButtons());
     syncBookingPanelState();
     window.openBookingPanel = openBookingPanel;
     window.closeBookingPanel = closeBookingPanel;
