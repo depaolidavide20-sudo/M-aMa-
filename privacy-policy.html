@@ -16,6 +16,8 @@
       --accent-rgb: 243, 138, 65;
       --max: 1120px;
       --shadow: 0 26px 70px rgba(0, 0, 0, 0.28);
+      --body-font: Georgia, "Times New Roman", serif;
+      --display-font: "Baskerville", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
     }
 
     * {
@@ -24,13 +26,13 @@
 
     body,
     body * {
-      font-family: Georgia, "Times New Roman", serif !important;
+      font-family: var(--body-font) !important;
     }
 
     h1,
     h2,
     h3 {
-      font-family: "Fraunces", serif !important;
+      font-family: var(--display-font) !important;
     }
 
     body {
@@ -227,7 +229,9 @@
       min-height: 46px;
       padding: 0 18px;
       border-radius: 999px;
+      font-family: var(--display-font);
       font-weight: 800;
+      letter-spacing: -0.01em;
       transition: transform 0.2s ease;
     }
 
@@ -306,7 +310,7 @@
       </section>
 
       <section class="legal-card">
-        <p class="legal-meta">Ultimo aggiornamento: 29 maggio 2026</p>
+        <p class="legal-meta">Ultimo aggiornamento: 30 maggio 2026</p>
 
         <div class="legal-section">
           <h2>Titolare del trattamento</h2>
@@ -324,6 +328,7 @@
           <ul>
             <li>Dati tecnici di navigazione, come indirizzo IP, informazioni sul browser, data e ora di accesso e dati necessari al funzionamento tecnico del sito e dell'infrastruttura di hosting.</li>
             <li>La preferenza di lingua del sito, salvata localmente nel browser tramite la chiave tecnica <strong>mama-language</strong>.</li>
+            <li>La scelta relativa al caricamento opzionale di Google Maps, salvata localmente nel browser tramite la chiave tecnica <strong>mama-map-consent</strong>.</li>
             <li>I dati che l'utente decide liberamente di inserire per contattare il locale o richiedere una prenotazione, come nome, telefono, numero di persone, data, orario e preferenze tavolo.</li>
             <li>I dati eventualmente trasmessi attraverso canali esterni attivati dall'utente, per esempio WhatsApp, chiamata telefonica, Google Maps, social network o link al menù su Google Drive.</li>
           </ul>
@@ -341,8 +346,8 @@
 
         <div class="legal-section">
           <h2>Come funziona il sito</h2>
-          <p>Il sito ha una funzione prevalentemente informativa e di contatto. Il form di prenotazione non invia automaticamente i dati a un database del sito: il contenuto viene composto localmente nel browser e, solo se l'utente conferma, viene aperto un link verso WhatsApp per l'invio del messaggio.</p>
-          <p>La mappa di Google Maps non viene caricata automaticamente all'apertura della pagina: compare solo dopo un'azione esplicita dell'utente. Anche il menù digitale su Google Drive viene aperto esclusivamente su richiesta dell'utente, tramite link esterno.</p>
+          <p>Il sito ha una funzione prevalentemente informativa e di contatto. Il form di prenotazione non invia automaticamente i dati a un database del sito: il contenuto viene composto localmente nel browser e, solo se l'utente seleziona l'apposita casella di presa visione dell'informativa e conferma l'azione, viene aperto un link verso WhatsApp per l'invio volontario del messaggio.</p>
+          <p>La mappa di Google Maps non viene caricata automaticamente all'apertura della pagina: può essere attivata solo dopo un consenso o una richiesta esplicita dell'utente. La scelta relativa a Google Maps viene memorizzata localmente per 6 mesi. Anche il menù digitale su Google Drive viene aperto esclusivamente su richiesta dell'utente, tramite link esterno.</p>
         </div>
 
         <div class="legal-section">
@@ -350,7 +355,7 @@
           <ul>
             <li>Fornitori tecnici strettamente necessari alla pubblicazione del sito e alla gestione dell'infrastruttura.</li>
             <li>WhatsApp / Meta, solo se l'utente sceglie di inviare il messaggio di prenotazione o di aprire il canale di contatto.</li>
-            <li>Google, solo se l'utente sceglie di caricare la mappa o aprire il menù in Google Drive.</li>
+            <li>Google, solo se l'utente sceglie di caricare la mappa, presta il relativo consenso oppure apre il menù in Google Drive.</li>
             <li>Instagram e Facebook, solo se l'utente apre i relativi profili social.</li>
           </ul>
           <p>Questi servizi operano come titolari autonomi per i trattamenti svolti attraverso le rispettive piattaforme, secondo le loro informative privacy.</p>
@@ -358,7 +363,7 @@
 
         <div class="legal-section">
           <h2>Periodo di conservazione</h2>
-          <p>La preferenza di lingua resta memorizzata nel browser fino alla sua cancellazione manuale o allo svuotamento dei dati locali. Il sito, per quanto configurato attualmente, non conserva internamente i dati inseriti nel form di prenotazione.</p>
+          <p>La preferenza di lingua resta memorizzata nel browser fino alla sua cancellazione manuale o allo svuotamento dei dati locali. La scelta relativa a Google Maps resta memorizzata localmente per 6 mesi, salvo cancellazione manuale dei dati del browser. Il sito, per quanto configurato attualmente, non conserva internamente i dati inseriti nel form di prenotazione.</p>
           <p>I dati eventualmente trasmessi tramite WhatsApp, telefono, PEC o altri canali esterni possono essere conservati dal titolare per il tempo necessario alla gestione del rapporto con il cliente e agli eventuali obblighi di legge.</p>
         </div>
 

@@ -16,6 +16,8 @@
       --accent-rgb: 243, 138, 65;
       --max: 1120px;
       --shadow: 0 26px 70px rgba(0, 0, 0, 0.34);
+      --body-font: Georgia, "Times New Roman", serif;
+      --display-font: "Baskerville", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
     }
 
     * {
@@ -24,13 +26,13 @@
 
     body,
     body * {
-      font-family: Georgia, "Times New Roman", serif !important;
+      font-family: var(--body-font) !important;
     }
 
     h1,
     h2,
     h3 {
-      font-family: "Fraunces", serif !important;
+      font-family: var(--display-font) !important;
     }
 
     body {
@@ -133,6 +135,7 @@
       font: inherit;
       font-size: 0.78rem;
       font-weight: 700;
+      font-family: var(--display-font);
       cursor: pointer;
       transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
@@ -312,7 +315,9 @@
       min-height: 46px;
       padding: 0 18px;
       border-radius: 999px;
+      font-family: var(--display-font);
       font-weight: 800;
+      letter-spacing: -0.01em;
       transition: transform 0.2s ease;
     }
 
@@ -363,7 +368,7 @@
 
     .page-footer-company {
       color: #fff9f2;
-      font-family: "Fraunces", serif;
+      font-family: var(--display-font);
       font-size: clamp(1rem, 1.4vw, 1.2rem);
       line-height: 1.08;
       letter-spacing: -0.02em;

@@ -29,6 +29,8 @@
       --radius-lg: 24px;
       --radius-md: 18px;
       --max: 1180px;
+      --body-font: Georgia, "Times New Roman", serif;
+      --display-font: "Baskerville", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
     }
 
     * {
@@ -37,7 +39,7 @@
 
     body,
     body * {
-      font-family: Georgia, "Times New Roman", serif !important;
+      font-family: var(--body-font) !important;
     }
 
     h1,
@@ -45,7 +47,7 @@
     h3,
     .brand-name,
     .footer-legal-company {
-      font-family: "Fraunces", serif !important;
+      font-family: var(--display-font) !important;
     }
 
     html {
@@ -268,8 +270,22 @@
       border: 0;
       cursor: pointer;
       font: inherit;
+      font-family: var(--display-font);
       font-weight: 800;
+      letter-spacing: -0.01em;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .lang-btn,
+    .menu-cta-button,
+    .reviews-google-button,
+    .story-photo-note strong,
+    .story-photo-note-mobile strong,
+    .menu-kicker,
+    .section-eyebrow,
+    .hero-eyebrow,
+    .eyebrow {
+      font-family: var(--display-font) !important;
     }
 
     .btn:hover,
@@ -715,6 +731,46 @@
       width: 100%;
     }
 
+    .booking-consent {
+      display: grid;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .consent-check {
+      display: grid;
+      grid-template-columns: 18px minmax(0, 1fr);
+      align-items: start;
+      gap: 10px;
+      margin: 0;
+      color: rgba(255, 250, 244, 0.9);
+      font-size: 0.84rem;
+      line-height: 1.56;
+    }
+
+    .consent-check input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0;
+      padding: 0;
+      border-radius: 5px;
+      accent-color: var(--gold);
+      cursor: pointer;
+    }
+
+    .consent-check label {
+      cursor: pointer;
+    }
+
+    .consent-check a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .consent-check a:hover {
+      text-decoration: underline;
+    }
+
     .btn-wa-icon {
       width: 18px;
       height: 18px;
@@ -1084,6 +1140,40 @@
       image-rendering: -webkit-optimize-contrast;
     }
 
+    .menu-carousel-hint {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: -2px auto 2px;
+      color: rgba(247, 239, 228, 0.78);
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .menu-carousel-arrow {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--gold);
+      font-family: var(--display-font);
+      font-size: 1.1rem;
+      line-height: 1;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.16);
+    }
+
+    .menu-carousel-text {
+      font-family: var(--display-font);
+      font-size: 0.88rem;
+      font-style: italic;
+      letter-spacing: 0.01em;
+    }
+
     .menu-cta-row {
       display: flex;
       justify-content: center;
@@ -1100,9 +1190,10 @@
       border-radius: 999px;
       border: 0;
       font: inherit;
+      font-family: var(--display-font);
       font-size: 1rem;
       font-weight: 800;
-      letter-spacing: 0;
+      letter-spacing: -0.01em;
       text-transform: none;
       cursor: pointer;
       color: #fff;
@@ -1801,6 +1892,7 @@
       background: linear-gradient(145deg, #ff9b57, #e06d2c);
       color: #ffffff;
       font-weight: 800;
+      font-family: var(--display-font);
       font-size: 0.92rem;
       letter-spacing: -0.01em;
       box-shadow: 0 12px 22px rgba(var(--accent-rgb), 0.18);
@@ -2128,6 +2220,67 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
+    }
+
+    .map-consent-banner {
+      position: fixed;
+      left: 50%;
+      bottom: calc(18px + env(safe-area-inset-bottom));
+      transform: translateX(-50%);
+      z-index: 72;
+      width: min(calc(100% - 24px), 760px);
+      padding: 20px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        linear-gradient(180deg, rgba(14, 14, 14, 0.985), rgba(8, 8, 8, 0.985)),
+        radial-gradient(circle at top left, rgba(var(--accent-rgb), 0.08), transparent 42%);
+      box-shadow: 0 34px 72px rgba(0, 0, 0, 0.38);
+      backdrop-filter: blur(16px);
+    }
+
+    .map-consent-banner[hidden] {
+      display: none !important;
+    }
+
+    .map-consent-banner-inner {
+      display: grid;
+      gap: 16px;
+    }
+
+    .map-consent-banner-copy {
+      display: grid;
+      gap: 10px;
+    }
+
+    .map-consent-banner-copy strong {
+      font-family: var(--display-font);
+      font-size: 1.16rem;
+      line-height: 1.04;
+      color: #fff9f2;
+    }
+
+    .map-consent-banner-copy p {
+      margin: 0;
+      color: rgba(247, 239, 228, 0.84);
+      font-size: 0.95rem;
+      line-height: 1.62;
+    }
+
+    .map-consent-banner-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .map-consent-banner-actions .btn,
+    .map-consent-banner-actions .btn-ghost {
+      flex: 1 1 220px;
+      width: auto;
+    }
+
+    .map-consent-banner-actions .btn-ghost {
+      text-align: center;
     }
 
     .map-card:not(.loaded) .map-card-badge {
@@ -3137,6 +3290,10 @@
         scroll-snap-stop: always;
       }
 
+      .menu-carousel-hint {
+        display: flex;
+      }
+
       .menu-kicker {
         font-size: 0.78rem;
         letter-spacing: 0.24em;
@@ -3186,6 +3343,21 @@
 
       .map-card-consent-actions .btn,
       .map-card-consent-actions .btn-ghost {
+        width: 100%;
+      }
+
+      .map-consent-banner {
+        width: min(calc(100% - 20px), 560px);
+        padding: 18px 16px;
+        border-radius: 24px;
+      }
+
+      .map-consent-banner-actions {
+        display: grid;
+      }
+
+      .map-consent-banner-actions .btn,
+      .map-consent-banner-actions .btn-ghost {
         width: 100%;
       }
 
@@ -3830,6 +4002,15 @@
         font-size: 0.87rem;
         line-height: 1.48;
       }
+
+      .map-consent-banner-copy strong {
+        font-size: 1.02rem;
+      }
+
+      .map-consent-banner-copy p {
+        font-size: 0.9rem;
+        line-height: 1.56;
+      }
     }
 
     .hero-eyebrow {
@@ -4290,7 +4471,7 @@
       }
 
       .story-copy .story-photo-note-mobile {
-        display: block;
+        display: none;
         position: static;
         width: min(100%, 420px);
         max-width: none;
@@ -4637,12 +4818,21 @@
               <textarea id="booking-notes" name="notes"></textarea>
             </div>
 
+            <div class="booking-consent">
+              <div class="consent-check">
+                <input id="booking-consent" name="privacy_consent" type="checkbox" required />
+                <label for="booking-consent" data-i18n-html="booking_privacy_consent">
+                  Dichiaro di aver letto l'informativa privacy e di aver compreso che la richiesta verrà inviata tramite WhatsApp solo su mia azione volontaria. <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                </label>
+              </div>
+            </div>
+
             <div class="booking-actions">
               <button class="btn" type="submit">
                 <svg class="btn-wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M20.52 3.48A11.8 11.8 0 0012.01 0C5.38 0 .01 5.37 0 12c0 2.11.55 4.17 1.6 6L0 24l6.18-1.6A11.94 11.94 0 0012.01 24C18.64 24 24 18.63 24 12c0-3.2-1.25-6.2-3.48-8.52zM12.01 21.8c-1.8 0-3.57-.48-5.12-1.39l-.37-.22-3.67.95.98-3.58-.24-.37A9.77 9.77 0 012.2 12c0-5.4 4.4-9.8 9.8-9.8 2.62 0 5.08 1.02 6.93 2.87A9.72 9.72 0 0121.8 12c0 5.4-4.4 9.8-9.79 9.8zm5.39-7.34c-.29-.15-1.72-.85-1.99-.94-.27-.1-.47-.15-.67.15-.2.29-.77.94-.95 1.14-.17.2-.35.22-.64.07-.29-.15-1.24-.46-2.36-1.46-.87-.77-1.46-1.72-1.63-2.01-.17-.29-.02-.44.13-.59.13-.13.29-.35.44-.52.15-.17.2-.29.3-.49.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.29-1.04 1.02-1.04 2.49 0 1.47 1.07 2.9 1.22 3.1.15.2 2.11 3.22 5.11 4.52.71.31 1.27.5 1.7.64.71.22 1.35.19 1.86.12.57-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.2-.55-.35z"/>
                 </svg>
-                <span data-i18n="booking_submit">Prenota ora</span>
+                <span data-i18n="booking_send_whatsapp">Invia su WhatsApp</span>
               </button>
             </div>
           </form>
@@ -4705,6 +4895,12 @@
           <article class="menu-visual-card" data-animate>
             <img src="menu-visual-2-optimized.jpg" alt="Specialità del menu di Pizzeria M'aMa" width="1600" height="1200" loading="lazy" decoding="async" fetchpriority="low" />
           </article>
+        </div>
+
+        <div class="menu-carousel-hint" aria-hidden="true">
+          <span class="menu-carousel-arrow">‹</span>
+          <span class="menu-carousel-text" data-i18n="menu_carousel_hint">Scorri tra le pizze</span>
+          <span class="menu-carousel-arrow">›</span>
         </div>
 
         <div class="menu-cta-row" data-animate>
@@ -5294,11 +5490,11 @@
 
         <div class="map-card" data-animate>
           <div class="map-card-consent">
-            <strong>Google Maps</strong>
-            <p>La mappa viene caricata solo su richiesta, cos&igrave; evitiamo il caricamento automatico di contenuti di terze parti.</p>
+            <strong data-i18n="map_card_title">Google Maps</strong>
+            <p data-i18n="map_card_text">La mappa viene caricata solo su richiesta, cos&igrave; evitiamo il caricamento automatico di contenuti di terze parti.</p>
             <div class="map-card-consent-actions">
-              <button class="btn-ghost" type="button" data-load-map data-target="contactMapFrame" data-src="https://www.google.com/maps?q=Corso+Valparaiso+150,+16043+Chiavari+GE&z=16&output=embed">Carica la mappa</button>
-              <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Corso+Valparaiso+150,+16043+Chiavari+GE" target="_blank" rel="noopener noreferrer">Apri su Google Maps</a>
+              <button class="btn-ghost" type="button" data-load-map data-target="contactMapFrame" data-src="https://www.google.com/maps?q=Corso+Valparaiso+150,+16043+Chiavari+GE&z=16&output=embed" data-i18n="map_card_load">Carica la mappa</button>
+              <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Corso+Valparaiso+150,+16043+Chiavari+GE" target="_blank" rel="noopener noreferrer" data-i18n="map_card_open">Apri su Google Maps</a>
             </div>
           </div>
           <iframe
@@ -5306,6 +5502,7 @@
             title="Mappa per raggiungere Pizzeria M'aMa"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
+            data-map-src="https://www.google.com/maps?q=Corso+Valparaiso+150,+16043+Chiavari+GE&z=16&output=embed"
           ></iframe>
           <div class="map-card-badge">
             <strong>Chiavari, fronte mare</strong>
@@ -5315,6 +5512,20 @@
       </div>
     </section>
   </main>
+
+  <div class="map-consent-banner" id="mapConsentBanner" hidden>
+    <div class="map-consent-banner-inner">
+      <div class="map-consent-banner-copy">
+        <strong data-i18n="map_banner_title">Google Maps su richiesta</strong>
+        <p data-i18n="map_banner_text">Utilizziamo solo strumenti tecnici necessari al funzionamento del sito. Google Maps viene caricato solo con il tuo consenso e la tua scelta viene ricordata per 6 mesi.</p>
+      </div>
+      <div class="map-consent-banner-actions">
+        <button class="btn" type="button" data-map-consent="granted" data-i18n="map_banner_accept">Accetta Google Maps</button>
+        <button class="btn-ghost" type="button" data-map-consent="denied" data-i18n="map_banner_decline">Continua senza Google Maps</button>
+        <a class="btn-ghost" href="cookie-policy.html" data-i18n="map_banner_more">Scopri di più</a>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="container footer-shell">
@@ -5404,12 +5615,21 @@
           <textarea id="booking-mobile-notes" name="notes" data-ph="ph_notes" placeholder="Tavolo interno o esterno, seggiolone, arrivo con passeggino."></textarea>
         </div>
 
+        <div class="booking-consent">
+          <div class="consent-check">
+            <input id="booking-mobile-consent" name="privacy_consent" type="checkbox" required />
+            <label for="booking-mobile-consent" data-i18n-html="booking_privacy_consent">
+              Dichiaro di aver letto l'informativa privacy e di aver compreso che la richiesta verrà inviata tramite WhatsApp solo su mia azione volontaria. <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+            </label>
+          </div>
+        </div>
+
         <div class="booking-actions">
           <button class="btn" type="submit">
             <svg class="btn-wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M20.52 3.48A11.8 11.8 0 0012.01 0C5.38 0 .01 5.37 0 12c0 2.11.55 4.17 1.6 6L0 24l6.18-1.6A11.94 11.94 0 0012.01 24C18.64 24 24 18.63 24 12c0-3.2-1.25-6.2-3.48-8.52zM12.01 21.8c-1.8 0-3.57-.48-5.12-1.39l-.37-.22-3.67.95.98-3.58-.24-.37A9.77 9.77 0 012.2 12c0-5.4 4.4-9.8 9.8-9.8 2.62 0 5.08 1.02 6.93 2.87A9.72 9.72 0 0121.8 12c0 5.4-4.4 9.8-9.79 9.8zm5.39-7.34c-.29-.15-1.72-.85-1.99-.94-.27-.1-.47-.15-.67.15-.2.29-.77.94-.95 1.14-.17.2-.35.22-.64.07-.29-.15-1.24-.46-2.36-1.46-.87-.77-1.46-1.72-1.63-2.01-.17-.29-.02-.44.13-.59.13-.13.29-.35.44-.52.15-.17.2-.29.3-.49.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.29-1.04 1.02-1.04 2.49 0 1.47 1.07 2.9 1.22 3.1.15.2 2.11 3.22 5.11 4.52.71.31 1.27.5 1.7.64.71.22 1.35.19 1.86.12.57-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.2-.55-.35z"/>
             </svg>
-            <span data-i18n="booking_submit">Prenota ora</span>
+            <span data-i18n="booking_send_whatsapp">Invia su WhatsApp</span>
           </button>
         </div>
       </form>
@@ -5446,8 +5666,12 @@
     const menuTabs = document.querySelectorAll(".menu-tab");
     const menuPanels = document.querySelectorAll("[data-menu-panel]");
     const mapLoadButtons = document.querySelectorAll("[data-load-map]");
+    const mapConsentBanner = document.getElementById("mapConsentBanner");
+    const mapConsentButtons = document.querySelectorAll("[data-map-consent]");
     const whatsappNumber = "393792041914";
     const bookingPanelMedia = window.matchMedia("(max-width: 880px)");
+    const mapConsentStorageKey = "mama-map-consent";
+    const mapConsentDurationMs = 1000 * 60 * 60 * 24 * 180;
 
     const translations = {
       it: {
@@ -5468,6 +5692,7 @@
         menu_eyebrow: "Le nostre specialità",
         menu_title: "Pizze fatte bene, <span class=\"menu-title-accent\">servite con piacere</span>.",
         menu_text: "Dalle più classiche alle più ricercate, ogni proposta nasce da impasti curati, ingredienti scelti e quella voglia di farti stare bene a tavola.",
+        menu_carousel_hint: "Scorri tra le pizze",
         menu_open: "Il nostro menù",
         menu_flours_cta: "Le nostre farine",
         story_cta: "Leggi di più",
@@ -5509,6 +5734,17 @@
         form_date: "Data",
         form_time: "Orario",
         form_notes: "Preferenze tavolo",
+        booking_privacy_consent: "Dichiaro di aver letto l'informativa privacy e di aver compreso che la richiesta verrà inviata tramite WhatsApp solo su mia azione volontaria. <a href=\"privacy-policy.html\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>",
+        booking_send_whatsapp: "Invia su WhatsApp",
+        map_card_title: "Google Maps",
+        map_card_text: "La mappa viene caricata solo su richiesta, così evitiamo il caricamento automatico di contenuti di terze parti.",
+        map_card_load: "Carica la mappa",
+        map_card_open: "Apri su Google Maps",
+        map_banner_title: "Google Maps su richiesta",
+        map_banner_text: "Utilizziamo solo strumenti tecnici necessari al funzionamento del sito. Google Maps viene caricato solo con il tuo consenso e la tua scelta viene ricordata per 6 mesi.",
+        map_banner_accept: "Accetta Google Maps",
+        map_banner_decline: "Continua senza Google Maps",
+        map_banner_more: "Scopri di più",
         ph_name: "Nome e cognome",
         ph_phone: "Telefono",
         ph_guests: "Persone",
@@ -5534,6 +5770,7 @@
         menu_eyebrow: "Our specialties",
         menu_title: "Pizzas made properly, <span class=\"menu-title-accent\">served with care</span>.",
         menu_text: "From timeless classics to more refined creations, every pizza starts with thoughtful doughs, selected ingredients and a genuine desire to make you feel good at the table.",
+        menu_carousel_hint: "Swipe through the pizzas",
         menu_open: "Our menu",
         menu_flours_cta: "Our flours",
         story_cta: "Read more",
@@ -5575,6 +5812,17 @@
         form_date: "Date",
         form_time: "Time",
         form_notes: "Table preferences",
+        booking_privacy_consent: "I confirm that I have read the privacy notice and understand that the request will be sent through WhatsApp only as a voluntary action on my part. <a href=\"privacy-policy.html\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>",
+        booking_send_whatsapp: "Send on WhatsApp",
+        map_card_title: "Google Maps",
+        map_card_text: "The map is loaded only on request, so we avoid automatically loading third-party content.",
+        map_card_load: "Load the map",
+        map_card_open: "Open in Google Maps",
+        map_banner_title: "Google Maps on request",
+        map_banner_text: "We only use technical tools necessary for the site to work. Google Maps is loaded only with your consent and your choice is remembered for 6 months.",
+        map_banner_accept: "Accept Google Maps",
+        map_banner_decline: "Continue without Google Maps",
+        map_banner_more: "Learn more",
         ph_name: "Full name",
         ph_phone: "Phone",
         ph_guests: "Guests",
@@ -5671,6 +5919,83 @@
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`;
       window.open(whatsappUrl, "_blank", "noopener");
       closeBookingPanel();
+    }
+
+    function getStoredMapConsent() {
+      try {
+        const raw = localStorage.getItem(mapConsentStorageKey);
+        if (!raw) {
+          return null;
+        }
+
+        const parsed = JSON.parse(raw);
+        if (!parsed?.value || !parsed?.expiresAt || parsed.expiresAt < Date.now()) {
+          localStorage.removeItem(mapConsentStorageKey);
+          return null;
+        }
+
+        return parsed.value;
+      } catch (error) {
+        localStorage.removeItem(mapConsentStorageKey);
+        return null;
+      }
+    }
+
+    function storeMapConsent(value) {
+      localStorage.setItem(
+        mapConsentStorageKey,
+        JSON.stringify({
+          value,
+          expiresAt: Date.now() + mapConsentDurationMs
+        })
+      );
+    }
+
+    function loadContactMap() {
+      const iframe = document.getElementById("contactMapFrame");
+      const mapCard = iframe?.closest(".map-card");
+      const source = iframe?.dataset.mapSrc;
+
+      if (!iframe || !source) {
+        return;
+      }
+
+      if (!iframe.src) {
+        iframe.src = source;
+      }
+
+      mapCard?.classList.add("loaded");
+    }
+
+    function setMapConsent(value, { persist = true, loadMap = false } = {}) {
+      if (persist) {
+        storeMapConsent(value);
+      }
+
+      if (value === "granted" || loadMap) {
+        loadContactMap();
+      }
+
+      if (mapConsentBanner) {
+        mapConsentBanner.hidden = true;
+      }
+    }
+
+    function syncMapConsentBanner() {
+      if (!mapConsentBanner) {
+        return;
+      }
+
+      const consent = getStoredMapConsent();
+      if (!consent) {
+        mapConsentBanner.hidden = false;
+        return;
+      }
+
+      mapConsentBanner.hidden = true;
+      if (consent === "granted") {
+        loadContactMap();
+      }
     }
 
     function setMenuTab(tabName) {
@@ -5838,20 +6163,17 @@
 
     mapLoadButtons.forEach((button) => {
       button.addEventListener("click", () => {
-        const iframeId = button.dataset.target;
-        const iframeSrc = button.dataset.src;
-        const iframe = iframeId ? document.getElementById(iframeId) : null;
-        const mapCard = button.closest(".map-card");
+        setMapConsent("granted", { persist: true, loadMap: true });
+      });
+    });
 
-        if (!iframe || !iframeSrc) {
-          return;
-        }
-
-        if (!iframe.src) {
-          iframe.src = iframeSrc;
-        }
-
-        mapCard?.classList.add("loaded");
+    mapConsentButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const choice = button.dataset.mapConsent;
+        setMapConsent(choice, {
+          persist: true,
+          loadMap: choice === "granted"
+        });
       });
     });
 
@@ -5923,6 +6245,7 @@
 
     setMenuTab("speciali");
     setLanguage(localStorage.getItem("mama-language") || "it");
+    syncMapConsentBanner();
     syncBookingPanelState();
     window.openBookingPanel = openBookingPanel;
     window.closeBookingPanel = closeBookingPanel;

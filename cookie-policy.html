@@ -16,6 +16,8 @@
       --accent-rgb: 243, 138, 65;
       --max: 1120px;
       --shadow: 0 26px 70px rgba(0, 0, 0, 0.28);
+      --body-font: Georgia, "Times New Roman", serif;
+      --display-font: "Baskerville", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
     }
 
     * {
@@ -24,13 +26,13 @@
 
     body,
     body * {
-      font-family: Georgia, "Times New Roman", serif !important;
+      font-family: var(--body-font) !important;
     }
 
     h1,
     h2,
     h3 {
-      font-family: "Fraunces", serif !important;
+      font-family: var(--display-font) !important;
     }
 
     body {
@@ -226,7 +228,9 @@
       min-height: 46px;
       padding: 0 18px;
       border-radius: 999px;
+      font-family: var(--display-font);
       font-weight: 800;
+      letter-spacing: -0.01em;
       transition: transform 0.2s ease;
     }
 
@@ -305,7 +309,7 @@
       </section>
 
       <section class="legal-card">
-        <p class="legal-meta">Ultimo aggiornamento: 29 maggio 2026</p>
+        <p class="legal-meta">Ultimo aggiornamento: 30 maggio 2026</p>
 
         <div class="legal-section">
           <h2>Cosa sono cookie e strumenti analoghi</h2>
@@ -321,6 +325,12 @@
               <span>Finalità: ricordare la lingua selezionata dall'utente tra italiano e inglese.</span>
               <span>Durata: fino a cancellazione manuale da parte dell'utente o svuotamento dei dati del browser.</span>
             </div>
+            <div class="policy-row">
+              <strong>mama-map-consent</strong>
+              <span>Tipo: memorizzazione tecnica locale (local storage)</span>
+              <span>Finalità: ricordare per 6 mesi la scelta dell'utente sul caricamento opzionale di Google Maps.</span>
+              <span>Durata: 6 mesi dalla scelta, salvo cancellazione manuale da parte dell'utente o svuotamento dei dati del browser.</span>
+            </div>
           </div>
           <p style="margin-top: 14px;">Allo stato attuale, il sito non installa cookie di profilazione o marketing di prima parte e non carica automaticamente strumenti di analisi comportamentale o advertising.</p>
         </div>
@@ -328,7 +338,7 @@
         <div class="legal-section">
           <h2>Contenuti e servizi di terze parti attivati solo su richiesta</h2>
           <ul>
-            <li><strong>Google Maps:</strong> la mappa non viene caricata automaticamente. Si attiva solo dopo il click dell'utente sul pulsante dedicato.</li>
+            <li><strong>Google Maps:</strong> la mappa non viene caricata automaticamente. Si attiva solo dopo un consenso o un'azione esplicita dell'utente, e la relativa preferenza può essere ricordata per 6 mesi.</li>
             <li><strong>Google Drive:</strong> il menù digitale viene aperto tramite link esterno solo su iniziativa dell'utente.</li>
             <li><strong>WhatsApp / Meta:</strong> il messaggio di prenotazione viene generato nel browser e inviato solo se l'utente sceglie di aprire WhatsApp.</li>
             <li><strong>Instagram e Facebook:</strong> i profili social vengono aperti soltanto se l'utente clicca sui relativi collegamenti.</li>
@@ -338,12 +348,12 @@
 
         <div class="legal-section">
           <h2>Serve un banner cookie?</h2>
-          <p>Per la configurazione attuale del sito, che utilizza soltanto memorizzazione tecnica locale e carica i contenuti di terze parti solo dopo un'azione esplicita dell'utente, non è previsto un banner per finalità di profilazione o marketing. Se in futuro verranno introdotti strumenti statistici non anonimizzati, pixel pubblicitari, mappe o widget caricati automaticamente, questa policy e l'eventuale meccanismo di consenso dovranno essere aggiornati.</p>
+          <p>Per la configurazione attuale del sito non viene utilizzato un classico banner per finalità di profilazione o marketing, perché non risultano installati cookie pubblicitari o strumenti analoghi di tracciamento comportamentale. Tuttavia, per Google Maps è presente un meccanismo dedicato di scelta preventiva: l'utente può accettarne il caricamento oppure continuare senza attivarlo, e la preferenza viene ricordata localmente per 6 mesi.</p>
         </div>
 
         <div class="legal-section">
           <h2>Come gestire o rimuovere i dati salvati</h2>
-          <p>L'utente può cancellare i dati tecnici memorizzati dal sito direttamente dalle impostazioni del proprio browser, eliminando cookie, local storage o altri dati di navigazione. Questo potrebbe comportare la perdita della preferenza di lingua salvata.</p>
+          <p>L'utente può cancellare i dati tecnici memorizzati dal sito direttamente dalle impostazioni del proprio browser, eliminando cookie, local storage o altri dati di navigazione. Questo potrebbe comportare la perdita della preferenza di lingua salvata e della scelta relativa al caricamento di Google Maps.</p>
         </div>
 
         <div class="legal-section">

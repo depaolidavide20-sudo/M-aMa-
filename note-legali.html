@@ -16,6 +16,8 @@
       --accent-rgb: 243, 138, 65;
       --max: 1120px;
       --shadow: 0 26px 70px rgba(0, 0, 0, 0.28);
+      --body-font: Georgia, "Times New Roman", serif;
+      --display-font: "Baskerville", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
     }
 
     * {
@@ -24,13 +26,13 @@
 
     body,
     body * {
-      font-family: Georgia, "Times New Roman", serif !important;
+      font-family: var(--body-font) !important;
     }
 
     h1,
     h2,
     h3 {
-      font-family: "Fraunces", serif !important;
+      font-family: var(--display-font) !important;
     }
 
     body {
@@ -220,7 +222,9 @@
       min-height: 46px;
       padding: 0 18px;
       border-radius: 999px;
+      font-family: var(--display-font);
       font-weight: 800;
+      letter-spacing: -0.01em;
       transition: transform 0.2s ease;
     }
 
