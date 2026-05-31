@@ -1160,10 +1160,10 @@
     .menu-carousel-hint {
       display: none;
       align-items: center;
-      justify-content: flex-end;
-      gap: 8px;
+      justify-content: center;
+      gap: 10px;
       width: min(100%, 1140px);
-      margin: 0 auto -10px;
+      margin: 0 auto;
       color: rgba(247, 239, 228, 0.78);
       text-align: center;
       pointer-events: none;
@@ -1171,20 +1171,20 @@
 
     .menu-carousel-arrow {
       position: relative;
-      width: 34px;
-      height: 34px;
+      width: 38px;
+      height: 38px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.14);
-      background: rgba(14, 14, 14, 0.7);
+      background: rgba(10, 10, 10, 0.58);
       color: var(--gold);
       font-family: var(--display-font);
-      font-size: 1.16rem;
+      font-size: 1.12rem;
       font-weight: 500;
       line-height: 1;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
       backdrop-filter: blur(10px);
       opacity: 0.98;
     }
@@ -3319,9 +3319,9 @@
       }
 
       .menu-header .section-title p {
-        max-width: 35ch;
-        font-size: 0.94rem;
-        line-height: 1.5;
+        max-width: 32ch;
+        font-size: 0.9rem;
+        line-height: 1.44;
       }
 
       .menu-visual-card {
@@ -3334,15 +3334,17 @@
 
       .menu-carousel-hint {
         display: flex;
-        order: 2;
-        gap: 8px;
-        margin: 2px 12px -12px auto;
+        order: 3;
+        gap: 10px;
+        width: fit-content;
+        margin: -56px auto 0;
         position: relative;
-        z-index: 2;
+        z-index: 3;
       }
 
       .menu-visual-grid {
-        order: 3;
+        order: 2;
+        position: relative;
       }
 
       .menu-kicker {
@@ -3351,7 +3353,9 @@
       }
 
       .menu-cta-row {
-        padding: 10px 0 0;
+        order: 4;
+        padding: 14px 0 0;
+        justify-content: center;
       }
 
       .menu-cta-button {
@@ -3421,14 +3425,17 @@
 
       .map-consent-banner-actions [data-map-consent="granted"] {
         grid-column: 1 / 2;
+        grid-row: 1 / 2;
       }
 
       .map-consent-banner-actions [data-map-consent="denied"] {
         grid-column: 1 / 2;
+        grid-row: 2 / 3;
       }
 
       .map-consent-banner-actions a.btn-ghost {
         grid-column: 2 / 3;
+        grid-row: 2 / 3;
       }
 
       .menu-modal {
@@ -4963,7 +4970,7 @@
             <span class="menu-kicker" data-i18n="menu_eyebrow">Menù</span>
             <h2 data-i18n-html="menu_title">Pizze fatte bene, <span class="menu-title-accent">servite con piacere</span>.</h2>
             <p data-i18n="menu_text">
-              Dalle pi&ugrave; classiche alle pi&ugrave; ricercate, ogni proposta nasce da impasti curati, ingredienti scelti e quella voglia di farti stare bene a tavola.
+              Impasti curati e ingredienti scelti, dalle classiche alle pi&ugrave; ricercate.
             </p>
           </div>
         </div>
@@ -5776,7 +5783,7 @@
         story_note_text: "Veranda affacciata sul tramonto, luce soffusa e un'atmosfera che invita a restare.",
         menu_eyebrow: "Menù",
         menu_title: "Pizze fatte bene, <span class=\"menu-title-accent\">servite con piacere</span>.",
-        menu_text: "Dalle più classiche alle più ricercate, ogni proposta nasce da impasti curati, ingredienti scelti e quella voglia di farti stare bene a tavola.",
+        menu_text: "Impasti curati e ingredienti scelti, dalle classiche alle più ricercate.",
         menu_carousel_hint: "Scorri tra le pizze",
         menu_open: "Il nostro menù",
         menu_flours_cta: "Le nostre farine",
@@ -5878,7 +5885,7 @@
         story_note_text: "A veranda overlooking the sunset, soft light and an atmosphere that invites you to stay.",
         menu_eyebrow: "Menu",
         menu_title: "Pizzas made properly, <span class=\"menu-title-accent\">served with care</span>.",
-        menu_text: "From timeless classics to more refined creations, every pizza starts with thoughtful doughs, selected ingredients and a genuine desire to make you feel good at the table.",
+        menu_text: "Selected ingredients and refined doughs, from classics to signature pizzas.",
         menu_carousel_hint: "Swipe through the pizzas",
         menu_open: "Our menu",
         menu_flours_cta: "Our flours",
