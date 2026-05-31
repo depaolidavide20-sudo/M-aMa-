@@ -1171,8 +1171,8 @@
 
     .menu-carousel-arrow {
       position: relative;
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -1180,13 +1180,20 @@
       border: 1px solid rgba(255, 255, 255, 0.14);
       background: rgba(10, 10, 10, 0.58);
       color: var(--gold);
-      font-family: var(--display-font);
-      font-size: 1.12rem;
-      font-weight: 500;
-      line-height: 1;
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
       backdrop-filter: blur(10px);
       opacity: 0.98;
+    }
+
+    .menu-carousel-arrow svg {
+      width: 12px;
+      height: 12px;
+      display: block;
+      stroke: currentColor;
+      stroke-width: 2.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
     }
 
     .menu-carousel-arrow::after {
@@ -3319,8 +3326,8 @@
       }
 
       .menu-header .section-title p {
-        max-width: 32ch;
-        font-size: 0.9rem;
+        max-width: 36ch;
+        font-size: 0.92rem;
         line-height: 1.44;
       }
 
@@ -3337,7 +3344,7 @@
         order: 3;
         gap: 10px;
         width: fit-content;
-        margin: -56px auto 0;
+        margin: -66px auto 10px;
         position: relative;
         z-index: 3;
       }
@@ -4970,7 +4977,7 @@
             <span class="menu-kicker" data-i18n="menu_eyebrow">Menù</span>
             <h2 data-i18n-html="menu_title">Pizze fatte bene, <span class="menu-title-accent">servite con piacere</span>.</h2>
             <p data-i18n="menu_text">
-              Impasti curati e ingredienti scelti, dalle classiche alle pi&ugrave; ricercate.
+              Impasti curati e ingredienti scelti, dalle classiche alle speciali.
             </p>
           </div>
         </div>
@@ -4985,8 +4992,16 @@
         </div>
 
         <div class="menu-carousel-hint" aria-hidden="true">
-          <span class="menu-carousel-arrow">‹</span>
-          <span class="menu-carousel-arrow">›</span>
+          <span class="menu-carousel-arrow">
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M10 3.5 5.5 8 10 12.5"></path>
+            </svg>
+          </span>
+          <span class="menu-carousel-arrow">
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M6 3.5 10.5 8 6 12.5"></path>
+            </svg>
+          </span>
         </div>
 
         <div class="menu-cta-row" data-animate>
@@ -5783,7 +5798,7 @@
         story_note_text: "Veranda affacciata sul tramonto, luce soffusa e un'atmosfera che invita a restare.",
         menu_eyebrow: "Menù",
         menu_title: "Pizze fatte bene, <span class=\"menu-title-accent\">servite con piacere</span>.",
-        menu_text: "Impasti curati e ingredienti scelti, dalle classiche alle più ricercate.",
+        menu_text: "Impasti curati e ingredienti scelti, dalle classiche alle speciali.",
         menu_carousel_hint: "Scorri tra le pizze",
         menu_open: "Il nostro menù",
         menu_flours_cta: "Le nostre farine",
@@ -5885,7 +5900,7 @@
         story_note_text: "A veranda overlooking the sunset, soft light and an atmosphere that invites you to stay.",
         menu_eyebrow: "Menu",
         menu_title: "Pizzas made properly, <span class=\"menu-title-accent\">served with care</span>.",
-        menu_text: "Selected ingredients and refined doughs, from classics to signature pizzas.",
+        menu_text: "Refined doughs and selected ingredients, from classics to signature pizzas.",
         menu_carousel_hint: "Swipe through the pizzas",
         menu_open: "Our menu",
         menu_flours_cta: "Our flours",
