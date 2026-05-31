@@ -29,8 +29,8 @@
       --radius-lg: 24px;
       --radius-md: 18px;
       --max: 1180px;
-      --body-font: Georgia, "Times New Roman", serif;
-      --display-font: "Baskerville", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
+      --body-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      --display-font: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
     }
 
     * {
@@ -45,6 +45,7 @@
     h1,
     h2,
     h3,
+    h4,
     .brand-name,
     .footer-legal-company {
       font-family: var(--display-font) !important;
@@ -270,21 +271,31 @@
       border: 0;
       cursor: pointer;
       font: inherit;
-      font-family: var(--display-font);
+      font-family: var(--body-font);
       font-weight: 800;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.01em;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
     .lang-btn,
     .menu-cta-button,
     .reviews-google-button,
-    .story-photo-note strong,
-    .story-photo-note-mobile strong,
     .menu-kicker,
     .section-eyebrow,
     .hero-eyebrow,
     .eyebrow {
+      font-family: var(--body-font) !important;
+    }
+
+    .story-photo-note strong,
+    .story-photo-note-mobile strong,
+    .booking-card h2,
+    .booking-sheet h2,
+    .menu-modal-head h3,
+    .menu-detail-header h4,
+    .map-card-consent strong,
+    .map-card-badge strong,
+    .price-card h3 {
       font-family: var(--display-font) !important;
     }
 
@@ -1006,7 +1017,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
+      object-position: 46% center;
       flex: 1 1 auto;
     }
 
@@ -1065,13 +1076,19 @@
     }
 
     .menu-kicker {
-      display: inline-block;
-      margin-bottom: 18px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: 0.34em;
+      display: inline-flex;
+      justify-content: center;
+      width: fit-content;
+      margin: 0 auto 18px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(var(--accent-rgb), 0.22);
+      background: rgba(var(--accent-rgb), 0.08);
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(var(--accent-rgb), 0.94);
     }
 
     .menu-header .section-title {
@@ -1082,8 +1099,8 @@
 
     .menu-header .section-title h2 {
       margin-bottom: 18px;
-      font-size: clamp(2.85rem, 5.1vw, 5.6rem);
-      line-height: 0.94;
+      font-size: clamp(2.7rem, 5vw, 5rem);
+      line-height: 0.96;
       letter-spacing: -0.04em;
       color: #f8f1e8;
       text-wrap: balance;
@@ -1099,9 +1116,9 @@
     .menu-header .section-title p {
       max-width: 760px;
       margin: 0 auto;
-      font-size: clamp(1.04rem, 1.16vw, 1.18rem);
-      line-height: 1.74;
-      color: rgba(230, 216, 199, 0.84);
+      font-size: clamp(1.02rem, 1.1vw, 1.12rem);
+      line-height: 1.72;
+      color: rgba(236, 227, 215, 0.84);
       text-wrap: balance;
     }
 
@@ -1144,34 +1161,45 @@
       display: none;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      margin: -2px auto 2px;
+      gap: 2px;
+      margin: 6px auto 0;
       color: rgba(247, 239, 228, 0.78);
       text-align: center;
       pointer-events: none;
     }
 
     .menu-carousel-arrow {
-      width: 34px;
-      height: 34px;
+      position: relative;
+      width: 22px;
+      height: 22px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.04);
+      border: 0;
+      background: transparent;
       color: var(--gold);
       font-family: var(--display-font);
-      font-size: 1.1rem;
+      font-size: 1.28rem;
+      font-weight: 500;
       line-height: 1;
-      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.16);
+      box-shadow: none;
+      opacity: 0.94;
+    }
+
+    .menu-carousel-arrow::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -1px;
+      width: 10px;
+      height: 1px;
+      background: rgba(var(--accent-rgb), 0.34);
+      transform: translateX(-50%);
     }
 
     .menu-carousel-text {
-      font-family: var(--display-font);
-      font-size: 0.88rem;
-      font-style: italic;
-      letter-spacing: 0.01em;
+      display: none;
     }
 
     .menu-cta-row {
@@ -1190,10 +1218,10 @@
       border-radius: 999px;
       border: 0;
       font: inherit;
-      font-family: var(--display-font);
+      font-family: var(--body-font);
       font-size: 1rem;
       font-weight: 800;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.01em;
       text-transform: none;
       cursor: pointer;
       color: #fff;
@@ -1892,9 +1920,9 @@
       background: linear-gradient(145deg, #ff9b57, #e06d2c);
       color: #ffffff;
       font-weight: 800;
-      font-family: var(--display-font);
-      font-size: 0.92rem;
-      letter-spacing: -0.01em;
+      font-family: var(--body-font);
+      font-size: 0.94rem;
+      letter-spacing: 0.01em;
       box-shadow: 0 12px 22px rgba(var(--accent-rgb), 0.18);
     }
 
@@ -2230,12 +2258,12 @@
       z-index: 72;
       width: min(calc(100% - 24px), 760px);
       padding: 20px;
-      border-radius: 28px;
+      border-radius: 30px;
       border: 1px solid rgba(255, 255, 255, 0.08);
       background:
-        linear-gradient(180deg, rgba(14, 14, 14, 0.985), rgba(8, 8, 8, 0.985)),
-        radial-gradient(circle at top left, rgba(var(--accent-rgb), 0.08), transparent 42%);
-      box-shadow: 0 34px 72px rgba(0, 0, 0, 0.38);
+        linear-gradient(180deg, rgba(15, 13, 11, 0.985), rgba(8, 8, 8, 0.99)),
+        radial-gradient(circle at top left, rgba(var(--accent-rgb), 0.12), transparent 44%);
+      box-shadow: 0 36px 74px rgba(0, 0, 0, 0.42);
       backdrop-filter: blur(16px);
     }
 
@@ -2251,6 +2279,7 @@
     .map-consent-banner-copy {
       display: grid;
       gap: 10px;
+      text-align: left;
     }
 
     .map-consent-banner-copy strong {
@@ -2280,6 +2309,9 @@
     }
 
     .map-consent-banner-actions .btn-ghost {
+      color: rgba(248, 222, 196, 0.94);
+      border: 1px solid rgba(var(--accent-rgb), 0.34);
+      background: rgba(var(--accent-rgb), 0.08);
       text-align: center;
     }
 
@@ -3292,11 +3324,12 @@
 
       .menu-carousel-hint {
         display: flex;
+        gap: 4px;
       }
 
       .menu-kicker {
         font-size: 0.78rem;
-        letter-spacing: 0.24em;
+        letter-spacing: 0.18em;
       }
 
       .menu-cta-row {
@@ -3348,17 +3381,23 @@
 
       .map-consent-banner {
         width: min(calc(100% - 20px), 560px);
-        padding: 18px 16px;
-        border-radius: 24px;
+        padding: 20px 16px 18px;
+        border-radius: 28px;
       }
 
       .map-consent-banner-actions {
         display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
       }
 
       .map-consent-banner-actions .btn,
       .map-consent-banner-actions .btn-ghost {
         width: 100%;
+      }
+
+      .map-consent-banner-actions .btn {
+        grid-column: 1 / -1;
       }
 
       .menu-modal {
@@ -4008,8 +4047,17 @@
       }
 
       .map-consent-banner-copy p {
-        font-size: 0.9rem;
-        line-height: 1.56;
+        font-size: 0.98rem;
+        line-height: 1.58;
+      }
+
+      .map-consent-banner-actions {
+        gap: 10px;
+      }
+
+      .map-consent-banner-actions .btn,
+      .map-consent-banner-actions .btn-ghost {
+        min-height: 52px;
       }
     }
 
@@ -4493,7 +4541,7 @@
         height: 100%;
         min-height: 360px;
         object-fit: cover;
-        object-position: 48% center;
+        object-position: 46% center;
         border-radius: inherit;
       }
 
@@ -4541,7 +4589,7 @@
 
       .story-photo-card img {
         min-height: 280px;
-        object-position: 48% center;
+        object-position: 46% center;
       }
 
       .story-copy .story-photo-note-mobile {
@@ -4845,20 +4893,20 @@
       <div class="container story-grid">
         <div class="panel story-copy" data-animate>
           <div class="section-title">
-            <span class="section-eyebrow">La nostra storia</span>
-            <h2>Dal 2012 M'aMa porta a Chiavari una pizza che punta pi&ugrave; in alto.</h2>
-            <p>
+            <span class="section-eyebrow" data-i18n="story_eyebrow">La nostra storia</span>
+            <h2 data-i18n="story_title">Dal 2012 M'aMa porta a Chiavari una pizza che punta più in alto.</h2>
+            <p data-i18n="story_intro">
               La nostra storia parte da una promessa semplice ma forte: fare una pizza superiore, con farine scelte, ingredienti italiani e un'esperienza che sa di mare, passeggiata serale e tavoli pieni di energia.
             </p>
           </div>
 
-          <p>
+          <p data-i18n="story_body">
             M'aMa si racconta come una pizzeria contemporanea, nata per unire impasti curati, servizio rapido e una location affacciata sul mare. Non solo cena fuori, ma un posto da scegliere quando si vuole stare bene e mangiare con gusto.
           </p>
 
           <div class="story-photo-note story-photo-note-mobile">
-            <strong>Vista sul mare</strong>
-            <span>Veranda affacciata sul tramonto, luce soffusa e un'atmosfera che invita a restare.</span>
+            <strong data-i18n="story_note_title">Vista sul mare</strong>
+            <span data-i18n="story_note_text">Veranda affacciata sul tramonto, luce soffusa e un'atmosfera che invita a restare.</span>
           </div>
 
           <div class="story-cta-row">
@@ -4869,8 +4917,8 @@
         <div class="price-card story-photo-card" data-animate>
           <img src="IMG_0305.JPG" alt="Veranda sul mare di Pizzeria M'aMa al tramonto" width="780" height="585" loading="lazy" decoding="async" fetchpriority="low" />
           <div class="story-photo-note">
-            <strong>Vista sul mare</strong>
-            <span>Veranda affacciata sul tramonto, luce soffusa e un'atmosfera che invita a restare.</span>
+            <strong data-i18n="story_note_title">Vista sul mare</strong>
+            <span data-i18n="story_note_text">Veranda affacciata sul tramonto, luce soffusa e un'atmosfera che invita a restare.</span>
           </div>
         </div>
       </div>
@@ -4880,7 +4928,7 @@
       <div class="container menu-showcase">
         <div class="menu-header" data-animate>
           <div class="section-title">
-            <span class="menu-kicker" data-i18n="menu_eyebrow">Le nostre specialit&agrave;</span>
+            <span class="menu-kicker" data-i18n="menu_eyebrow">Menù</span>
             <h2 data-i18n-html="menu_title">Pizze fatte bene, <span class="menu-title-accent">servite con piacere</span>.</h2>
             <p data-i18n="menu_text">
               Dalle pi&ugrave; classiche alle pi&ugrave; ricercate, ogni proposta nasce da impasti curati, ingredienti scelti e quella voglia di farti stare bene a tavola.
@@ -4899,7 +4947,6 @@
 
         <div class="menu-carousel-hint" aria-hidden="true">
           <span class="menu-carousel-arrow">‹</span>
-          <span class="menu-carousel-text" data-i18n="menu_carousel_hint">Scorri tra le pizze</span>
           <span class="menu-carousel-arrow">›</span>
         </div>
 
@@ -5411,8 +5458,8 @@
       <div class="container contact-grid">
         <div class="contact-card" data-animate>
           <div class="section-title contact-section-intro" style="margin-bottom: 0;">
-            <span class="section-eyebrow">Contatti</span>
-            <h2>Vieni a trovarci.</h2>
+            <span class="section-eyebrow" data-i18n="contact_eyebrow">Contatti</span>
+            <h2 data-i18n="contact_title">Vieni a trovarci.</h2>
           </div>
 
           <ul class="contact-list">
@@ -5423,8 +5470,8 @@
                 </svg>
               </span>
               <div class="contact-item-body">
-                <small>Indirizzo</small>
-                <strong>Corso Valparaiso, 150<br />16043 Chiavari GE</strong>
+                <small data-i18n="contact_address_label">Indirizzo</small>
+                <strong data-i18n-html="contact_address_value">Corso Valparaiso, 150<br />16043 Chiavari GE</strong>
               </div>
             </li>
             <li>
@@ -5434,7 +5481,7 @@
                 </svg>
               </span>
               <div class="contact-item-body">
-                <small>Numero fisso</small>
+                <small data-i18n="contact_landline_label">Numero fisso</small>
                 <a href="tel:+3901851772110"><strong>+39 0185 1772110</strong></a>
               </div>
             </li>
@@ -5445,7 +5492,7 @@
                 </svg>
               </span>
               <div class="contact-item-body">
-                <small>Cellulare</small>
+                <small data-i18n="contact_mobile_label">Cellulare</small>
                 <a href="tel:+393792041914"><strong>+39 379 204 1914</strong></a>
               </div>
             </li>
@@ -5456,16 +5503,16 @@
                 </svg>
               </span>
               <div class="contact-item-body">
-                <small>Orari</small>
+                <small data-i18n="contact_hours_label">Orari</small>
                 <strong class="contact-hours">
                   <span class="contact-hours-group">
-                    <span class="contact-hours-season">Orario invernale</span>
-                    <span>Mercoled&igrave; - Domenica: 19:00 - 00:00</span>
-                    <span>Luned&igrave; e Marted&igrave;: riposo</span>
+                    <span class="contact-hours-season" data-i18n="contact_winter_label">Orario invernale</span>
+                    <span data-i18n="contact_winter_days">Mercoledì - Domenica: 19:00 - 00:00</span>
+                    <span data-i18n="contact_winter_closed">Lunedì e Martedì: riposo</span>
                   </span>
                   <span class="contact-hours-group">
-                    <span class="contact-hours-season">Orario estivo</span>
-                    <span>Luned&igrave; - Domenica: 19:00 - 00:00</span>
+                    <span class="contact-hours-season" data-i18n="contact_summer_label">Orario estivo</span>
+                    <span data-i18n="contact_summer_days">Lunedì - Domenica: 19:00 - 00:00</span>
                   </span>
                 </strong>
               </div>
@@ -5477,13 +5524,13 @@
               <svg class="btn-wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M20.52 3.48A11.8 11.8 0 0012.01 0C5.38 0 .01 5.37 0 12c0 2.11.55 4.17 1.6 6L0 24l6.18-1.6A11.94 11.94 0 0012.01 24C18.64 24 24 18.63 24 12c0-3.2-1.25-6.2-3.48-8.52zM12.01 21.8c-1.8 0-3.57-.48-5.12-1.39l-.37-.22-3.67.95.98-3.58-.24-.37A9.77 9.77 0 012.2 12c0-5.4 4.4-9.8 9.8-9.8 2.62 0 5.08 1.02 6.93 2.87A9.72 9.72 0 0121.8 12c0 5.4-4.4 9.8-9.79 9.8zm5.39-7.34c-.29-.15-1.72-.85-1.99-.94-.27-.1-.47-.15-.67.15-.2.29-.77.94-.95 1.14-.17.2-.35.22-.64.07-.29-.15-1.24-.46-2.36-1.46-.87-.77-1.46-1.72-1.63-2.01-.17-.29-.02-.44.13-.59.13-.13.29-.35.44-.52.15-.17.2-.29.3-.49.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.29-1.04 1.02-1.04 2.49 0 1.47 1.07 2.9 1.22 3.1.15.2 2.11 3.22 5.11 4.52.71.31 1.27.5 1.7.64.71.22 1.35.19 1.86.12.57-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.2-.55-.35z"/>
               </svg>
-              <span>Prenota ora</span>
+              <span data-i18n="booking_submit">Prenota ora</span>
             </button>
             <a class="btn-ghost" href="tel:01851772110">
               <svg class="contact-phone-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M6.62 10.79a15.54 15.54 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
               </svg>
-              <span>Chiama ora</span>
+              <span data-i18n="call_now">Chiama ora</span>
             </a>
           </div>
         </div>
@@ -5505,8 +5552,8 @@
             data-map-src="https://www.google.com/maps?q=Corso+Valparaiso+150,+16043+Chiavari+GE&z=16&output=embed"
           ></iframe>
           <div class="map-card-badge">
-            <strong>Chiavari, fronte mare</strong>
-            <span>Corso Valparaiso 150</span>
+            <strong data-i18n="map_badge_title">Chiavari, fronte mare</strong>
+            <span data-i18n="map_badge_address">Corso Valparaiso 150</span>
           </div>
         </div>
       </div>
@@ -5541,14 +5588,14 @@
             &middot;
             <a href="mailto:ilcavallucciomarino85@legalmail.it">PEC: ilcavallucciomarino85@legalmail.it</a>
           </p>
-          <p class="footer-legal-line">&copy; <span id="year"></span> Pizzeria M'aMa &middot; Tutti i diritti riservati</p>
+          <p class="footer-legal-line" data-i18n-html="footer_rights">&copy; <span id="year"></span> Pizzeria M'aMa &middot; Tutti i diritti riservati</p>
         </div>
         <nav class="footer-links-row" aria-label="Link legali">
-          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="privacy-policy.html" data-i18n="legal_privacy">Privacy Policy</a>
           <span>&middot;</span>
-          <a href="cookie-policy.html">Cookie Policy</a>
+          <a href="cookie-policy.html" data-i18n="legal_cookie">Cookie Policy</a>
           <span>&middot;</span>
-          <a href="note-legali.html">Note legali</a>
+          <a href="note-legali.html" data-i18n="legal_notes">Note legali</a>
         </nav>
         <div class="footer-socials">
           <a class="social-link" href="https://www.instagram.com/pizzeriamama2012?igsh=MXhhZXI3N3M5dmVodA%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -5689,13 +5736,31 @@
         reviews_source: "Recensione online",
         reviews_cta: "Lascia una recensione su Google",
         reviews_note: "Ci vogliono solo 10 secondi",
-        menu_eyebrow: "Le nostre specialità",
+        story_eyebrow: "La nostra storia",
+        story_title: "Dal 2012 M'aMa porta a Chiavari una pizza che punta più in alto.",
+        story_intro: "La nostra storia parte da una promessa semplice ma forte: fare una pizza superiore, con farine scelte, ingredienti italiani e un'esperienza che sa di mare, passeggiata serale e tavoli pieni di energia.",
+        story_body: "M'aMa si racconta come una pizzeria contemporanea, nata per unire impasti curati, servizio rapido e una location affacciata sul mare. Non solo cena fuori, ma un posto da scegliere quando si vuole stare bene e mangiare con gusto.",
+        story_note_title: "Vista sul mare",
+        story_note_text: "Veranda affacciata sul tramonto, luce soffusa e un'atmosfera che invita a restare.",
+        menu_eyebrow: "Menù",
         menu_title: "Pizze fatte bene, <span class=\"menu-title-accent\">servite con piacere</span>.",
         menu_text: "Dalle più classiche alle più ricercate, ogni proposta nasce da impasti curati, ingredienti scelti e quella voglia di farti stare bene a tavola.",
         menu_carousel_hint: "Scorri tra le pizze",
         menu_open: "Il nostro menù",
         menu_flours_cta: "Le nostre farine",
         story_cta: "Leggi di più",
+        contact_eyebrow: "Contatti",
+        contact_title: "Vieni a trovarci.",
+        contact_address_label: "Indirizzo",
+        contact_address_value: "Corso Valparaiso, 150<br />16043 Chiavari GE",
+        contact_landline_label: "Numero fisso",
+        contact_mobile_label: "Cellulare",
+        contact_hours_label: "Orari",
+        contact_winter_label: "Orario invernale",
+        contact_winter_days: "Mercoledì - Domenica: 19:00 - 00:00",
+        contact_winter_closed: "Lunedì e Martedì: riposo",
+        contact_summer_label: "Orario estivo",
+        contact_summer_days: "Lunedì - Domenica: 19:00 - 00:00",
         menu_modal_title: "Sfoglia il nostro menù",
         menu_modal_text: "Seleziona la categoria che preferisci e scopri le nostre pizze.",
         menu_tab_speciali: "Pizze Speciali",
@@ -5740,6 +5805,8 @@
         map_card_text: "La mappa viene caricata solo su richiesta, così evitiamo il caricamento automatico di contenuti di terze parti.",
         map_card_load: "Carica la mappa",
         map_card_open: "Apri su Google Maps",
+        map_badge_title: "Chiavari, fronte mare",
+        map_badge_address: "Corso Valparaiso 150",
         map_banner_title: "Google Maps su richiesta",
         map_banner_text: "Utilizziamo solo strumenti tecnici necessari al funzionamento del sito. Google Maps viene caricato solo con il tuo consenso e la tua scelta viene ricordata per 6 mesi.",
         map_banner_accept: "Accetta Google Maps",
@@ -5750,7 +5817,11 @@
         ph_guests: "Persone",
         ph_notes: "Tavolo interno o esterno, seggiolone, arrivo con passeggino.",
         booking_submit: "Prenota ora",
-        call_now: "Chiama ora"
+        call_now: "Chiama ora",
+        legal_privacy: "Privacy Policy",
+        legal_cookie: "Cookie Policy",
+        legal_notes: "Note legali",
+        footer_rights: "&copy; <span id=\"year\"></span> Pizzeria M'aMa &middot; Tutti i diritti riservati"
       },
       en: {
         nav_story: "Our Story",
@@ -5767,13 +5838,31 @@
         reviews_source: "Online review",
         reviews_cta: "Leave a review on Google",
         reviews_note: "It only takes 10 seconds",
-        menu_eyebrow: "Our specialties",
+        story_eyebrow: "Our story",
+        story_title: "Since 2012 M'aMa has brought Chiavari a pizza that aims higher.",
+        story_intro: "Our story begins with a simple but strong promise: to make elevated pizza, with selected flours, Italian ingredients and an experience that tastes of sea air, evening strolls and lively tables.",
+        story_body: "M'aMa tells the story of a contemporary pizzeria, created to bring together carefully crafted doughs, quick service and a seafront setting. Not just dinner out, but a place to choose when you want to feel good and eat well.",
+        story_note_title: "Sea view",
+        story_note_text: "A veranda overlooking the sunset, soft light and an atmosphere that invites you to stay.",
+        menu_eyebrow: "Menu",
         menu_title: "Pizzas made properly, <span class=\"menu-title-accent\">served with care</span>.",
         menu_text: "From timeless classics to more refined creations, every pizza starts with thoughtful doughs, selected ingredients and a genuine desire to make you feel good at the table.",
         menu_carousel_hint: "Swipe through the pizzas",
         menu_open: "Our menu",
         menu_flours_cta: "Our flours",
         story_cta: "Read more",
+        contact_eyebrow: "Contacts",
+        contact_title: "Come visit us.",
+        contact_address_label: "Address",
+        contact_address_value: "Corso Valparaiso, 150<br />16043 Chiavari GE",
+        contact_landline_label: "Landline",
+        contact_mobile_label: "Mobile",
+        contact_hours_label: "Opening hours",
+        contact_winter_label: "Winter hours",
+        contact_winter_days: "Wednesday - Sunday: 7:00 PM - 12:00 AM",
+        contact_winter_closed: "Monday and Tuesday: closed",
+        contact_summer_label: "Summer hours",
+        contact_summer_days: "Monday - Sunday: 7:00 PM - 12:00 AM",
         menu_modal_title: "Browse our menu",
         menu_modal_text: "Choose the category you prefer and discover our pizzas.",
         menu_tab_speciali: "Special Pizzas",
@@ -5818,6 +5907,8 @@
         map_card_text: "The map is loaded only on request, so we avoid automatically loading third-party content.",
         map_card_load: "Load the map",
         map_card_open: "Open in Google Maps",
+        map_badge_title: "Chiavari, seafront",
+        map_badge_address: "Corso Valparaiso 150",
         map_banner_title: "Google Maps on request",
         map_banner_text: "We only use technical tools necessary for the site to work. Google Maps is loaded only with your consent and your choice is remembered for 6 months.",
         map_banner_accept: "Accept Google Maps",
@@ -5828,7 +5919,11 @@
         ph_guests: "Guests",
         ph_notes: "Indoor or outdoor table, high chair, arriving with a stroller.",
         booking_submit: "Book now",
-        call_now: "Call now"
+        call_now: "Call now",
+        legal_privacy: "Privacy Policy",
+        legal_cookie: "Cookie Policy",
+        legal_notes: "Legal notice",
+        footer_rights: "&copy; <span id=\"year\"></span> Pizzeria M'aMa &middot; All rights reserved"
       }
     };
 
