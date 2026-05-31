@@ -537,9 +537,9 @@
         <a href="index.html#contatti" data-i18n="nav_contacts">Contatti</a>
       </nav>
       <div class="nav-actions">
-        <div class="lang-switcher" aria-label="Language switcher">
-          <button class="lang-btn active" type="button" data-lang="it">IT</button>
-          <button class="lang-btn" type="button" data-lang="en">EN</button>
+        <div class="lang-switcher notranslate" aria-label="Language switcher" translate="no">
+          <button class="lang-btn notranslate active" type="button" data-lang="it" translate="no">IT</button>
+          <button class="lang-btn notranslate" type="button" data-lang="en" translate="no">EN</button>
         </div>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Apri il menu">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -683,6 +683,10 @@
       });
 
       langButtons.forEach((button) => {
+        const label = (button.dataset.lang || "").toUpperCase();
+        if (label) {
+          button.textContent = label;
+        }
         button.classList.toggle("active", button.dataset.lang === lang);
       });
 

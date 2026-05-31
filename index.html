@@ -1122,9 +1122,15 @@
       text-wrap: balance;
     }
 
-    .menu-visual-grid {
+    .menu-carousel-shell {
+      position: relative;
       width: min(100%, 1140px);
       margin: 0 auto;
+    }
+
+    .menu-visual-grid {
+      width: 100%;
+      margin: 0;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 20px;
@@ -1162,11 +1168,16 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      width: min(100%, 1140px);
-      margin: 0 auto;
+      width: fit-content;
+      position: absolute;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      margin: 0;
       color: rgba(247, 239, 228, 0.78);
       text-align: center;
       pointer-events: none;
+      z-index: 4;
     }
 
     .menu-carousel-arrow {
@@ -3341,17 +3352,12 @@
 
       .menu-carousel-hint {
         display: flex;
-        order: 3;
         gap: 10px;
-        width: fit-content;
-        margin: -66px auto 10px;
-        position: relative;
-        z-index: 3;
+        bottom: 14px;
       }
 
-      .menu-visual-grid {
+      .menu-carousel-shell {
         order: 2;
-        position: relative;
       }
 
       .menu-kicker {
@@ -4815,9 +4821,9 @@
       </nav>
 
       <div class="nav-actions">
-        <div class="lang-switcher" aria-label="Language switcher">
-          <button class="lang-btn active" type="button" data-lang="it">IT</button>
-          <button class="lang-btn" type="button" data-lang="en">EN</button>
+        <div class="lang-switcher notranslate" aria-label="Language switcher" translate="no">
+          <button class="lang-btn notranslate active" type="button" data-lang="it" translate="no">IT</button>
+          <button class="lang-btn notranslate" type="button" data-lang="en" translate="no">EN</button>
         </div>
         <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="mobileMenu">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -4982,26 +4988,28 @@
           </div>
         </div>
 
-        <div class="menu-visual-grid">
-          <article class="menu-visual-card" data-animate>
-            <img src="menu-visual-1-20260529.jpg" alt="Pizza del menu di Pizzeria M'aMa" width="1446" height="1088" loading="lazy" decoding="async" fetchpriority="low" />
-          </article>
-          <article class="menu-visual-card" data-animate>
-            <img src="menu-visual-2-optimized.jpg" alt="Specialità del menu di Pizzeria M'aMa" width="1600" height="1200" loading="lazy" decoding="async" fetchpriority="low" />
-          </article>
-        </div>
+        <div class="menu-carousel-shell">
+          <div class="menu-visual-grid">
+            <article class="menu-visual-card" data-animate>
+              <img src="menu-visual-1-20260529.jpg" alt="Pizza del menu di Pizzeria M'aMa" width="1446" height="1088" loading="lazy" decoding="async" fetchpriority="low" />
+            </article>
+            <article class="menu-visual-card" data-animate>
+              <img src="menu-visual-2-optimized.jpg" alt="Specialità del menu di Pizzeria M'aMa" width="1600" height="1200" loading="lazy" decoding="async" fetchpriority="low" />
+            </article>
+          </div>
 
-        <div class="menu-carousel-hint" aria-hidden="true">
-          <span class="menu-carousel-arrow">
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M10 3.5 5.5 8 10 12.5"></path>
-            </svg>
-          </span>
-          <span class="menu-carousel-arrow">
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M6 3.5 10.5 8 6 12.5"></path>
-            </svg>
-          </span>
+          <div class="menu-carousel-hint" aria-hidden="true">
+            <span class="menu-carousel-arrow">
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M10 3.5 5.5 8 10 12.5"></path>
+              </svg>
+            </span>
+            <span class="menu-carousel-arrow">
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M6 3.5 10.5 8 6 12.5"></path>
+              </svg>
+            </span>
+          </div>
         </div>
 
         <div class="menu-cta-row" data-animate>
@@ -6009,6 +6017,10 @@
       });
 
       langButtons.forEach((button) => {
+        const label = (button.dataset.lang || "").toUpperCase();
+        if (label) {
+          button.textContent = label;
+        }
         button.classList.toggle("active", button.dataset.lang === lang);
       });
 
