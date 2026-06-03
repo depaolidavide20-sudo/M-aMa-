@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" class="notranslate" translate="no">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google" content="notranslate" />
   <title>La Nostra Storia | Pizzeria M'aMa</title>
   <meta
     name="description"
@@ -126,6 +127,9 @@
     }
 
     .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       width: 34px;
       height: 34px;
       border: 1px solid rgba(255, 255, 255, 0.18);
@@ -139,6 +143,12 @@
       font-family: var(--body-font);
       cursor: pointer;
       transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .lang-btn::before {
+      content: attr(data-short);
+      display: block;
+      line-height: 1;
     }
 
     .lang-btn:hover {
@@ -521,7 +531,7 @@
     }
   </style>
 </head>
-<body>
+<body class="notranslate" translate="no">
   <header class="topbar">
     <div class="container nav">
       <a class="brand" href="index.html#top" aria-label="Pizzeria M'aMa">
@@ -536,8 +546,8 @@
       </nav>
       <div class="nav-actions">
         <div class="lang-switcher notranslate" aria-label="Language switcher" translate="no">
-          <button class="lang-btn notranslate active" type="button" data-lang="it" translate="no">IT</button>
-          <button class="lang-btn notranslate" type="button" data-lang="en" translate="no">EN</button>
+          <button class="lang-btn notranslate active" type="button" data-lang="it" data-short="IT" aria-label="Italiano" translate="no"></button>
+          <button class="lang-btn notranslate" type="button" data-lang="en" data-short="EN" aria-label="English" translate="no"></button>
         </div>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Apri il menu">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -617,6 +627,14 @@
     const mobileMenu = document.getElementById("mobileMenu");
     const menuLinks = mobileMenu ? mobileMenu.querySelectorAll("a") : [];
     const langButtons = document.querySelectorAll(".lang-btn");
+    const translationObserverConfig = {
+      subtree: true,
+      childList: true,
+      characterData: true
+    };
+    let isApplyingLanguage = false;
+    let translationRepairQueued = false;
+    let translationObserver = null;
 
     const translations = {
       it: {
@@ -657,8 +675,12 @@
       const lang = translations[language] ? language : "it";
       const dictionary = translations[lang];
 
+      isApplyingLanguage = true;
+      translationObserver?.disconnect();
       document.documentElement.lang = lang;
       document.title = dictionary.meta_title;
+      document.documentElement.setAttribute("translate", "no");
+      document.body.setAttribute("translate", "no");
 
       document.querySelectorAll("[data-i18n]").forEach((element) => {
         const key = element.dataset.i18n;
@@ -668,14 +690,28 @@
       });
 
       langButtons.forEach((button) => {
-        const label = (button.dataset.lang || "").toUpperCase();
-        if (label) {
-          button.textContent = label;
-        }
         button.classList.toggle("active", button.dataset.lang === lang);
       });
 
       localStorage.setItem("mama-language", lang);
+      isApplyingLanguage = false;
+      if (translationObserver) {
+        requestAnimationFrame(() => {
+          translationObserver.observe(document.body, translationObserverConfig);
+        });
+      }
+    }
+
+    function queueLanguageRepair() {
+      if (isApplyingLanguage || translationRepairQueued) {
+        return;
+      }
+
+      translationRepairQueued = true;
+      requestAnimationFrame(() => {
+        translationRepairQueued = false;
+        setLanguage(localStorage.getItem("mama-language") || document.documentElement.lang || "it");
+      });
     }
 
     if (toggle && mobileMenu) {
@@ -699,6 +735,28 @@
         setLanguage(button.dataset.lang);
       });
     });
+
+    translationObserver = new MutationObserver((mutations) => {
+      if (isApplyingLanguage) {
+        return;
+      }
+
+      const shouldRepair = mutations.some((mutation) => {
+        const target = mutation.target?.nodeType === Node.TEXT_NODE
+          ? mutation.target.parentElement
+          : mutation.target;
+
+        return target instanceof Element && Boolean(
+          target.closest("[data-i18n], [data-i18n-html], .lang-switcher")
+        );
+      });
+
+      if (shouldRepair) {
+        queueLanguageRepair();
+      }
+    });
+
+    translationObserver.observe(document.body, translationObserverConfig);
 
     setLanguage(localStorage.getItem("mama-language") || "it");
   </script>

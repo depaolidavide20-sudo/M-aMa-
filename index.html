@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" class="notranslate" translate="no">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google" content="notranslate" />
   <title>Pizzeria M'aMa | Pizza superiore dal 2012 a Chiavari</title>
   <meta
     name="description"
@@ -234,6 +235,9 @@
     }
 
     .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       width: 34px;
       height: 34px;
       border: 1px solid rgba(255, 255, 255, 0.18);
@@ -247,6 +251,12 @@
       letter-spacing: 0;
       cursor: pointer;
       transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .lang-btn::before {
+      content: attr(data-short);
+      display: block;
+      line-height: 1;
     }
 
     .lang-btn:hover {
@@ -4824,7 +4834,7 @@
     }
   </style>
 </head>
-<body>
+<body class="notranslate" translate="no">
   <header class="topbar">
     <div class="container nav">
       <a class="brand" href="#top" aria-label="Pizzeria M'aMa">
@@ -4842,8 +4852,8 @@
 
       <div class="nav-actions">
         <div class="lang-switcher notranslate" aria-label="Language switcher" translate="no">
-          <button class="lang-btn notranslate active" type="button" data-lang="it" translate="no">IT</button>
-          <button class="lang-btn notranslate" type="button" data-lang="en" translate="no">EN</button>
+          <button class="lang-btn notranslate active" type="button" data-lang="it" data-short="IT" aria-label="Italiano" translate="no"></button>
+          <button class="lang-btn notranslate" type="button" data-lang="en" data-short="EN" aria-label="English" translate="no"></button>
         </div>
         <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="mobileMenu">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -4866,7 +4876,7 @@
         <div class="hero-media" aria-hidden="true">
           <picture class="hero-picture">
             <source media="(min-width: 881px)" srcset="hero-desktop-pizze-cover-optimized.jpg" />
-            <img class="hero-image" src="hero-mobile-pizze-cover-optimized.jpg" alt="" width="719" height="1600" loading="eager" fetchpriority="high" decoding="async" />
+            <img class="hero-image" src="hero-mobile-pizze-cover-optimized.jpg" alt="" width="864" height="1821" loading="eager" fetchpriority="high" decoding="async" />
           </picture>
         </div>
       <div class="container hero-grid">
@@ -5791,9 +5801,18 @@
     const bookingPanelMedia = window.matchMedia("(max-width: 880px)");
     const mapConsentStorageKey = "mama-map-consent";
     const mapConsentDurationMs = 1000 * 60 * 60 * 24 * 180;
+    const translationObserverConfig = {
+      subtree: true,
+      childList: true,
+      characterData: true
+    };
+    let isApplyingLanguage = false;
+    let translationRepairQueued = false;
+    let translationObserver = null;
 
     const translations = {
       it: {
+        meta_title: "Pizzeria M'aMa | Pizza superiore dal 2012 a Chiavari",
         nav_story: "La nostra storia",
         nav_menu: "Menù",
         nav_shop: "Prodotti online",
@@ -5895,6 +5914,7 @@
         footer_rights: "&copy; <span id=\"year\"></span> Pizzeria M'aMa &middot; Tutti i diritti riservati"
       },
       en: {
+        meta_title: "Pizzeria M'aMa | Elevated pizza in Chiavari since 2012",
         nav_story: "Our Story",
         nav_menu: "Menu",
         nav_shop: "Online Products",
@@ -6001,7 +6021,14 @@
       const lang = translations[language] ? language : "it";
       const dictionary = translations[lang];
 
+      isApplyingLanguage = true;
+      translationObserver?.disconnect();
       document.documentElement.lang = lang;
+      document.documentElement.setAttribute("translate", "no");
+      document.body.setAttribute("translate", "no");
+      if (dictionary.meta_title) {
+        document.title = dictionary.meta_title;
+      }
 
       document.querySelectorAll("[data-i18n]").forEach((element) => {
         const key = element.dataset.i18n;
@@ -6032,14 +6059,28 @@
       });
 
       langButtons.forEach((button) => {
-        const label = (button.dataset.lang || "").toUpperCase();
-        if (label) {
-          button.textContent = label;
-        }
         button.classList.toggle("active", button.dataset.lang === lang);
       });
 
       localStorage.setItem("mama-language", lang);
+      isApplyingLanguage = false;
+      if (translationObserver) {
+        requestAnimationFrame(() => {
+          translationObserver.observe(document.body, translationObserverConfig);
+        });
+      }
+    }
+
+    function queueLanguageRepair() {
+      if (isApplyingLanguage || translationRepairQueued) {
+        return;
+      }
+
+      translationRepairQueued = true;
+      requestAnimationFrame(() => {
+        translationRepairQueued = false;
+        setLanguage(localStorage.getItem("mama-language") || document.documentElement.lang || "it");
+      });
     }
 
     function submitBooking(event) {
@@ -6444,6 +6485,28 @@
     document.querySelectorAll("[data-animate]").forEach((element) => {
       observer.observe(element);
     });
+
+    translationObserver = new MutationObserver((mutations) => {
+      if (isApplyingLanguage) {
+        return;
+      }
+
+      const shouldRepair = mutations.some((mutation) => {
+        const target = mutation.target?.nodeType === Node.TEXT_NODE
+          ? mutation.target.parentElement
+          : mutation.target;
+
+        return target instanceof Element && Boolean(
+          target.closest("[data-i18n], [data-i18n-html], [data-ph], [data-i18n-aria-label], .lang-switcher")
+        );
+      });
+
+      if (shouldRepair) {
+        queueLanguageRepair();
+      }
+    });
+
+    translationObserver.observe(document.body, translationObserverConfig);
 
     setMenuTab("speciali");
     setLanguage(localStorage.getItem("mama-language") || "it");
