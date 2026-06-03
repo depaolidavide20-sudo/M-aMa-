@@ -4205,6 +4205,10 @@
       border-color: rgba(255, 182, 112, 0.92);
     }
 
+    .hero-instagram-link {
+      display: none;
+    }
+
     .booking-card {
       padding: 22px;
       gap: 12px;
@@ -4406,7 +4410,8 @@
       }
 
       .hero {
-        min-height: clamp(580px, 84svh, 760px) !important;
+        min-height: calc(100svh - 68px) !important;
+        min-height: calc(100dvh - 68px) !important;
         padding: 0 !important;
         background: #120c08 !important;
       }
@@ -4441,7 +4446,8 @@
       }
 
       .hero-grid {
-        min-height: clamp(580px, 84svh, 760px) !important;
+        min-height: calc(100svh - 68px) !important;
+        min-height: calc(100dvh - 68px) !important;
         display: grid !important;
         grid-template-columns: 1fr !important;
         align-items: center !important;
@@ -4472,10 +4478,10 @@
       .hero-copy h1 {
         max-width: 100% !important;
         margin: 0 auto 14px !important;
-        font-family: var(--display-font) !important;
-        font-size: clamp(1.9rem, 7vw, 2.5rem) !important;
+        font-family: "Fraunces", serif !important;
+        font-size: clamp(2.05rem, 7.2vw, 2.7rem) !important;
         font-weight: 700 !important;
-        letter-spacing: -0.03em !important;
+        letter-spacing: -0.04em !important;
         line-height: 0.92 !important;
       }
 
@@ -4501,6 +4507,30 @@
         font-size: 0.95rem !important;
         line-height: 1.58 !important;
         color: var(--cream) !important;
+      }
+
+      .hero-instagram-link {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 0 auto 4px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        color: rgba(247, 239, 228, 0.92);
+        background: rgba(10, 10, 10, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(8px);
+        font-size: 0.76rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        text-decoration: none;
+      }
+
+      .hero-instagram-link svg {
+        width: 14px;
+        height: 14px;
+        flex: 0 0 auto;
       }
 
       .hero-facts,
@@ -4618,7 +4648,8 @@
     @media (max-width: 640px) {
       .hero,
       .hero-grid {
-        min-height: clamp(540px, 78svh, 670px) !important;
+        min-height: calc(100svh - 68px) !important;
+        min-height: calc(100dvh - 68px) !important;
       }
 
       .hero-grid {
@@ -4642,8 +4673,8 @@
       }
 
       .hero-copy h1 {
-        font-family: var(--display-font) !important;
-        font-size: clamp(1.76rem, 7.2vw, 2.12rem) !important;
+        font-family: "Fraunces", serif !important;
+        font-size: clamp(1.94rem, 7.5vw, 2.28rem) !important;
       }
 
       .hero-copy p {
@@ -4675,12 +4706,14 @@
     @media (max-width: 430px) {
       .hero,
       .hero-grid {
-        min-height: clamp(500px, 74svh, 600px) !important;
+        min-height: calc(100svh - 68px) !important;
+        min-height: calc(100dvh - 68px) !important;
       }
 
       .hero-copy h1 {
         max-width: 100% !important;
-        font-size: clamp(1.34rem, 6.2vw, 1.68rem) !important;
+        font-family: "Fraunces", serif !important;
+        font-size: clamp(1.76rem, 7.4vw, 2rem) !important;
       }
 
       .hero-copy p {
@@ -4808,9 +4841,11 @@
       }
     }
 
-    .hero-copy h1 {
-      font-size: clamp(1.5rem, 3.3vw, 2.75rem) !important;
-      line-height: 0.94 !important;
+    @media (min-width: 881px) {
+      .hero-copy h1 {
+        font-size: clamp(1.5rem, 3.3vw, 2.75rem) !important;
+        line-height: 0.94 !important;
+      }
     }
 
     .hero-title-line {
@@ -4876,6 +4911,14 @@
             <span class="hero-title-line">Pizza superiore</span>
             <span class="hero-title-line">Atmosfera vista mare</span>
           </h1>
+          <a class="hero-instagram-link" href="https://www.instagram.com/pizzeriamama2012?igsh=MXhhZXI3N3M5dmVodA%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5.5" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="17.2" cy="6.8" r="1.15" fill="currentColor"/>
+            </svg>
+            <span data-i18n="hero_instagram">Instagram</span>
+          </a>
           <div class="hero-facts">
             <span class="hero-fact" data-i18n="hero_fact_1">Farine tipo 1 e 2</span>
             <span class="hero-fact" data-i18n="hero_fact_2">Impasti speciali</span>
@@ -5870,6 +5913,7 @@
         hero_fact_2: "Impasti speciali",
         hero_fact_3: "Vista Portofino",
         hero_menu_cta: "Scopri il menù",
+        hero_instagram: "Instagram",
         booking_eyebrow: "Prenotazioni",
         booking_title: "Prenota il tuo tavolo",
         booking_text: "Compila il form e invia la tua richiesta di prenotazione su WhatsApp in pochi secondi.",
@@ -5972,6 +6016,7 @@
         hero_fact_2: "Special doughs",
         hero_fact_3: "Portofino view",
         hero_menu_cta: "Discover the menu",
+        hero_instagram: "Instagram",
         booking_eyebrow: "Reservations",
         booking_title: "Book your table",
         booking_text: "Fill out the form and send your reservation request on WhatsApp in just a few seconds.",
