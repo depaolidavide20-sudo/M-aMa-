@@ -2138,6 +2138,22 @@
       gap: 10px;
     }
 
+    .contact-hours-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      line-height: 1.48;
+      color: var(--ivory);
+      text-decoration: none;
+    }
+
+    .contact-hours-link::after {
+      content: "↗";
+      font-size: 0.95rem;
+      color: var(--gold);
+    }
+
     .contact-hours-group {
       display: grid;
       gap: 4px;
@@ -5537,7 +5553,7 @@
               </span>
               <div class="contact-item-body">
                 <small data-i18n="contact_address_label">Indirizzo</small>
-                <strong data-i18n-html="contact_address_value">Corso Valparaiso, 150<br />16043 Chiavari GE</strong>
+                <strong data-i18n-html="contact_address_value">Corso Valparaiso, 150-152<br />16043 Chiavari GE</strong>
               </div>
             </li>
             <li>
@@ -5558,7 +5574,7 @@
                 </svg>
               </span>
               <div class="contact-item-body">
-                <small data-i18n="contact_mobile_label">Cellulare</small>
+                <small data-i18n="contact_mobile_label">WhatsApp</small>
                 <a href="tel:+393792041914"><strong>+39 379 204 1914</strong></a>
               </div>
             </li>
@@ -5570,17 +5586,7 @@
               </span>
               <div class="contact-item-body">
                 <small data-i18n="contact_hours_label">Orari</small>
-                <strong class="contact-hours">
-                  <span class="contact-hours-group">
-                    <span class="contact-hours-season" data-i18n="contact_winter_label">Orario invernale</span>
-                    <span data-i18n="contact_winter_days">Mercoledì - Domenica: 19:00 - 00:00</span>
-                    <span data-i18n="contact_winter_closed">Lunedì e Martedì: riposo</span>
-                  </span>
-                  <span class="contact-hours-group">
-                    <span class="contact-hours-season" data-i18n="contact_summer_label">Orario estivo</span>
-                    <span data-i18n="contact_summer_days">Lunedì - Domenica: 19:00 - 00:00</span>
-                  </span>
-                </strong>
+                <a class="contact-hours-link" href="https://share.google/QvbggXtTbVl7MXVCy" target="_blank" rel="noopener noreferrer" data-i18n="contact_hours_link">Consulta gli orari aggiornati</a>
               </div>
             </li>
           </ul>
@@ -5606,8 +5612,8 @@
             <strong data-i18n="map_card_title">Google Maps</strong>
             <p data-i18n="map_card_text">La mappa viene caricata solo su richiesta, cos&igrave; evitiamo il caricamento automatico di contenuti di terze parti.</p>
             <div class="map-card-consent-actions">
-              <button class="btn-ghost" type="button" data-load-map data-target="contactMapFrame" data-src="https://www.google.com/maps?q=Corso+Valparaiso+150,+16043+Chiavari+GE&z=16&output=embed" data-i18n="map_card_load">Carica la mappa</button>
-              <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Corso+Valparaiso+150,+16043+Chiavari+GE" target="_blank" rel="noopener noreferrer" data-i18n="map_card_open">Apri su Google Maps</a>
+              <button class="btn-ghost" type="button" data-load-map data-target="contactMapFrame" data-src="https://www.google.com/maps?q=Corso+Valparaiso+150-152,+16043+Chiavari+GE&z=16&output=embed" data-i18n="map_card_load">Carica la mappa</button>
+              <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Corso+Valparaiso+150-152,+16043+Chiavari+GE" target="_blank" rel="noopener noreferrer" data-i18n="map_card_open">Apri su Google Maps</a>
             </div>
           </div>
           <iframe
@@ -5615,11 +5621,11 @@
             title="Mappa per raggiungere Pizzeria M'aMa"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            data-map-src="https://www.google.com/maps?q=Corso+Valparaiso+150,+16043+Chiavari+GE&z=16&output=embed"
+            data-map-src="https://www.google.com/maps?q=Corso+Valparaiso+150-152,+16043+Chiavari+GE&z=16&output=embed"
           ></iframe>
           <div class="map-card-badge">
             <strong data-i18n="map_badge_title">Chiavari, fronte mare</strong>
-            <span data-i18n="map_badge_address">Corso Valparaiso 150</span>
+            <span data-i18n="map_badge_address">Corso Valparaiso 150-152</span>
           </div>
         </div>
       </div>
@@ -5646,13 +5652,11 @@
         <div class="footer-legal-space">
           <p class="footer-legal-line footer-legal-company">IL CAVALLUCCIO MARINO DI BUSSONE MATTEO &amp; C. S.A.S.</p>
           <p class="footer-legal-line">C.F. e P.IVA 02108660990 &middot; REA GE-460444</p>
-          <p class="footer-legal-line">Corso Valparaiso 150-15 &middot; 16043 Chiavari (GE), Italia</p>
+          <p class="footer-legal-line">Corso Valparaiso 150-152 &middot; 16043 Chiavari (GE), Italia</p>
           <p class="footer-legal-line">
             <a href="tel:+3901851772110">Tel: +39 0185 1772110</a>
             &middot;
-            <a href="tel:+393792041914">Cell: +39 379 204 1914</a>
-            &middot;
-            <a href="mailto:ilcavallucciomarino85@legalmail.it">PEC: ilcavallucciomarino85@legalmail.it</a>
+            <a href="tel:+393792041914">WhatsApp: +39 379 204 1914</a>
           </p>
           <p class="footer-legal-line" data-i18n-html="footer_rights">&copy; <span id="year"></span> Pizzeria M'aMa &middot; Tutti i diritti riservati</p>
         </div>
@@ -5823,15 +5827,11 @@
         contact_eyebrow: "Contatti",
         contact_title: "Vieni a trovarci.",
         contact_address_label: "Indirizzo",
-        contact_address_value: "Corso Valparaiso, 150<br />16043 Chiavari GE",
+        contact_address_value: "Corso Valparaiso, 150-152<br />16043 Chiavari GE",
         contact_landline_label: "Numero fisso",
-        contact_mobile_label: "Cellulare",
+        contact_mobile_label: "WhatsApp",
         contact_hours_label: "Orari",
-        contact_winter_label: "Orario invernale",
-        contact_winter_days: "Mercoledì - Domenica: 19:00 - 00:00",
-        contact_winter_closed: "Lunedì e Martedì: riposo",
-        contact_summer_label: "Orario estivo",
-        contact_summer_days: "Lunedì - Domenica: 19:00 - 00:00",
+        contact_hours_link: "Consulta gli orari aggiornati",
         menu_modal_title: "Sfoglia il nostro menù",
         menu_modal_text: "Seleziona la categoria che preferisci e scopri le nostre pizze.",
         menu_tab_speciali: "Pizze Speciali",
@@ -5877,7 +5877,7 @@
         map_card_load: "Carica la mappa",
         map_card_open: "Apri su Google Maps",
         map_badge_title: "Chiavari, fronte mare",
-        map_badge_address: "Corso Valparaiso 150",
+        map_badge_address: "Corso Valparaiso 150-152",
         map_banner_title: "Google Maps su richiesta",
         map_banner_text: "Utilizziamo solo strumenti tecnici necessari al funzionamento del sito. Google Maps viene caricato solo con il tuo consenso e la tua scelta viene ricordata per 6 mesi.",
         map_banner_accept: "Accetta Google Maps",
@@ -5928,15 +5928,11 @@
         contact_eyebrow: "Contacts",
         contact_title: "Come visit us.",
         contact_address_label: "Address",
-        contact_address_value: "Corso Valparaiso, 150<br />16043 Chiavari GE",
+        contact_address_value: "Corso Valparaiso, 150-152<br />16043 Chiavari GE",
         contact_landline_label: "Landline",
-        contact_mobile_label: "Mobile",
+        contact_mobile_label: "WhatsApp",
         contact_hours_label: "Opening hours",
-        contact_winter_label: "Winter hours",
-        contact_winter_days: "Wednesday - Sunday: 7:00 PM - 12:00 AM",
-        contact_winter_closed: "Monday and Tuesday: closed",
-        contact_summer_label: "Summer hours",
-        contact_summer_days: "Monday - Sunday: 7:00 PM - 12:00 AM",
+        contact_hours_link: "View updated opening hours",
         menu_modal_title: "Browse our menu",
         menu_modal_text: "Choose the category you prefer and discover our pizzas.",
         menu_tab_speciali: "Special Pizzas",
@@ -5982,7 +5978,7 @@
         map_card_load: "Load the map",
         map_card_open: "Open in Google Maps",
         map_badge_title: "Chiavari, seafront",
-        map_badge_address: "Corso Valparaiso 150",
+        map_badge_address: "Corso Valparaiso 150-152",
         map_banner_title: "Google Maps on request",
         map_banner_text: "We only use technical tools necessary for the site to work. Google Maps is loaded only with your consent and your choice is remembered for 6 months.",
         map_banner_accept: "Accept Google Maps",
