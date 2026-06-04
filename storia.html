@@ -349,67 +349,102 @@
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    .page-footer {
+    .footer {
       padding: 18px 0 22px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       color: rgba(247, 239, 228, 0.72);
       background: #060606;
     }
 
-    .page-footer-shell {
+    .footer-shell {
       display: grid;
       justify-items: center;
-      gap: 9px;
+      gap: 10px;
+      padding: 0;
+    }
+
+    .footer-shell::before {
+      content: none;
+    }
+
+    .footer-brand-block {
+      display: grid;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 980px;
+      justify-items: center;
       text-align: center;
     }
 
-    .page-footer-copy {
+    .footer-legal-space {
+      width: 100%;
+      max-width: 980px;
+      min-height: 0;
+      padding: 0;
       display: grid;
-      gap: 4px;
-      max-width: 880px;
+      gap: 6px;
+      align-content: start;
+      border: 0;
+      background: none;
+      box-shadow: none;
     }
 
-    .page-footer-line {
+    .footer-legal-line {
       margin: 0;
       color: rgba(247, 239, 228, 0.84);
-      font-size: 0.92rem;
-      line-height: 1.4;
+      font-size: 0.95rem;
+      line-height: 1.42;
       font-weight: 500;
     }
 
-    .page-footer-company {
+    .footer-legal-company {
       color: #fff9f2;
-      font-family: var(--display-font);
-      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.06rem, 1.6vw, 1.3rem);
       line-height: 1.08;
       letter-spacing: -0.02em;
     }
 
-    .page-footer-copy a,
-    .page-footer-links a {
+    .footer-legal-space a {
       color: rgba(247, 239, 228, 0.88);
+      font-size: inherit;
+      line-height: inherit;
+      font-weight: 600;
+      word-break: break-word;
       text-decoration: none;
     }
 
-    .page-footer-copy a:hover,
-    .page-footer-links a:hover {
+    .footer-legal-space a:hover {
       color: var(--gold);
     }
 
-    .page-footer-links {
+    .footer-links-row {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 8px;
+      margin-top: 2px;
       color: rgba(247, 239, 228, 0.62);
-      font-size: 0.88rem;
-      line-height: 1.4;
+      font-size: 0.92rem;
+      line-height: 1.44;
     }
 
-    .page-footer-socials {
+    .footer-links-row a {
+      color: rgba(247, 239, 228, 0.86);
+      text-decoration: none;
+    }
+
+    .footer-links-row a:hover {
+      color: var(--gold);
+    }
+
+    .footer-socials {
       display: flex;
       gap: 8px;
       justify-content: center;
+      margin-top: 2px;
     }
 
     .social-link {
@@ -436,6 +471,10 @@
       width: 18px;
       height: 18px;
       display: block;
+    }
+
+    .footer-meta {
+      display: none;
     }
 
     @media (max-width: 880px) {
@@ -496,30 +535,30 @@
         min-height: 260px;
       }
 
-      .page-footer {
+      .footer {
         padding: 14px 0 18px;
       }
 
-      .page-footer-shell {
+      .footer-shell {
         gap: 7px;
       }
 
-      .page-footer-line,
-      .page-footer-copy a {
+      .footer-legal-line,
+      .footer-legal-space a {
         font-size: 0.8rem;
         line-height: 1.34;
       }
 
-      .page-footer-company {
+      .footer-legal-company {
         font-size: 0.94rem;
       }
 
-      .page-footer-links {
+      .footer-links-row {
         gap: 6px;
         font-size: 0.8rem;
       }
 
-      .page-footer-socials {
+      .footer-socials {
         gap: 6px;
       }
 
@@ -595,22 +634,28 @@
     </div>
   </main>
 
-  <footer class="page-footer">
-    <div class="container page-footer-shell">
-      <div class="page-footer-copy">
-        <p class="page-footer-line page-footer-company">IL CAVALLUCCIO MARINO DI BUSSONE MATTEO &amp; C. S.A.S.</p>
-        <p class="page-footer-line">C.F. e P.IVA 02108660990 &middot; REA GE-460444</p>
-        <p class="page-footer-line">Corso Valparaiso 150-152 &middot; 16043 Chiavari (GE), Italia</p>
-        <p class="page-footer-line"><a href="tel:+3901851772110">Tel. +39 0185 1772110</a></p>
-      </div>
-      <nav class="page-footer-links" aria-label="Link legali">
-        <a href="privacy-policy.html" data-i18n="legal_privacy">Privacy Policy</a>
-        <span>&middot;</span>
-        <a href="cookie-policy.html" data-i18n="legal_cookie">Cookie Policy</a>
-        <span>&middot;</span>
-        <a href="note-legali.html" data-i18n="legal_notes">Note legali</a>
-      </nav>
-      <div class="page-footer-socials">
+  <footer class="footer">
+    <div class="container footer-shell">
+      <div class="footer-brand-block">
+        <div class="footer-legal-space">
+          <p class="footer-legal-line footer-legal-company">IL CAVALLUCCIO MARINO DI BUSSONE MATTEO &amp; C. S.A.S.</p>
+          <p class="footer-legal-line">C.F. e P.IVA 02108660990 &middot; REA GE-460444</p>
+          <p class="footer-legal-line">Corso Valparaiso 150-152 &middot; 16043 Chiavari (GE), Italia</p>
+          <p class="footer-legal-line">
+            <a href="tel:+3901851772110">Tel: +39 0185 1772110</a>
+            &middot;
+            <a href="tel:+393792041914">WhatsApp: +39 379 204 1914</a>
+          </p>
+          <p class="footer-legal-line" data-i18n-html="footer_rights">&copy; <span id="year"></span> Pizzeria M'aMa &middot; Tutti i diritti riservati</p>
+        </div>
+        <nav class="footer-links-row" aria-label="Link legali">
+          <a href="privacy-policy.html" data-i18n="legal_privacy">Privacy Policy</a>
+          <span>&middot;</span>
+          <a href="cookie-policy.html" data-i18n="legal_cookie">Cookie Policy</a>
+          <span>&middot;</span>
+          <a href="note-legali.html" data-i18n="legal_notes">Note legali</a>
+        </nav>
+        <div class="footer-socials">
         <a class="social-link" href="https://www.instagram.com/pizzeriamama2012?igsh=MXhhZXI3N3M5dmVodA%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5.5" stroke="currentColor" stroke-width="1.8"/>
@@ -623,6 +668,7 @@
             <path d="M13.36 20v-6.58h2.22l.33-2.57h-2.55V9.22c0-.74.21-1.24 1.27-1.24H16V5.67c-.23-.03-1-.09-1.9-.09-1.88 0-3.17 1.15-3.17 3.25v2.02H8.8v2.57h2.13V20h2.43z"/>
           </svg>
         </a>
+      </div>
       </div>
     </div>
   </footer>
@@ -656,7 +702,8 @@
         cta_contact: "Prenota o contattaci",
         legal_privacy: "Privacy Policy",
         legal_cookie: "Cookie Policy",
-        legal_notes: "Note legali"
+        legal_notes: "Note legali",
+        footer_rights: "&copy; <span id=\"year\"></span> Pizzeria M'aMa &middot; Tutti i diritti riservati"
       },
       en: {
         meta_title: "Our Story | Pizzeria M'aMa",
@@ -672,7 +719,8 @@
         cta_contact: "Book or contact us",
         legal_privacy: "Privacy Policy",
         legal_cookie: "Cookie Policy",
-        legal_notes: "Legal notice"
+        legal_notes: "Legal notice",
+        footer_rights: "&copy; <span id=\"year\"></span> Pizzeria M'aMa &middot; All rights reserved"
       }
     };
 
@@ -694,11 +742,19 @@
         }
       });
 
+      document.querySelectorAll("[data-i18n-html]").forEach((element) => {
+        const key = element.dataset.i18nHtml;
+        if (dictionary[key]) {
+          element.innerHTML = dictionary[key];
+        }
+      });
+
       langButtons.forEach((button) => {
         button.classList.toggle("active", button.dataset.lang === lang);
       });
 
       localStorage.setItem("mama-language", lang);
+      syncFooterYear();
       isApplyingLanguage = false;
       if (translationObserver) {
         requestAnimationFrame(() => {
@@ -717,6 +773,13 @@
         translationRepairQueued = false;
         setLanguage(localStorage.getItem("mama-language") || document.documentElement.lang || "it");
       });
+    }
+
+    function syncFooterYear() {
+      const yearElement = document.getElementById("year");
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
     }
 
     if (toggle && mobileMenu) {
@@ -764,6 +827,7 @@
     translationObserver.observe(document.body, translationObserverConfig);
 
     setLanguage(localStorage.getItem("mama-language") || "it");
+    syncFooterYear();
   </script>
 </body>
 </html>

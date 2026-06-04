@@ -5982,8 +5982,10 @@
     const menuCarouselState = {
       enabled: false,
       realCount: 0,
-      settleTimer: null
+      settleTimer: null,
+      isInteracting: false
     };
+    const menuCarouselSupportsScrollEnd = Boolean(menuCarouselGrid) && "onscrollend" in menuCarouselGrid;
 
     const translations = {
       it: {
@@ -6097,7 +6099,7 @@
         nav_reviews: "Reviews",
         nav_contacts: "Contacts",
         reviews_eyebrow: "Reviews",
-        reviews_title: "What our guests are saying",
+        reviews_title: "Guest reviews",
         reviews_quote_1: "\"Outstanding pizza, served in no time, and the desserts were genuinely excellent too.\"",
         reviews_quote_2: "\"Light pizza, pleasant dough, great bake and truly genuine ingredients.\"",
         reviews_quote_3: "\"The gluten-free pizza is genuinely excellent, light and very easy to digest.\"",
@@ -6240,6 +6242,7 @@
       });
 
       localStorage.setItem("mama-language", lang);
+      syncFooterYear();
       isApplyingLanguage = false;
       if (translationObserver) {
         requestAnimationFrame(() => {
@@ -6258,6 +6261,13 @@
         translationRepairQueued = false;
         setLanguage(localStorage.getItem("mama-language") || document.documentElement.lang || "it");
       });
+    }
+
+    function syncFooterYear() {
+      const yearElement = document.getElementById("year");
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
     }
 
     function submitBooking(event) {
@@ -6586,7 +6596,7 @@
     }
 
     function syncMenuCarouselLoopPosition() {
-      if (!menuCarouselGrid || !menuCarouselState.enabled) {
+      if (!menuCarouselGrid || !menuCarouselState.enabled || menuCarouselState.isInteracting) {
         return;
       }
 
@@ -6609,7 +6619,7 @@
       }
     }
 
-    function queueMenuCarouselLoopPositionSync() {
+    function queueMenuCarouselLoopPositionSync(delay = 180) {
       if (!menuCarouselState.enabled) {
         return;
       }
@@ -6617,7 +6627,27 @@
       window.clearTimeout(menuCarouselState.settleTimer);
       menuCarouselState.settleTimer = window.setTimeout(() => {
         syncMenuCarouselLoopPosition();
-      }, 90);
+      }, delay);
+    }
+
+    function startMenuCarouselInteraction() {
+      if (!menuCarouselState.enabled) {
+        return;
+      }
+
+      menuCarouselState.isInteracting = true;
+      window.clearTimeout(menuCarouselState.settleTimer);
+    }
+
+    function endMenuCarouselInteraction() {
+      if (!menuCarouselState.enabled) {
+        return;
+      }
+
+      menuCarouselState.isInteracting = false;
+      if (!menuCarouselSupportsScrollEnd) {
+        queueMenuCarouselLoopPositionSync(220);
+      }
     }
 
     function enableMenuCarouselLoop() {
@@ -6647,6 +6677,7 @@
       menuCarouselGrid.appendChild(firstClone);
       menuCarouselState.enabled = true;
       menuCarouselState.realCount = realCards.length;
+      menuCarouselState.isInteracting = false;
 
       requestAnimationFrame(() => {
         const stepSize = getMenuCarouselStepSize();
@@ -6668,6 +6699,7 @@
 
       menuCarouselState.enabled = false;
       menuCarouselState.realCount = 0;
+      menuCarouselState.isInteracting = false;
       menuCarouselGrid.scrollLeft = 0;
     }
 
@@ -6698,7 +6730,9 @@
         behavior: "smooth"
       });
 
-      queueMenuCarouselLoopPositionSync();
+      if (!menuCarouselSupportsScrollEnd) {
+        queueMenuCarouselLoopPositionSync();
+      }
     }
 
     menuCarouselButtons.forEach((button) => {
@@ -6711,13 +6745,30 @@
     });
 
     if (menuCarouselGrid) {
-      menuCarouselGrid.addEventListener(
-        "scroll",
-        () => {
-          queueMenuCarouselLoopPositionSync();
-        },
-        { passive: true }
-      );
+      menuCarouselGrid.addEventListener("touchstart", startMenuCarouselInteraction, { passive: true });
+      menuCarouselGrid.addEventListener("touchend", endMenuCarouselInteraction, { passive: true });
+      menuCarouselGrid.addEventListener("touchcancel", endMenuCarouselInteraction, { passive: true });
+      menuCarouselGrid.addEventListener("pointerdown", startMenuCarouselInteraction, { passive: true });
+      menuCarouselGrid.addEventListener("pointerup", endMenuCarouselInteraction, { passive: true });
+      menuCarouselGrid.addEventListener("pointercancel", endMenuCarouselInteraction, { passive: true });
+
+      if (menuCarouselSupportsScrollEnd) {
+        menuCarouselGrid.addEventListener(
+          "scrollend",
+          () => {
+            syncMenuCarouselLoopPosition();
+          },
+          { passive: true }
+        );
+      } else {
+        menuCarouselGrid.addEventListener(
+          "scroll",
+          () => {
+            queueMenuCarouselLoopPositionSync(menuCarouselState.isInteracting ? 240 : 180);
+          },
+          { passive: true }
+        );
+      }
     }
 
     document.addEventListener("click", (event) => {
@@ -6821,7 +6872,7 @@
     syncMenuCarouselLoop();
     window.openBookingPanel = openBookingPanel;
     window.closeBookingPanel = closeBookingPanel;
-    document.getElementById("year").textContent = new Date().getFullYear();
+    syncFooterYear();
   </script>
 </body>
 </html>
