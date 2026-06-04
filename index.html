@@ -4324,15 +4324,16 @@
         padding: 0;
         transform: none;
         object-fit: cover;
-        object-position: center center;
+        object-position: center 18%;
         image-rendering: auto;
-        filter: contrast(1.03) saturate(1.05) brightness(0.99);
+        filter: contrast(1.04) saturate(1.08) brightness(1.01);
       }
 
       .hero-media::after {
         background:
-          linear-gradient(90deg, rgba(4, 4, 4, 0.26) 0%, rgba(4, 4, 4, 0.06) 42%, rgba(4, 4, 4, 0.16) 100%),
-          linear-gradient(180deg, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0.12) 100%);
+          radial-gradient(circle at 50% 10%, rgba(255, 171, 98, 0.34), transparent 18%),
+          linear-gradient(90deg, rgba(4, 4, 4, 0.18) 0%, rgba(4, 4, 4, 0.03) 42%, rgba(4, 4, 4, 0.12) 100%),
+          linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.1) 100%);
       }
 
       .hero-grid {
