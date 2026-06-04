@@ -5979,6 +5979,11 @@
     let isApplyingLanguage = false;
     let translationRepairQueued = false;
     let translationObserver = null;
+    const menuCarouselState = {
+      enabled: false,
+      realCount: 0,
+      settleTimer: null
+    };
 
     const translations = {
       it: {
@@ -6566,9 +6571,9 @@
       });
     });
 
-    function scrollMenuCarousel(step) {
+    function getMenuCarouselStepSize() {
       if (!menuCarouselGrid) {
-        return;
+        return 0;
       }
 
       const firstCard = menuCarouselGrid.querySelector(".menu-visual-card");
@@ -6577,10 +6582,123 @@
       const gap = Number.parseFloat(gapValue) || 0;
       const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : menuCarouselGrid.clientWidth;
 
+      return cardWidth + gap;
+    }
+
+    function syncMenuCarouselLoopPosition() {
+      if (!menuCarouselGrid || !menuCarouselState.enabled) {
+        return;
+      }
+
+      const stepSize = getMenuCarouselStepSize();
+      if (!stepSize) {
+        return;
+      }
+
+      const scrollLeft = menuCarouselGrid.scrollLeft;
+      const startThreshold = stepSize * 0.5;
+      const endThreshold = stepSize * (menuCarouselState.realCount + 0.5);
+
+      if (scrollLeft <= startThreshold) {
+        menuCarouselGrid.scrollLeft = stepSize * menuCarouselState.realCount;
+        return;
+      }
+
+      if (scrollLeft >= endThreshold) {
+        menuCarouselGrid.scrollLeft = stepSize;
+      }
+    }
+
+    function queueMenuCarouselLoopPositionSync() {
+      if (!menuCarouselState.enabled) {
+        return;
+      }
+
+      window.clearTimeout(menuCarouselState.settleTimer);
+      menuCarouselState.settleTimer = window.setTimeout(() => {
+        syncMenuCarouselLoopPosition();
+      }, 90);
+    }
+
+    function enableMenuCarouselLoop() {
+      if (!menuCarouselGrid || menuCarouselState.enabled) {
+        return;
+      }
+
+      const realCards = Array.from(
+        menuCarouselGrid.querySelectorAll('.menu-visual-card:not([data-menu-clone="true"])')
+      );
+
+      if (realCards.length < 2) {
+        return;
+      }
+
+      const firstClone = realCards[0].cloneNode(true);
+      const lastClone = realCards[realCards.length - 1].cloneNode(true);
+
+      firstClone.dataset.menuClone = "true";
+      lastClone.dataset.menuClone = "true";
+      firstClone.setAttribute("aria-hidden", "true");
+      lastClone.setAttribute("aria-hidden", "true");
+      firstClone.removeAttribute("data-animate");
+      lastClone.removeAttribute("data-animate");
+
+      menuCarouselGrid.insertBefore(lastClone, menuCarouselGrid.firstChild);
+      menuCarouselGrid.appendChild(firstClone);
+      menuCarouselState.enabled = true;
+      menuCarouselState.realCount = realCards.length;
+
+      requestAnimationFrame(() => {
+        const stepSize = getMenuCarouselStepSize();
+        if (stepSize) {
+          menuCarouselGrid.scrollLeft = stepSize;
+        }
+      });
+    }
+
+    function disableMenuCarouselLoop() {
+      if (!menuCarouselGrid || !menuCarouselState.enabled) {
+        return;
+      }
+
+      window.clearTimeout(menuCarouselState.settleTimer);
+      menuCarouselGrid
+        .querySelectorAll('[data-menu-clone="true"]')
+        .forEach((clone) => clone.remove());
+
+      menuCarouselState.enabled = false;
+      menuCarouselState.realCount = 0;
+      menuCarouselGrid.scrollLeft = 0;
+    }
+
+    function syncMenuCarouselLoop() {
+      if (!menuCarouselGrid) {
+        return;
+      }
+
+      if (bookingPanelMedia.matches) {
+        enableMenuCarouselLoop();
+      } else {
+        disableMenuCarouselLoop();
+      }
+    }
+
+    function scrollMenuCarousel(step) {
+      if (!menuCarouselGrid) {
+        return;
+      }
+
+      const stepSize = getMenuCarouselStepSize();
+      if (!stepSize) {
+        return;
+      }
+
       menuCarouselGrid.scrollBy({
-        left: step * (cardWidth + gap),
+        left: step * stepSize,
         behavior: "smooth"
       });
+
+      queueMenuCarouselLoopPositionSync();
     }
 
     menuCarouselButtons.forEach((button) => {
@@ -6591,6 +6709,16 @@
         }
       });
     });
+
+    if (menuCarouselGrid) {
+      menuCarouselGrid.addEventListener(
+        "scroll",
+        () => {
+          queueMenuCarouselLoopPositionSync();
+        },
+        { passive: true }
+      );
+    }
 
     document.addEventListener("click", (event) => {
       const openTrigger = event.target.closest("[data-open-booking-panel]");
@@ -6637,9 +6765,15 @@
     });
 
     if (typeof bookingPanelMedia.addEventListener === "function") {
-      bookingPanelMedia.addEventListener("change", syncBookingPanelState);
+      bookingPanelMedia.addEventListener("change", () => {
+        syncBookingPanelState();
+        syncMenuCarouselLoop();
+      });
     } else if (typeof bookingPanelMedia.addListener === "function") {
-      bookingPanelMedia.addListener(syncBookingPanelState);
+      bookingPanelMedia.addListener(() => {
+        syncBookingPanelState();
+        syncMenuCarouselLoop();
+      });
     }
 
     const observer = new IntersectionObserver(
@@ -6684,6 +6818,7 @@
     setLanguage(localStorage.getItem("mama-language") || "it");
     syncMapConsentBanner();
     syncBookingPanelState();
+    syncMenuCarouselLoop();
     window.openBookingPanel = openBookingPanel;
     window.closeBookingPanel = closeBookingPanel;
     document.getElementById("year").textContent = new Date().getFullYear();
