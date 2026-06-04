@@ -4915,6 +4915,21 @@
     .mobile-cta .btn-ghost * {
       font-family: var(--body-font) !important;
     }
+
+    @media (min-width: 881px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 760px) !important;
+        justify-content: start !important;
+      }
+
+      .hero-copy {
+        max-width: 760px !important;
+      }
+
+      .hero .booking-card {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body class="notranslate" translate="no">
