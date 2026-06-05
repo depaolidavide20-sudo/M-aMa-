@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google" content="notranslate" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="supported-color-schemes" content="dark" />
+  <meta name="theme-color" content="#060606" />
   <title>La Nostra Storia | Pizzeria M'aMa</title>
   <meta
     name="description"
@@ -12,6 +15,7 @@
   <style>
     :root {
       --cream: #f7efe4;
+      --ivory: #fff9f2;
       --ink: #e6d8c7;
       --gold: #f38a41;
       --accent-rgb: 243, 138, 65;
@@ -19,6 +23,7 @@
       --shadow: 0 26px 70px rgba(0, 0, 0, 0.34);
       --body-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
       --display-font: "Didot", "Bodoni 72", "Bodoni MT", "Baskerville", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      color-scheme: dark;
     }
 
     * {
@@ -37,12 +42,19 @@
       font-family: var(--display-font) !important;
     }
 
+    html {
+      color-scheme: dark;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
     body {
       margin: 0;
       color: var(--cream);
       background:
         radial-gradient(circle at top left, rgba(var(--accent-rgb), 0.12), transparent 26%),
         linear-gradient(180deg, #020202 0%, #070707 42%, #0d0d0d 100%);
+      color-scheme: dark;
     }
 
     a {
@@ -94,11 +106,17 @@
       background: #fff;
       border-radius: 6px;
       box-shadow: 0 16px 28px rgba(0, 0, 0, 0.18);
+      line-height: 0;
+      overflow: visible;
+      flex-shrink: 0;
     }
 
     .brand-logo {
       width: 74px;
-      height: auto;
+      height: auto !important;
+      max-width: none;
+      max-height: 100%;
+      object-fit: contain;
     }
 
     .nav-links {
@@ -471,6 +489,75 @@
       width: 18px;
       height: 18px;
       display: block;
+    }
+
+    .lang-btn,
+    .lang-btn:link,
+    .lang-btn:visited,
+    .lang-btn:hover,
+    .lang-btn:focus-visible,
+    .lang-btn:active,
+    .btn,
+    .btn:link,
+    .btn:visited,
+    .btn:hover,
+    .btn:focus-visible,
+    .btn:active,
+    .btn-ghost,
+    .btn-ghost:link,
+    .btn-ghost:visited,
+    .btn-ghost:hover,
+    .btn-ghost:focus-visible,
+    .btn-ghost:active,
+    .footer-legal-space a,
+    .footer-legal-space a:link,
+    .footer-legal-space a:visited,
+    .footer-links-row a,
+    .footer-links-row a:link,
+    .footer-links-row a:visited,
+    .social-link,
+    .social-link:link,
+    .social-link:visited {
+      -webkit-appearance: none;
+      appearance: none;
+      -webkit-text-fill-color: currentColor;
+      forced-color-adjust: none;
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(145deg, #ff9b57, #e06d2c) !important;
+      background-color: #ff9b57 !important;
+      color: #15120b !important;
+      -webkit-text-fill-color: #15120b !important;
+    }
+
+    .btn,
+    .btn:link,
+    .btn:visited,
+    .btn:hover,
+    .btn:focus-visible,
+    .btn:active {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+    }
+
+    .btn-ghost,
+    .btn-ghost:link,
+    .btn-ghost:visited,
+    .btn-ghost:hover,
+    .btn-ghost:focus-visible,
+    .btn-ghost:active,
+    .footer-legal-space a,
+    .footer-legal-space a:link,
+    .footer-legal-space a:visited,
+    .footer-links-row a,
+    .footer-links-row a:link,
+    .footer-links-row a:visited,
+    .social-link,
+    .social-link:link,
+    .social-link:visited {
+      color: var(--cream) !important;
+      -webkit-text-fill-color: currentColor !important;
     }
 
     .footer-meta {
