@@ -3414,15 +3414,23 @@
 
       .menu-cta-row {
         order: 4;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+        width: min(100%, 460px);
+        margin: 0 auto;
         padding: 14px 0 0;
+        gap: 12px;
         justify-content: center;
       }
 
       .menu-cta-button {
-        width: auto;
+        width: 100%;
+        min-width: 0;
         min-height: 46px;
-        padding: 0 18px;
-        font-size: 0.95rem;
+        padding: 0 14px;
+        font-size: clamp(0.88rem, 3.4vw, 0.95rem);
+        white-space: nowrap;
       }
 
       .map-card {
@@ -5388,7 +5396,7 @@
         <div class="menu-header" data-animate>
           <div class="section-title">
             <span class="menu-kicker" data-i18n="menu_eyebrow">Menù</span>
-            <h2 data-i18n-html="menu_title">Pizze fatte bene, <span class="menu-title-accent">servite con piacere</span>.</h2>
+            <h2 data-i18n-html="menu_title">Pizze fatte bene, <span class="menu-title-accent">servite con piacere</span></h2>
             <p data-i18n="menu_text">
               Impasti curati e ingredienti scelti, dalle classiche alle speciali.
             </p>
@@ -6218,7 +6226,7 @@
         story_note_title: "Vista sul mare",
         story_note_text: "Veranda affacciata sul tramonto, luce soffusa e un'atmosfera che invita a restare.",
         menu_eyebrow: "Menù",
-        menu_title: "Pizze fatte bene, <span class=\"menu-title-accent\">servite con piacere</span>.",
+        menu_title: "Pizze fatte bene, <span class=\"menu-title-accent\">servite con piacere</span>",
         menu_text: "Impasti curati e ingredienti scelti, dalle classiche alle speciali.",
         menu_carousel_label: "Scorri le foto del menù",
         menu_carousel_prev: "Foto precedente",
@@ -6321,7 +6329,7 @@
         story_note_title: "Sea view",
         story_note_text: "A veranda overlooking the sunset, soft light and an atmosphere that invites you to stay.",
         menu_eyebrow: "Menu",
-        menu_title: "Pizzas made properly, <span class=\"menu-title-accent\">served with care</span>.",
+        menu_title: "Pizzas made properly, <span class=\"menu-title-accent\">served with care</span>",
         menu_text: "Refined doughs and selected ingredients, from classics to signature pizzas.",
         menu_carousel_label: "Scroll through the menu photos",
         menu_carousel_prev: "Previous photo",
