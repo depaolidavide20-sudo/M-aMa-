@@ -22,7 +22,7 @@
       --shadow: 0 26px 70px rgba(0, 0, 0, 0.28);
       --body-font: Georgia, "Times New Roman", serif;
       --display-font: "Didot", "Bodoni 72", "Bodoni MT", "Baskerville", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
-      color-scheme: dark;
+      color-scheme: only dark;
     }
 
     * {
@@ -41,7 +41,7 @@
     }
 
     html {
-      color-scheme: dark;
+      color-scheme: only dark;
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
     }
@@ -52,7 +52,9 @@
       background:
         radial-gradient(circle at top left, rgba(var(--accent-rgb), 0.12), transparent 26%),
         linear-gradient(180deg, #020202 0%, #070707 42%, #0d0d0d 100%);
-      color-scheme: dark;
+      color-scheme: only dark;
+      forced-color-adjust: none;
+      background-color: #060606;
     }
 
     a {
